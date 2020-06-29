@@ -5,17 +5,17 @@ import Danger from "../../components/Danger";
 
 import { Container, Content } from "./styles";
 
-const ListRecord = () => {
+const ListRecordAnalisis = () => {
   return (
     <>
       <Sidbar />
       <Container>
         <Content>
-          <Danger approved={true} />
+          <Danger approved={false} />
         </Content>
       </Container>
     </>
   );
 };
 
-export default ListRecord;
+export default ListRecordAnalisis;

@@ -12,7 +12,7 @@ const Dashboard = ({ history }) => {
       <Container>
         <Content>
           <Column>
-            <Button analysis>
+            <Button analysis to="/listrecordanalisis">
               <div>
                 <div>
                   <strong>200</strong>
