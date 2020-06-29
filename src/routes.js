@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Record from "./pages/Record";
 import Draw from "./pages/Draw";
+import ListRecord from "./pages/ListRecord";
 
 const Routes = () => (
   <BrowserRouter>
@@ -11,6 +12,7 @@ const Routes = () => (
       <Route exact path="/" component={Dashboard} />
       <Route path="/record" component={Record} />
       <Route path="/draw" component={Draw} />
+      <Route path="/listrecord" component={ListRecord} />
     </Switch>
   </BrowserRouter>
 );

@@ -4,7 +4,7 @@ import { FiCamera, FiCodesandbox, FiBarChart2, FiCheck } from "react-icons/fi";
 import SideBar from "../../components/SideBar";
 import { Container, Button, Content, Column } from "./styles";
 
-const Dashboard = () => {
+const Dashboard = ({ history }) => {
   return (
     <>
       <SideBar page="dashboard" />
@@ -12,7 +12,7 @@ const Dashboard = () => {
       <Container>
         <Content>
           <Column>
-            <Button records>
+            <Button records onClick={() => history.push("listrecord")}>
               <div>
                 <div>
                   <strong>1000</strong>
