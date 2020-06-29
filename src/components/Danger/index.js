@@ -66,19 +66,22 @@ const Danger = ({ approved }) => {
                 <strong>{danger.location}</strong>
                 <p>{danger.description}</p>
                 <div>
-                  <button
-                    className="checked"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          `Deseja realmente aprovar esse registro?`
+                  {approved === true ? null : (
+                    <button
+                      className="checked"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            `Deseja realmente aprovar esse registro?`
+                          )
                         )
-                      )
-                        approve(danger._id);
-                    }}
-                  >
-                    <FiCheck />
-                  </button>
+                          approve(danger._id);
+                      }}
+                    >
+                      <FiCheck />
+                    </button>
+                  )}
+
                   <button
                     className="delete"
                     onClick={() => {
