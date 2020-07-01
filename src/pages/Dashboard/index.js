@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiCodesandbox, FiBarChart2, FiCheck } from "react-icons/fi";
 
 import SideBar from "../../components/SideBar";
 import { Container, Button, Content, Column } from "./styles";
 
+import api from "../../services/api";
+
 const Dashboard = ({ history }) => {
+  const [dangersApproved, setDangersApproved] = useState([]);
+  const [dangersNotApproved, setDangersNotApproved] = useState([]);
+
+  useEffect(() => {
+    async function loadDanger() {
+      const response = await api.get("/dangers");
+      const approved = response.data.docs.filter((data) => {
+        if (data.approved === true) {
+          return data;
+        }
+      });
+
+      const notApproved = response.data.docs.filter((data) => {
+        if (data.approved === false) {
+          return data;
+        }
+      });
+
+      setDangersApproved(approved);
+      setDangersNotApproved(notApproved);
+    }
+
+    loadDanger();
+  }, []);
+
   return (
     <>
       <SideBar page="dashboard" />
@@ -15,7 +42,7 @@ const Dashboard = ({ history }) => {
             <Button analysis to="/listrecordanalisis">
               <div>
                 <div>
-                  <strong>200</strong>
+                  <strong>{dangersNotApproved.length}</strong>
                   <p>Registros para Análise</p>
                 </div>
 
@@ -25,7 +52,7 @@ const Dashboard = ({ history }) => {
             <Button aproved to="/listrecord">
               <div>
                 <div>
-                  <strong>800</strong>
+                  <strong>{dangersApproved.length}</strong>
                   <p>Registros Aprovados</p>
                 </div>
 
