@@ -60,7 +60,8 @@ export const SideNav = styled.div`
       width: 100%;
     }
 
-    a {
+    a,
+    button {
       width: 100%;
       justify-content: center;
       span {
@@ -127,6 +128,28 @@ export const SideNav = styled.div`
 
     span {
       color: #fbc46a;
+    }
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5px;
+    margin: 10px 0px 0px 0px;
+    padding: 15px 0px 15px 20px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #f73e57;
+    display: flex;
+    background: none;
+    border: none;
+
+    &:hover {
+      color: #d4354a;
+    }
+
+    span {
+      margin-right: 25px;
     }
   }
 `;

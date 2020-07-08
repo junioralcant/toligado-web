@@ -6,11 +6,14 @@ import {
   FiAlignJustify,
   FiX,
 } from "react-icons/fi";
+import { AiOutlinePoweroff } from "react-icons/ai";
 import { Link } from "react-router-dom";
+
+import { logout } from "../../services/auth";
 
 import { SideNav, Button, Background, Close } from "./styles";
 
-const SideBar = ({ page }) => {
+const SideBar = ({ page, history }) => {
   const [pageName, setPageName] = useState("dashboard");
   const [sidebarActive, setSideBarActive] = useState(false);
 
@@ -20,6 +23,11 @@ const SideBar = ({ page }) => {
 
   function activeSidebar() {
     setSideBarActive(!sidebarActive);
+  }
+
+  function goOut() {
+    logout();
+    window.history.go(0);
   }
 
   return (
@@ -60,6 +68,13 @@ const SideBar = ({ page }) => {
           </span>
           <p>Sorteio</p>
         </Link>
+
+        <button onClick={goOut}>
+          <span>
+            <AiOutlinePoweroff />
+          </span>
+          <p>Sair</p>
+        </button>
       </SideNav>
       <Background teste={sidebarActive ? "teste" : ""}>
         <Close onClick={activeSidebar}>
