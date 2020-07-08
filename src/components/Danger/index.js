@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FiCheck, FiTrash2 } from "react-icons/fi";
 import { ToastContainer, toast } from "react-toastify";
+import io from "socket.io-client";
 
 import api from "../../services/api";
 
@@ -17,6 +18,21 @@ const Danger = ({ approved }) => {
     }
 
     loadDanger();
+  }, []);
+
+  useEffect(() => {
+    const socket = io("http://172.17.0.1:3001");
+
+    socket.on("newRecord", (message) => {
+      async function load() {
+        const response = await api.get("/dangers");
+
+        setDangers(response.data.docs);
+        console.log(message);
+      }
+
+      load();
+    });
   }, []);
 
   async function destroy(id) {
