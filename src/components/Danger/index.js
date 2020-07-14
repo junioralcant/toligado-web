@@ -21,7 +21,7 @@ const Danger = ({ approved }) => {
   }, []);
 
   useEffect(() => {
-    const socket = io("http://172.17.0.1:3001");
+    const socket = io(process.env.REACT_APP_API_URL);
 
     socket.on("newRecord", (message) => {
       async function load() {
