@@ -6,16 +6,16 @@ import { login } from "../../services/auth";
 import { Container, Login } from "./styles";
 
 const SignIn = ({ history }) => {
-  const [cpf, setCpf] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   async function handleSignIn() {
-    if (!cpf || !password) {
+    if (!email || !password) {
       setError("Preencha e-mail e senha para continuar!");
     } else {
       try {
-        const response = await api.post("/sessions", { cpf, password });
+        const response = await api.post("/sessions", { email, password });
         login(response.data.token);
         console.log(response.data.token);
         history.push("/");
@@ -35,9 +35,9 @@ const SignIn = ({ history }) => {
         <div>
           <input
             type="email"
-            placeholder="Informe um CPF válido"
-            value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
+            placeholder="Informe um e-mail válido"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"

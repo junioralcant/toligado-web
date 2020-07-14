@@ -55,13 +55,6 @@ const SideBar = ({ page, history }) => {
           <p>Dashboard</p>
         </Link>
 
-        <Link to="/record" className={pageName === "record" ? "active" : ""}>
-          <span>
-            <FiCamera />
-          </span>
-          <p>Registros</p>
-        </Link>
-
         <Link to="/draw" className={pageName === "draw" ? "active" : ""}>
           <span>
             <FiCodesandbox />

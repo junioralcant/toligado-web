@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
 import Dashboard from "./pages/Dashboard";
-import Record from "./pages/Record";
 import Draw from "./pages/Draw";
 import ListRecord from "./pages/ListRecord";
 import ListRecordAnalisis from "./pages/ListRecordAnalisis";
@@ -29,7 +28,6 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <PrivateRoute exact path="/" component={Dashboard} />
-      <PrivateRoute path="/record" component={Record} />
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />
       <PrivateRoute path="/listrecordanalisis" component={ListRecordAnalisis} />
