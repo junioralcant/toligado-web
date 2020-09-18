@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import api from "../../services/api";
 import { login } from "../../services/auth";
+import Load from "../../components/Loader";
 
 import { Container, Login } from "./styles";
 
@@ -9,17 +10,21 @@ const SignIn = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSignIn() {
     if (!email || !password) {
       setError("Preencha e-mail e senha para continuar!");
     } else {
       try {
+        setLoading(true);
         const response = await api.post("/sessions", { email, password });
         login(response.data.token);
         console.log(response.data.token);
         history.push("/");
+        setLoading(false);
       } catch (err) {
+        setLoading(false);
         setError(
           "Houve um problema com o login, verifique suas credenciais. T.T"
         );
@@ -45,7 +50,7 @@ const SignIn = ({ history }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleSignIn}>Entrar</button>
+          {loading ? <Load /> : <button onClick={handleSignIn}>Entrar</button>}
         </div>
       </Login>
     </Container>
