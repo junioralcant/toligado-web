@@ -62,7 +62,7 @@ const Dashboard = ({ history }) => {
           </Column>
 
           <Column>
-            <Button lucky>
+            <Button lucky to="/draw">
               <div>
                 <div>
                   <strong>#893842A</strong>

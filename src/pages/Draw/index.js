@@ -1,7 +1,8 @@
 import React from "react";
 
 import SideBar from "../../components/SideBar";
-import { Container } from "./styles";
+import ListDraw from "../../components/ListDraw";
+import { Container, Content } from "./styles";
 
 const Draw = () => {
   return (
@@ -9,7 +10,9 @@ const Draw = () => {
       <SideBar page="draw" />
 
       <Container>
-        <h1>Sorteio</h1>
+        <Content>
+          <ListDraw />
+        </Content>
       </Container>
     </>
   );
