@@ -79,6 +79,7 @@ const Danger = ({ approved }) => {
                 alt={danger.location}
               />
               <div className="footer">
+                <strong>{danger._id}</strong>
                 <strong>{danger.location}</strong>
                 <p>{danger.description}</p>
                 <div>
