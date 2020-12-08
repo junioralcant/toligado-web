@@ -7,8 +7,10 @@ import api from "../../services/api";
 
 import { Card } from "./styles";
 
-const Danger = ({ approved }) => {
+const Danger = ({ approved, analyzed,disapproved }) => {
   const [dangers, setDangers] = useState([]);
+
+  
 
   useEffect(() => {
     async function loadDanger() {
@@ -35,20 +37,31 @@ const Danger = ({ approved }) => {
     });
   }, []);
 
-  async function destroy(id) {
-    await api.delete(`/dangers/${id}`);
+  async function fileDanger(id) {
+    var teste = window.prompt("Informe o motivo da reprovação do registro")
+    
+    await api.put(`/dangers/${id}`, {
+      disapproved: true,
+      analyzed: true,
+      approved: false,
+      disapprovedReason: teste
+    });
 
     const response = await api.get("/dangers");
 
     setDangers(response.data.docs);
 
-    toast.success("Registro excluído com sucesso!", {
+    toast.success("Registro reprovado com sucesso!", {
       autoClose: 3000,
     });
   }
 
   async function approve(id) {
-    await api.put(`/dangers/${id}`, { approved: true });
+    await api.put(`/dangers/${id}`, { 
+      disapproved: false,
+      analyzed: true,
+      approved: true
+     });
 
     const response = await api.get("/dangers");
 
@@ -104,10 +117,10 @@ const Danger = ({ approved }) => {
                     onClick={() => {
                       if (
                         window.confirm(
-                          `Deseja realmente deletar esse registro?`
+                          `Deseja realmente reprovar esse registro?`
                         )
                       )
-                        destroy(danger._id);
+                      fileDanger(danger._id);
                     }}
                   >
                     <FiTrash2 />
@@ -116,7 +129,109 @@ const Danger = ({ approved }) => {
               </div>
             </Card>
           )
-      )}
+      )
+      }
+
+      {dangers.map(
+        (danger) =>
+          danger.analyzed === analyzed && (
+            <Card key={danger._id}>
+              <div className="header">
+                <div>
+                  <strong>{danger.user.name}</strong>
+                  <br />
+                  <small>{danger.user.cpf}</small>
+                </div>
+                <small>{danger.createdAt}</small>
+              </div>
+              <img
+                src={danger.image.url ? danger.image.url : null}
+                alt={danger.location}
+              />
+              <div className="footer">
+                <strong>{danger._id}</strong>
+                <strong>{danger.location}</strong>
+                <p>{danger.description}</p>
+                <div>
+                  {approved === true ? null : (
+                    <button
+                      className="checked"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            `Deseja realmente aprovar esse registro?`
+                          )
+                        )
+                          approve(danger._id);
+                      }}
+                    >
+                      <FiCheck />
+                    </button>
+                  )}
+
+                  <button
+                    className="delete"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          `Deseja realmente reprovar esse registro?`
+                        )
+                      )
+                      fileDanger(danger._id);
+                    }}
+                  >
+                    <FiTrash2 />
+                  </button>
+                </div>
+              </div>
+            </Card>
+          )
+      )
+      }
+
+      {dangers.map(
+        (danger) =>
+          danger.disapproved === disapproved && (
+            <Card key={danger._id}>
+              <div className="header">
+                <div>
+                  <strong>{danger.user.name}</strong>
+                  <br />
+                  <small>{danger.user.cpf}</small>
+                </div>
+                <small>{danger.createdAt}</small>
+              </div>
+              <img
+                src={danger.image.url ? danger.image.url : null}
+                alt={danger.location}
+              />
+              <div className="footer">
+                <strong>{danger._id}</strong>
+                <strong>{danger.location}</strong>
+                <p>{danger.description}</p>
+                <p style={{color: "red"}} >{danger.disapprovedReason}</p>
+                <div>
+                  {approved === true ? null : (
+                    <button
+                      className="checked"
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            `Deseja realmente aprovar esse registro?`
+                          )
+                        )
+                          approve(danger._id);
+                      }}
+                    >
+                      <FiCheck />
+                    </button>
+                  )}
+                </div>
+              </div>
+            </Card>
+          )
+      )
+      }
     </>
   );
 };

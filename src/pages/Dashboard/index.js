@@ -8,7 +8,8 @@ import api from "../../services/api";
 
 const Dashboard = ({ history }) => {
   const [dangersApproved, setDangersApproved] = useState([]);
-  const [dangersNotApproved, setDangersNotApproved] = useState([]);
+  const [dangersAnalyzed, setDangersAnalyzed] = useState([]);
+  const [dangersDisapproved, setDangersDisapproved] = useState([]);
 
   useEffect(() => {
     async function loadDanger() {
@@ -19,18 +20,28 @@ const Dashboard = ({ history }) => {
         }
       });
 
-      const notApproved = response.data.docs.filter((data) => {
-        if (data.approved === false) {
+      const analyzed = response.data.docs.filter((data) => {
+        if (data.analyzed === false) {
+          return data;
+        }
+      });
+
+      const disapproved = response.data.docs.filter((data) => {
+        if (data.disapproved === true) {
           return data;
         }
       });
 
       setDangersApproved(approved);
-      setDangersNotApproved(notApproved);
+      setDangersAnalyzed(analyzed);
+      setDangersDisapproved(disapproved)
     }
 
     loadDanger();
   }, []);
+
+
+
 
   return (
     <>
@@ -42,7 +53,7 @@ const Dashboard = ({ history }) => {
             <Button analysis to="/listrecordanalisis">
               <div>
                 <div>
-                  <strong>{dangersNotApproved.length}</strong>
+                  <strong>{dangersAnalyzed.length}</strong>
                   <p>Registros para Análise</p>
                 </div>
 
@@ -62,11 +73,21 @@ const Dashboard = ({ history }) => {
           </Column>
 
           <Column>
+          <Button disapproved to="/listrecorddisapproved">
+              <div>
+                <div>
+                  <strong>{dangersDisapproved.length}</strong>
+                  <p>Registros Reprovados</p>
+                </div>
+
+                <FiCheck />
+              </div>
+            </Button>
             <Button lucky to="/draw">
               <div>
                 <div>
                   <strong>#893842A</strong>
-                  <p>Número da Sorte</p>
+                  <p>Sorteio</p>
                 </div>
 
                 <FiCodesandbox />
