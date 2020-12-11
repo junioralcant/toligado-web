@@ -44,15 +44,21 @@ const ListDraw = () => {
   }
 
   async function HandlerButtonDraw() {
-    await api.post("/draws");
+    try {
+      await api.post("/draws");
 
-    const response = await api.get("/draws");
-
-    setDraws(response.data.docs);
-
-    toast.success("Sorteio realizado com sucesso!", {
-      autoClose: 3000,
-    });
+      const response = await api.get("/draws");
+  
+      setDraws(response.data.docs);
+  
+      toast.success("Sorteio realizado com sucesso!", {
+        autoClose: 3000,
+      });
+    } catch (error) {
+      toast.error(error.response.data.error, {
+        autoClose: 3000,
+      });
+    }
   }
 
   return (
@@ -79,7 +85,7 @@ const ListDraw = () => {
                 return (
                   <SubCard>
                     <div>
-                      <strong>{ids._id}</strong>
+                      <strong>{ids.recordId._id}</strong>
                       <br />
                       {users.map((user) => {
                         if (user._id === ids.recordId.user) {
@@ -95,9 +101,7 @@ const ListDraw = () => {
                       })}
                       <br />
 
-                      {/*  */}
                     </div>
-                    {/* <small>{danger.createdAt}</small> */}
                   </SubCard>
                 );
               })}
