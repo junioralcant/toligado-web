@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FiCodesandbox, FiBarChart2, FiCheck } from "react-icons/fi";
+import { BsFillArchiveFill } from "react-icons/bs";
 
 import SideBar from "../../components/SideBar";
 import { Container, Button, Content, Column } from "./styles";
@@ -34,14 +35,11 @@ const Dashboard = ({ history }) => {
 
       setDangersApproved(approved);
       setDangersAnalyzed(analyzed);
-      setDangersDisapproved(disapproved)
+      setDangersDisapproved(disapproved);
     }
 
     loadDanger();
   }, []);
-
-
-
 
   return (
     <>
@@ -73,14 +71,14 @@ const Dashboard = ({ history }) => {
           </Column>
 
           <Column>
-          <Button disapproved to="/listrecorddisapproved">
+            <Button disapproved to="/listrecorddisapproved">
               <div>
                 <div>
                   <strong>{dangersDisapproved.length}</strong>
                   <p>Registros Reprovados</p>
                 </div>
 
-                <FiCheck />
+                <BsFillArchiveFill />
               </div>
             </Button>
             <Button lucky to="/draw">
