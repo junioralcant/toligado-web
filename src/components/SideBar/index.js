@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 import { logout } from "../../services/auth";
 
-import { SideNav, Button, Background, Close } from "./styles";
+import { SideNav, Button, Background, Close, companyData } from "./styles";
 
 const SideBar = ({ page, history }) => {
   const [pageName, setPageName] = useState("dashboard");
@@ -41,8 +41,15 @@ const SideBar = ({ page, history }) => {
             <FiGrid />
           </span>
 
-          <p>Dashboard</p>
+          <p>Tô Ligado SSMA</p>
         </strong>
+
+        <div className="companyData">
+          <p>CNPJ: 04.855.934/0001-66</p>
+          <p>RAZÃO SOCIAL: CLARO S.A.</p>
+          <p>OBRAS: OPRA TAL E OBRA TAL</p>
+          <p>N FUNCIONÁRIOs: 350</p>
+        </div>
 
         <div>
           <small>Menu</small>

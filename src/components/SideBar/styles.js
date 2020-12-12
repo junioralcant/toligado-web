@@ -94,6 +94,17 @@ export const SideNav = styled.div`
     }
   }
 
+  div.companyData {
+    font-size: 13px;
+    margin-left: 10px;
+    color: #fff;
+    margin-top: -30px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
   div {
     margin-bottom: 30px;
     small {
