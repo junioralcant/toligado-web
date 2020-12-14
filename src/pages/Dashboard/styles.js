@@ -82,3 +82,14 @@ export const Button = styled(Link)`
     font-size: 15px;
   }
 `;
+
+export const Girl = styled.img`
+  position: absolute;
+  right: 20px;
+  height: 412px;
+  bottom: 10px;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
+`;

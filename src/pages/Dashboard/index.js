@@ -3,9 +3,11 @@ import { FiCodesandbox, FiBarChart2, FiCheck } from "react-icons/fi";
 import { BsFillArchiveFill } from "react-icons/bs";
 
 import SideBar from "../../components/SideBar";
-import { Container, Button, Content, Column } from "./styles";
+import { Container, Button, Content, Column, Girl } from "./styles";
 
 import api from "../../services/api";
+
+import girl from "../../assets/girl.png";
 
 const Dashboard = ({ history }) => {
   const [dangersApproved, setDangersApproved] = useState([]);
@@ -93,6 +95,7 @@ const Dashboard = ({ history }) => {
             </Button>
           </Column>
         </Content>
+        <Girl src={girl} all="Mascote Rocha" />
       </Container>
     </>
   );

@@ -7,7 +7,6 @@ import {
   FiX,
 } from "react-icons/fi";
 import { AiOutlinePoweroff } from "react-icons/ai";
-import { BsFillArchiveFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 import { logout } from "../../services/auth";
