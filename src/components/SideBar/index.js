@@ -45,10 +45,10 @@ const SideBar = ({ page, history }) => {
         </strong>
 
         <div className="companyData">
-          <p>CNPJ: 04.855.934/0001-66</p>
-          <p>RAZÃO SOCIAL: CLARO S.A.</p>
-          <p>OBRAS: OPRA TAL E OBRA TAL</p>
-          <p>N FUNCIONÁRIOs: 350</p>
+          <p>CNPJ: 22.743.714/0001-22</p>
+          <p>RAZÃO SOCIAL: SB PEDREIRA LTDA</p>
+          <p>OBRA: RONDONÓPOLIS - MT</p>
+          <p>N FUNCIONÁRIOs: 28</p>
         </div>
 
         <div>
