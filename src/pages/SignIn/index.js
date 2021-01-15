@@ -36,6 +36,7 @@ const SignIn = ({ history }) => {
     <Container>
       <Login>
         <h2>Tô Ligado</h2>
+        <h2>SB PEDREIRA LTDA</h2>
         {error && <p>{error}</p>}
         <div>
           <input
