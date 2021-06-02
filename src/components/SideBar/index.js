@@ -76,10 +76,10 @@ const SideBar = ({ page, history }) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            marginTop: "100%",
+            marginTop: 100,
           }}
         >
-          <img src={logo} style={{ width: 150 }} />
+          <img src={logo} style={{ width: 120 }} />
         </div>
 
         <button onClick={goOut}>
