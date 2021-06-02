@@ -13,6 +13,8 @@ import { logout } from "../../services/auth";
 
 import { SideNav, Button, Background, Close, companyData } from "./styles";
 
+import logo from "../../assets/logo-white.png";
+
 const SideBar = ({ page, history }) => {
   const [pageName, setPageName] = useState("dashboard");
   const [sidebarActive, setSideBarActive] = useState(false);
@@ -68,6 +70,17 @@ const SideBar = ({ page, history }) => {
           </span>
           <p>Sorteio</p>
         </Link>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "100%",
+          }}
+        >
+          <img src={logo} style={{ width: 150 }} />
+        </div>
 
         <button onClick={goOut}>
           <span>
