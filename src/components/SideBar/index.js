@@ -44,12 +44,12 @@ const SideBar = ({ page, history }) => {
           <p>Tô Ligado SSMA</p>
         </strong>
 
-        <div className="companyData">
+        {/* <div className="companyData">
           <p>CNPJ: 22.743.714/0001-22</p>
           <p>RAZÃO SOCIAL: SB PEDREIRA LTDA</p>
           <p>OBRA: RONDONÓPOLIS - MT</p>
           <p>N FUNCIONÁRIOs: 28</p>
-        </div>
+        </div> */}
 
         <div>
           <small>Menu</small>
