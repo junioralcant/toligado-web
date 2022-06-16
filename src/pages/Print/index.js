@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
@@ -19,7 +20,7 @@ const Print = () => {
     locationHistory.state;
 
   useEffect(() => {
-    setTimeout(() => window.print(), 800);
+    // setTimeout(() => window.print(), 800);
   }, []);
   return (
     <Container>
@@ -33,7 +34,10 @@ const Print = () => {
               Relatório de Registros
             </h4>
             <h4>Registrado por: {name}</h4>
-            <h4>Data do registro: {date}</h4>
+            <h4>
+              Data do registro:{' '}
+              {moment(date).format('DD-MM-YYYY h:mm')}
+            </h4>
           </div>
           <div>
             <img src={logo} />
