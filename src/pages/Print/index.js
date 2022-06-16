@@ -19,7 +19,7 @@ const Print = () => {
     locationHistory.state;
 
   useEffect(() => {
-    window.print();
+    setTimeout(() => window.print(), 800);
   }, []);
   return (
     <Container>
