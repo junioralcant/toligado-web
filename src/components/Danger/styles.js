@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Card = styled.div`
   display: flex;
@@ -59,6 +59,14 @@ export const Card = styled.div`
 
         &:hover {
           color: #3e8355;
+        }
+      }
+
+      button.details {
+        color: #208eeb;
+
+        &:hover {
+          color: #0f60a3;
         }
       }
 

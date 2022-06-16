@@ -1,14 +1,20 @@
-import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import React from 'react';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
 
-import { isAuthenticated } from "./services/auth";
+import { isAuthenticated } from './services/auth';
 
-import Dashboard from "./pages/Dashboard";
-import Draw from "./pages/Draw";
-import ListRecord from "./pages/ListRecord";
-import ListRecordAnalisis from "./pages/ListRecordAnalisis";
-import SignIn from "./pages/SignIn";
-import ListRecordDisapproved from "./pages/ListRecordDisapproved";
+import Dashboard from './pages/Dashboard';
+import Draw from './pages/Draw';
+import ListRecord from './pages/ListRecord';
+import ListRecordAnalisis from './pages/ListRecordAnalisis';
+import SignIn from './pages/SignIn';
+import ListRecordDisapproved from './pages/ListRecordDisapproved';
+import Print from './pages/Print';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -18,7 +24,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <Component {...props} />
       ) : (
         <Redirect
-          to={{ pathname: `/signin`, state: { from: props.location } }}
+          to={{
+            pathname: `/signin`,
+            state: { from: props.location },
+          }}
         />
       )
     }
@@ -31,10 +40,21 @@ const Routes = () => (
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />
-      <PrivateRoute path="/listrecordanalisis" component={ListRecordAnalisis} />
-      <PrivateRoute path="/listrecorddisapproved" component={ListRecordDisapproved} />
+      <PrivateRoute
+        path="/listrecordanalisis"
+        component={ListRecordAnalisis}
+      />
+      <PrivateRoute
+        path="/listrecorddisapproved"
+        component={ListRecordDisapproved}
+      />
+      <PrivateRoute path="/print" component={Print} />
+
       <Route path="/signin" component={SignIn} />
-      <Route path="*" component={() => <h1>Page não encontrada</h1>} />
+      <Route
+        path="*"
+        component={() => <h1>Page não encontrada</h1>}
+      />
     </Switch>
   </BrowserRouter>
 );

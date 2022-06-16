@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { FiCheck, FiTrash2 } from "react-icons/fi";
-import { ToastContainer, toast } from "react-toastify";
-import io from "socket.io-client";
+import React, { useEffect, useState } from 'react';
+import { FiCheck, FiTrash2 } from 'react-icons/fi';
+import { AiFillEye } from 'react-icons/ai';
 
-import api from "../../services/api";
+import { ToastContainer, toast } from 'react-toastify';
+import io from 'socket.io-client';
 
-import { Card } from "./styles";
+import api from '../../services/api';
 
-const Danger = ({ approved, analyzed,disapproved }) => {
+import { Card } from './styles';
+
+const Danger = ({ approved, analyzed, disapproved, history }) => {
   const [dangers, setDangers] = useState([]);
-
-  
 
   useEffect(() => {
     async function loadDanger() {
-      const response = await api.get("/dangers");
+      const response = await api.get('/dangers');
 
       setDangers(response.data.docs);
     }
@@ -25,9 +25,9 @@ const Danger = ({ approved, analyzed,disapproved }) => {
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL);
 
-    socket.on("newRecord", (message) => {
+    socket.on('newRecord', (message) => {
       async function load() {
-        const response = await api.get("/dangers");
+        const response = await api.get('/dangers');
 
         setDangers(response.data.docs);
         console.log(message);
@@ -38,36 +38,49 @@ const Danger = ({ approved, analyzed,disapproved }) => {
   }, []);
 
   async function fileDanger(id) {
-    var teste = window.prompt("Informe o motivo da reprovação do registro")
-    
+    var teste = window.prompt(
+      'Informe o motivo da reprovação do registro'
+    );
+
     await api.put(`/dangers/${id}`, {
       disapproved: true,
       analyzed: true,
       approved: false,
-      disapprovedReason: teste
+      disapprovedReason: teste,
     });
 
-    const response = await api.get("/dangers");
+    const response = await api.get('/dangers');
 
     setDangers(response.data.docs);
 
-    toast.success("Registro reprovado com sucesso!", {
+    toast.success('Registro reprovado com sucesso!', {
       autoClose: 3000,
     });
   }
 
   async function approve(id) {
-    await api.put(`/dangers/${id}`, { 
+    await api.put(`/dangers/${id}`, {
       disapproved: false,
       analyzed: true,
-      approved: true
-     });
+      approved: true,
+    });
 
-    const response = await api.get("/dangers");
+    const response = await api.get('/dangers');
 
     setDangers(response.data.docs);
-    toast.success("Registro aprovado!", {
+    toast.success('Registro aprovado!', {
       autoClose: 3000,
+    });
+  }
+
+  function printer(name, date, location, description, image, id) {
+    history.push('/print', {
+      name,
+      date,
+      location,
+      description,
+      image,
+      id,
     });
   }
 
@@ -120,17 +133,34 @@ const Danger = ({ approved, analyzed,disapproved }) => {
                           `Deseja realmente reprovar esse registro?`
                         )
                       )
-                      fileDanger(danger._id);
+                        fileDanger(danger._id);
                     }}
                   >
                     <FiTrash2 />
                   </button>
+
+                  {approved === true && (
+                    <button
+                      className="details"
+                      onClick={() => {
+                        printer(
+                          danger.user.name,
+                          danger.createdAt,
+                          danger.location,
+                          danger.description,
+                          danger.image.url ? danger.image.url : '',
+                          danger._id
+                        );
+                      }}
+                    >
+                      <AiFillEye />
+                    </button>
+                  )}
                 </div>
               </div>
             </Card>
           )
-      )
-      }
+      )}
 
       {dangers.map(
         (danger) =>
@@ -177,7 +207,7 @@ const Danger = ({ approved, analyzed,disapproved }) => {
                           `Deseja realmente reprovar esse registro?`
                         )
                       )
-                      fileDanger(danger._id);
+                        fileDanger(danger._id);
                     }}
                   >
                     <FiTrash2 />
@@ -186,8 +216,7 @@ const Danger = ({ approved, analyzed,disapproved }) => {
               </div>
             </Card>
           )
-      )
-      }
+      )}
 
       {dangers.map(
         (danger) =>
@@ -209,7 +238,9 @@ const Danger = ({ approved, analyzed,disapproved }) => {
                 <strong>{danger._id}</strong>
                 <strong>{danger.location}</strong>
                 <p>{danger.description}</p>
-                <p style={{color: "red"}} >{danger.disapprovedReason}</p>
+                <p style={{ color: 'red' }}>
+                  {danger.disapprovedReason}
+                </p>
                 <div>
                   {approved === true ? null : (
                     <button
@@ -230,8 +261,7 @@ const Danger = ({ approved, analyzed,disapproved }) => {
               </div>
             </Card>
           )
-      )
-      }
+      )}
     </>
   );
 };

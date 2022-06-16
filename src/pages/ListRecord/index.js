@@ -1,17 +1,17 @@
-import React from "react";
-import Sidbar from "../../components/SideBar";
+import React from 'react';
+import Sidbar from '../../components/SideBar';
 
-import Danger from "../../components/Danger";
+import Danger from '../../components/Danger';
 
-import { Container, Content } from "./styles";
+import { Container, Content } from './styles';
 
-const ListRecord = () => {
+const ListRecord = ({ history }) => {
   return (
     <>
       <Sidbar />
       <Container>
         <Content>
-          <Danger approved={true} />
+          <Danger approved={true} history={history} />
         </Content>
       </Container>
     </>
