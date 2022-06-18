@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiCodesandbox, FiBarChart2, FiCheck } from 'react-icons/fi';
 import { BsFillArchiveFill } from 'react-icons/bs';
+import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 import SideBar from '../../components/SideBar';
 import { Container, Button, Content, Column, Girl } from './styles';
@@ -9,7 +10,10 @@ import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
 
+import generateCSV from '../../components/generateCSV';
+
 const Dashboard = ({ history }) => {
+  const [dangers, setDangers] = useState([]);
   const [dangersApproved, setDangersApproved] = useState([]);
   const [dangersAnalyzed, setDangersAnalyzed] = useState([]);
   const [dangersDisapproved, setDangersDisapproved] = useState([]);
@@ -17,6 +21,8 @@ const Dashboard = ({ history }) => {
   useEffect(() => {
     async function loadDanger() {
       const response = await api.get('/dangers');
+      setDangers(response.data.docs);
+
       const approved = response.data.docs.filter((data) => {
         if (data.approved === true) {
           return data;
@@ -91,6 +97,19 @@ const Dashboard = ({ history }) => {
                 </div>
 
                 <FiCodesandbox />
+              </div>
+            </Button>
+          </Column>
+
+          <Column>
+            <Button download onClick={() => generateCSV(dangers)}>
+              <div>
+                <div>
+                  <strong>{dangers.length}</strong>
+                  <p> Baixar planilha de todos os registros</p>
+                </div>
+
+                <AiOutlineCloudDownload />
               </div>
             </Button>
           </Column>

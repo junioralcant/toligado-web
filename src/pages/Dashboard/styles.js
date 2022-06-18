@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -41,11 +41,19 @@ export const Button = styled(Link)`
 
   cursor: pointer;
   background-image: ${(props) =>
-    (props.records && "linear-gradient(to right, #23E6D9, #208eeb)") ||
-    (props.lucky && "linear-gradient(to right, #FF8F93, #F75995)") ||
-    (props.analysis && "linear-gradient(to right, #FF9C52, #FFC447)") ||
-    (props.aproved && "linear-gradient(to right, #3BB5B4, #3ADF96)") ||
-    (props.disapproved && "linear-gradient(to right, #F32424, #D82D6E)")}
+    (props.records &&
+      'linear-gradient(to right, #23E6D9, #208eeb)') ||
+    (props.lucky && 'linear-gradient(to right, #FF8F93, #F75995)') ||
+    (props.analysis &&
+      'linear-gradient(to right, #FF9C52, #FFC447)') ||
+    (props.aproved &&
+      'linear-gradient(to right, #3BB5B4, #3ADF96)') ||
+    (props.disapproved &&
+      'linear-gradient(to right, #F32424, #D82D6E)') ||
+    (props.download && 'linear-gradient(to right, #138752, #1ba667)')}
+      
+      }
+
   }
   border-radius: 10px;
   color: #fff;
@@ -53,10 +61,21 @@ export const Button = styled(Link)`
 
   &:hover {
     background-image: ${(props) =>
-      (props.records && "linear-gradient(to right, #208eeb, #23E6D9)") ||
-      (props.lucky && "linear-gradient(to right, #F75995, #FF8F93)") ||
-      (props.analysis && "linear-gradient(to right, #FFC447, #FF9C52)") ||
-      (props.aproved && "linear-gradient(to right, #3ADF96, #3BB5B4)")};
+      (props.records &&
+        'linear-gradient(to right, #208eeb, #23E6D9)') ||
+      (props.lucky &&
+        'linear-gradient(to right, #F75995, #FF8F93)') ||
+      (props.analysis &&
+        'linear-gradient(to right, #FFC447, #FF9C52)') ||
+      (props.aproved &&
+        'linear-gradient(to right, #3ADF96, #3BB5B4)') ||
+      (props.disapproved &&
+        'linear-gradient(to right, #D82D6E, #F32424)') ||
+      (props.download &&
+        'linear-gradient(to right, #1ba667, #138752)')}
+      
+    }
+        }
   }
 
   div {
