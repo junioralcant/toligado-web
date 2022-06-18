@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FiCheck, FiTrash2 } from 'react-icons/fi';
-import { AiFillEye } from 'react-icons/ai';
+import { AiFillEye, AiOutlineCloudDownload } from 'react-icons/ai';
 
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 import api from '../../services/api';
 
-import { Card } from './styles';
+import { ButtonDownload, Card } from './styles';
+import generateCSV from '../generateCSV';
 
 const Danger = ({ approved, analyzed, disapproved, history }) => {
   const [dangers, setDangers] = useState([]);
@@ -84,9 +85,34 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
     });
   }
 
+  let generateCSVData = dangers.filter((danger) => {
+    if (danger.approved === approved) {
+      return danger;
+    }
+
+    if (danger.analyzed === analyzed) {
+      return danger;
+    }
+
+    if (danger.disapproved === disapproved) {
+      return danger;
+    }
+  });
+
   return (
     <>
       <ToastContainer />
+
+      <ButtonDownload
+        onClick={() => {
+          generateCSV(generateCSVData);
+        }}
+      >
+        Baixar Planilha
+        <span>
+          <AiOutlineCloudDownload />
+        </span>
+      </ButtonDownload>
 
       {dangers.map(
         (danger) =>

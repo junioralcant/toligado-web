@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Ubuntu:wght@400;700&display=swap');
@@ -16,6 +16,12 @@ export default createGlobalStyle`
         font-family: 'Ubuntu', sans-serif;
         text-rendering: optimizeLegibility !important;  
         -webkit-font-smoothing: antialiased !important;
+
+        @media print {
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+        
     }
 
     html, body, #root {

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { FiTrash2 } from "react-icons/fi";
-import { ToastContainer, toast } from "react-toastify";
-import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import { FiTrash2 } from 'react-icons/fi';
+import { ToastContainer, toast } from 'react-toastify';
+import moment from 'moment';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
-import { Card, Button, SubCard } from "./styles";
+import { Card, Button, SubCard } from './styles';
 
 const ListDraw = () => {
   const [draws, setDraws] = useState([]);
@@ -13,7 +13,7 @@ const ListDraw = () => {
 
   useEffect(() => {
     async function loadDraw() {
-      const response = await api.get("/draws");
+      const response = await api.get('/draws');
 
       setDraws(response.data.docs);
     }
@@ -23,7 +23,7 @@ const ListDraw = () => {
 
   useEffect(() => {
     async function loadUser() {
-      const response = await api.get("/users");
+      const response = await api.get('/users');
 
       setUsers(response.data);
     }
@@ -34,24 +34,24 @@ const ListDraw = () => {
   async function destroy(id) {
     await api.delete(`/draws/${id}`);
 
-    const response = await api.get("/draws");
+    const response = await api.get('/draws');
 
     setDraws(response.data.docs);
 
-    toast.success("Sorteio excluído com sucesso!", {
+    toast.success('Sorteio excluído com sucesso!', {
       autoClose: 3000,
     });
   }
 
   async function HandlerButtonDraw() {
     try {
-      await api.post("/draws");
+      await api.post('/draws');
 
-      const response = await api.get("/draws");
-  
+      const response = await api.get('/draws');
+
       setDraws(response.data.docs);
-  
-      toast.success("Sorteio realizado com sucesso!", {
+
+      toast.success('Sorteio realizado com sucesso!', {
         autoClose: 3000,
       });
     } catch (error) {
@@ -74,7 +74,7 @@ const ListDraw = () => {
       </Button>
 
       {draws.map((draw) => {
-        const date = moment(draw.createdAt).format("DD-MM-YYYY");
+        const date = moment(draw.createdAt).format('DD-MM-YYYY');
 
         return (
           <>
@@ -100,7 +100,6 @@ const ListDraw = () => {
                         }
                       })}
                       <br />
-
                     </div>
                   </SubCard>
                 );
@@ -110,7 +109,9 @@ const ListDraw = () => {
                   className="delete"
                   onClick={() => {
                     if (
-                      window.confirm(`Deseja realmente deletar esse sorteio?`)
+                      window.confirm(
+                        `Deseja realmente deletar esse sorteio?`
+                      )
                     )
                       destroy(draw._id);
                   }}

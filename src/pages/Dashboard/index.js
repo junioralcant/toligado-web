@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { FiCodesandbox, FiBarChart2, FiCheck } from "react-icons/fi";
-import { BsFillArchiveFill } from "react-icons/bs";
+import React, { useState, useEffect } from 'react';
+import { FiCodesandbox, FiBarChart2, FiCheck } from 'react-icons/fi';
+import { BsFillArchiveFill } from 'react-icons/bs';
 
-import SideBar from "../../components/SideBar";
-import { Container, Button, Content, Column, Girl } from "./styles";
+import SideBar from '../../components/SideBar';
+import { Container, Button, Content, Column, Girl } from './styles';
 
-import api from "../../services/api";
+import api from '../../services/api';
 
-import girl from "../../assets/girl.png";
+import girl from '../../assets/girl.png';
 
 const Dashboard = ({ history }) => {
   const [dangersApproved, setDangersApproved] = useState([]);
@@ -16,7 +16,7 @@ const Dashboard = ({ history }) => {
 
   useEffect(() => {
     async function loadDanger() {
-      const response = await api.get("/dangers");
+      const response = await api.get('/dangers');
       const approved = response.data.docs.filter((data) => {
         if (data.approved === true) {
           return data;

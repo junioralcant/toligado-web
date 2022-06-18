@@ -80,3 +80,29 @@ export const Card = styled.div`
     }
   }
 `;
+
+export const ButtonDownload = styled.button`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1ba667;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+
+  top: -90px;
+  left: -90px;
+  span {
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 25px;
+  }
+
+  &:hover {
+    background: #138752;
+  }
+`;
