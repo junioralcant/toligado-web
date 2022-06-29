@@ -15,6 +15,7 @@ import ListRecordAnalisis from './pages/ListRecordAnalisis';
 import SignIn from './pages/SignIn';
 import ListRecordDisapproved from './pages/ListRecordDisapproved';
 import Print from './pages/Print';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -50,6 +51,7 @@ const Routes = () => (
       />
       <PrivateRoute path="/print" component={Print} />
 
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/signin" component={SignIn} />
       <Route
         path="*"
