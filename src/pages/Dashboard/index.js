@@ -52,7 +52,6 @@ const Dashboard = ({ history }) => {
   return (
     <>
       <SideBar page="dashboard" />
-
       <Container>
         <Content>
           <Column>
