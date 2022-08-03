@@ -35,8 +35,7 @@ const Print = () => {
             </h4>
             <h4>Registrado por: {name}</h4>
             <h4>
-              Data do registro:{' '}
-              {moment(date).format('DD-MM-YYYY h:mm')}
+              Data do registro: {moment(date).format('DD-MM-YYYY')}
             </h4>
           </div>
           <div>
