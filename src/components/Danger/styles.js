@@ -18,8 +18,24 @@ export const Card = styled.div`
     width: 100%;
     display: flex;
     height: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     justify-content: space-between;
+  }
+
+  .header .box-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    a.resolved {
+      margin-top: 3px;
+      background: #53c579;
+      color: #fff;
+      padding: 5px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 13px;
+    }
   }
 
   img {

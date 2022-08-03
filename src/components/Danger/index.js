@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FiCheck, FiTrash2 } from 'react-icons/fi';
 import { AiFillEye, AiOutlineCloudDownload } from 'react-icons/ai';
 
+import moment from 'moment';
+
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
@@ -124,7 +126,23 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   <br />
                   <small>{danger.user.cpf}</small>
                 </div>
-                <small>{danger.createdAt}</small>
+
+                <div className="box-date">
+                  <small>
+                    {moment(danger.createdAt).format('DD-MM-YYYY')}
+                  </small>
+
+                  {danger.resolved && (
+                    <a
+                      href={danger.imageResolved.url}
+                      className="resolved"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Resolvido
+                    </a>
+                  )}
+                </div>
               </div>
               <img
                 src={danger.image.url ? danger.image.url : null}
@@ -198,7 +216,23 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   <br />
                   <small>{danger.user.cpf}</small>
                 </div>
-                <small>{danger.createdAt}</small>
+
+                <div className="box-date">
+                  <small>
+                    {moment(danger.createdAt).format('DD-MM-YYYY')}
+                  </small>
+
+                  {danger.resolved && (
+                    <a
+                      href={danger.imageResolved.url}
+                      className="resolved"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Resolvido
+                    </a>
+                  )}
+                </div>
               </div>
               <img
                 src={danger.image.url ? danger.image.url : null}
@@ -254,7 +288,22 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   <br />
                   <small>{danger.user.cpf}</small>
                 </div>
-                <small>{danger.createdAt}</small>
+                <div className="box-date">
+                  <small>
+                    {moment(danger.createdAt).format('DD-MM-YYYY')}
+                  </small>
+
+                  {danger.resolved && (
+                    <a
+                      href={danger.imageResolved.url}
+                      className="resolved"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Resolvido
+                    </a>
+                  )}
+                </div>
               </div>
               <img
                 src={danger.image.url ? danger.image.url : null}
