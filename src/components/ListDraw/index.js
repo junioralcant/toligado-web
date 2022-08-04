@@ -83,25 +83,31 @@ const ListDraw = () => {
               <br />
               {draw.idsDraws.map((ids) => {
                 return (
-                  <SubCard>
-                    <div>
-                      <strong>{ids.recordId._id}</strong>
-                      <br />
-                      {users.map((user) => {
-                        if (user._id === ids.recordId.user) {
-                          return (
-                            <>
-                              <small>{user.name}</small>
-                              <br />
-                              <small>CPF: {user.cpf}</small>
-                              <br />
-                            </>
-                          );
-                        }
-                      })}
-                      <br />
-                    </div>
-                  </SubCard>
+                  <>
+                    {ids.recordId.resolved && (
+                      <small className="resolved">Resolvido</small>
+                    )}
+
+                    <SubCard>
+                      <div>
+                        <strong>{ids.recordId._id}</strong>
+                        <br />
+                        {users.map((user) => {
+                          if (user._id === ids.recordId.user) {
+                            return (
+                              <>
+                                <small>{user.name}</small>
+                                <br />
+                                <small>CPF: {user.cpf}</small>
+                                <br />
+                              </>
+                            );
+                          }
+                        })}
+                        <br />
+                      </div>
+                    </SubCard>
+                  </>
                 );
               })}
               <div className="footer">

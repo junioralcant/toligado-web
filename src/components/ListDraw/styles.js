@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Card = styled.div`
   display: flex;
@@ -13,6 +13,14 @@ export const Card = styled.div`
   border-radius: 10px;
   padding: 10px;
   color: #666666;
+
+  small.resolved {
+    margin-top: -13px;
+    margin-bottom: 10px;
+    color: #53c579;
+    font-size: 14px;
+    font-weight: bold;
+  }
 
   .header {
     width: 100%;
