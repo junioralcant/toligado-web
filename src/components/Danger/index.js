@@ -144,10 +144,17 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   )}
                 </div>
               </div>
-              <img
-                src={danger.image.url ? danger.image.url : null}
-                alt={danger.location}
-              />
+              <a
+                href={danger.image.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={danger.image.url ? danger.image.url : null}
+                  alt={danger.location}
+                />
+              </a>
+
               <div className="footer">
                 <strong>{danger._id}</strong>
                 <strong>{danger.location}</strong>
@@ -234,10 +241,16 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   )}
                 </div>
               </div>
-              <img
-                src={danger.image.url ? danger.image.url : null}
-                alt={danger.location}
-              />
+              <a
+                href={danger.image.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={danger.image.url ? danger.image.url : null}
+                  alt={danger.location}
+                />
+              </a>
               <div className="footer">
                 <strong>{danger._id}</strong>
                 <strong>{danger.location}</strong>
@@ -305,10 +318,16 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   )}
                 </div>
               </div>
-              <img
-                src={danger.image.url ? danger.image.url : null}
-                alt={danger.location}
-              />
+              <a
+                href={danger.image.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={danger.image.url ? danger.image.url : null}
+                  alt={danger.location}
+                />
+              </a>
               <div className="footer">
                 <strong>{danger._id}</strong>
                 <strong>{danger.location}</strong>

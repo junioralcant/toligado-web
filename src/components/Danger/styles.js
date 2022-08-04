@@ -40,8 +40,11 @@ export const Card = styled.div`
 
   img {
     width: 280px;
+    height: 200px;
     border-radius: 10px;
     margin-bottom: 10px;
+    margin-top: 10px;
+    object-fit: cover;
   }
 
   .footer {
