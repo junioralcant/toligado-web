@@ -32,7 +32,7 @@ export const Login = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 95%;
     margin-top: 10px;
 
     div.group-input {
@@ -59,7 +59,7 @@ export const Login = styled.div`
     }
 
     button {
-      width: 90%;
+      width: 95%;
       height: 55px;
       border-radius: 5px;
       border: none;
