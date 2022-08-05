@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -13,9 +13,9 @@ export const Login = styled.div`
   flex-direction: column;
   align-items: center;
   width: 400px;
-  height: 320px;
+  height: 450px;
   border-radius: 10px;
-  background: #208eeb;
+  background: #15a6e4;
   padding: 20px;
   color: #fff;
 
@@ -31,31 +31,49 @@ export const Login = styled.div`
   div {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+    width: 90%;
     margin-top: 10px;
+
+    div.group-input {
+      display: flex;
+      align-items: flex-start;
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      &:nth-child(2) {
+        margin-bottom: 30px;
+      }
+    }
 
     input {
       padding: 5px;
       background: #eff3f6;
       margin-bottom: 10px;
       width: 100%;
-      height: 40px;
-      border-radius: 5px;
+      height: 55px;
+      border-radius: 6px;
       border: none;
     }
 
     button {
-      margin-top: 30px;
-      width: 100%;
-      height: 40px;
+      width: 90%;
+      height: 55px;
       border-radius: 5px;
       border: none;
       background: #0e4f85;
       color: #fff;
+      font-size: 18px;
 
       &:hover {
         background: #0c4b81;
       }
     }
   }
+`;
+
+export const Logo = styled.img`
+  width: 100px;
 `;
