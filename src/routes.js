@@ -52,9 +52,10 @@ const Routes = () => (
       />
       <PrivateRoute path="/print" component={Print} />
 
+      <PrivateRoute path="/export-fields" component={ExportField} />
+
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/signin" component={SignIn} />
-      <Route path="/export-fields" component={ExportField} />
       <Route
         path="*"
         component={() => <h1>Page não encontrada</h1>}
