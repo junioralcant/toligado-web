@@ -101,7 +101,7 @@ const Dashboard = ({ history }) => {
           </Column>
 
           <Column>
-            <Button download onClick={() => generateCSV(dangers)}>
+            <Button download to="/export-fields">
               <div>
                 <div>
                   <strong>{dangers.length}</strong>

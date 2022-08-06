@@ -16,6 +16,7 @@ import SignIn from './pages/SignIn';
 import ListRecordDisapproved from './pages/ListRecordDisapproved';
 import Print from './pages/Print';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import ExportField from './pages/ExportField';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -53,6 +54,7 @@ const Routes = () => (
 
       <Route path="/privacy-policy" component={PrivacyPolicy} />
       <Route path="/signin" component={SignIn} />
+      <Route path="/export-fields" component={ExportField} />
       <Route
         path="*"
         component={() => <h1>Page não encontrada</h1>}
