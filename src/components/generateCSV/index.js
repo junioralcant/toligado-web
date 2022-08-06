@@ -12,7 +12,9 @@ export default function generateCSV(data) {
     'Analisado',
     'Aprovado',
     'Reprovado Motivo',
+    'Resolvido',
     'Imagem',
+    'Imagem Resolvido',
   ];
 
   var itemsFormatted = [];
@@ -36,7 +38,11 @@ export default function generateCSV(data) {
 
       disapprovedReason:
         item.disapproved === true ? item.disapprovedReason : '',
+      resolved: item.resolved === true ? 'Sim' : 'Não',
       imagem: item.image.url,
+      imagemResolved: item.imageResolved
+        ? item.imageResolved.url
+        : 'Sem foto',
     });
   });
 
