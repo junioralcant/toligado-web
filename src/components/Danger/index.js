@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FiCheck, FiTrash2 } from 'react-icons/fi';
-import { AiFillEye, AiOutlineCloudDownload } from 'react-icons/ai';
+import {
+  AiFillEye,
+  AiOutlineCloseCircle,
+  AiOutlineCloudDownload,
+  AiOutlineSearch,
+} from 'react-icons/ai';
 
 import moment from 'moment';
 
@@ -9,21 +14,34 @@ import io from 'socket.io-client';
 
 import api from '../../services/api';
 
-import { ButtonDownload, Card } from './styles';
+import {
+  BoxInpuDate,
+  BoxInputsDate,
+  ButtonDownload,
+  Card,
+} from './styles';
 import generateCSV from '../generateCSV';
 
 const Danger = ({ approved, analyzed, disapproved, history }) => {
   const [dangers, setDangers] = useState([]);
+  const [initialDate, setInitialDate] = useState('');
+  const [finalDate, setFinalDate] = useState('');
+  const [search, setSearch] = useState(false);
+
+  const [dateInitialChecks, setDateInitialChecks] = useState('');
+  const [dateFinalChecks, setDateFinalChecks] = useState('');
 
   useEffect(() => {
     async function loadDanger() {
-      const response = await api.get('/dangers');
+      const response = await api.get(
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}`
+      );
 
-      setDangers(response.data.docs);
+      setDangers(response.data);
     }
 
     loadDanger();
-  }, []);
+  }, [dateInitialChecks, dateFinalChecks]);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL);
@@ -32,7 +50,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
       async function load() {
         const response = await api.get('/dangers');
 
-        setDangers(response.data.docs);
+        setDangers(response.data);
         console.log(message);
       }
 
@@ -54,7 +72,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
 
     const response = await api.get('/dangers');
 
-    setDangers(response.data.docs);
+    setDangers(response.data);
 
     toast.success('Registro reprovado com sucesso!', {
       autoClose: 3000,
@@ -70,7 +88,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
 
     const response = await api.get('/dangers');
 
-    setDangers(response.data.docs);
+    setDangers(response.data);
     toast.success('Registro aprovado!', {
       autoClose: 3000,
     });
@@ -87,7 +105,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
     });
   }
 
-  let generateCSVData = dangers.filter((danger) => {
+  let filterDanger = dangers.filter((danger) => {
     if (danger.approved === approved) {
       return danger;
     }
@@ -101,13 +119,74 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
     }
   });
 
+  function checksDates() {
+    if (initialDate.length !== 10 || finalDate.length !== 10) {
+      return;
+    }
+
+    setDateInitialChecks(initialDate);
+    setDateFinalChecks(finalDate);
+
+    setSearch(true);
+  }
+
+  function coloseSearch() {
+    setFinalDate('');
+    setDateFinalChecks('');
+    setInitialDate('');
+    setDateFinalChecks('');
+    setSearch(false);
+  }
+
   return (
     <>
       <ToastContainer />
+      <BoxInputsDate>
+        <strong>
+          Registros <br /> {filterDanger.length}
+        </strong>
+        <BoxInpuDate>
+          <input
+            className="date"
+            onChange={(e) => setInitialDate(e.target.value)}
+            value={initialDate}
+            type="date"
+          />
+        </BoxInpuDate>
+
+        <BoxInpuDate>
+          <input
+            className="date"
+            onChange={(e) => setFinalDate(e.target.value)}
+            value={finalDate}
+            type="date"
+          />
+        </BoxInpuDate>
+
+        <button
+          className="search"
+          onClick={() => {
+            checksDates();
+          }}
+        >
+          <AiOutlineSearch color="#fff" />
+        </button>
+
+        {search && (
+          <button
+            className="excluir"
+            onClick={() => {
+              coloseSearch();
+            }}
+          >
+            <AiOutlineCloseCircle color="#fff" />
+          </button>
+        )}
+      </BoxInputsDate>
 
       <ButtonDownload
         onClick={() => {
-          generateCSV(generateCSVData);
+          generateCSV(filterDanger);
         }}
       >
         Baixar Planilha
@@ -116,246 +195,99 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
         </span>
       </ButtonDownload>
 
-      {dangers.map(
-        (danger) =>
-          danger.approved === approved && (
-            <Card key={danger._id}>
-              <div className="header">
-                <div>
-                  <strong>{danger.user.name}</strong>
-                  <br />
-                  <small>{danger.user.cpf}</small>
-                </div>
+      {filterDanger.map((danger) => (
+        <Card key={danger._id}>
+          <div className="header">
+            <div>
+              <strong>{danger.user.name}</strong>
+              <br />
+              <small>{danger.user.cpf}</small>
+            </div>
 
-                <div className="box-date">
-                  <small>
-                    {moment(danger.createdAt).format('DD-MM-YYYY')}
-                  </small>
+            <div className="box-date">
+              <small>
+                {moment(danger.createdAt).format('DD-MM-YYYY')}
+              </small>
 
-                  {danger.resolved && (
-                    <a
-                      href={danger.imageResolved.url}
-                      className="resolved"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Resolvido
-                    </a>
-                  )}
-                </div>
-              </div>
-              <a
-                href={danger.image.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={danger.image.url ? danger.image.url : null}
-                  alt={danger.location}
-                />
-              </a>
+              {danger.resolved && (
+                <a
+                  href={danger.imageResolved.url}
+                  className="resolved"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Resolvido
+                </a>
+              )}
+            </div>
+          </div>
+          <a
+            href={danger.image.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={danger.image.url ? danger.image.url : null}
+              alt={danger.location}
+            />
+          </a>
 
-              <div className="footer">
-                <strong>{danger._id}</strong>
-                <strong>{danger.location}</strong>
-                <p>{danger.description}</p>
-                <div>
-                  {approved === true ? null : (
-                    <button
-                      className="checked"
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            `Deseja realmente aprovar esse registro?`
-                          )
-                        )
-                          approve(danger._id);
-                      }}
-                    >
-                      <FiCheck />
-                    </button>
-                  )}
-
-                  <button
-                    className="delete"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          `Deseja realmente reprovar esse registro?`
-                        )
+          <div className="footer">
+            <strong>{danger._id}</strong>
+            <strong>{danger.location}</strong>
+            <p>{danger.description}</p>
+            <div>
+              {approved === true ? null : (
+                <button
+                  className="checked"
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        `Deseja realmente aprovar esse registro?`
                       )
-                        fileDanger(danger._id);
-                    }}
-                  >
-                    <FiTrash2 />
-                  </button>
+                    )
+                      approve(danger._id);
+                  }}
+                >
+                  <FiCheck />
+                </button>
+              )}
 
-                  {approved === true && (
-                    <button
-                      className="details"
-                      onClick={() => {
-                        printer(
-                          danger.user.name,
-                          danger.createdAt,
-                          danger.location,
-                          danger.description,
-                          danger.image.url ? danger.image.url : '',
-                          danger._id
-                        );
-                      }}
-                    >
-                      <AiFillEye />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </Card>
-          )
-      )}
-
-      {dangers.map(
-        (danger) =>
-          danger.analyzed === analyzed && (
-            <Card key={danger._id}>
-              <div className="header">
-                <div>
-                  <strong>{danger.user.name}</strong>
-                  <br />
-                  <small>{danger.user.cpf}</small>
-                </div>
-
-                <div className="box-date">
-                  <small>
-                    {moment(danger.createdAt).format('DD-MM-YYYY')}
-                  </small>
-
-                  {danger.resolved && (
-                    <a
-                      href={danger.imageResolved.url}
-                      className="resolved"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Resolvido
-                    </a>
-                  )}
-                </div>
-              </div>
-              <a
-                href={danger.image.url}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                className="delete"
+                onClick={() => {
+                  if (
+                    window.confirm(
+                      `Deseja realmente reprovar esse registro?`
+                    )
+                  )
+                    fileDanger(danger._id);
+                }}
               >
-                <img
-                  src={danger.image.url ? danger.image.url : null}
-                  alt={danger.location}
-                />
-              </a>
-              <div className="footer">
-                <strong>{danger._id}</strong>
-                <strong>{danger.location}</strong>
-                <p>{danger.description}</p>
-                <div>
-                  {approved === true ? null : (
-                    <button
-                      className="checked"
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            `Deseja realmente aprovar esse registro?`
-                          )
-                        )
-                          approve(danger._id);
-                      }}
-                    >
-                      <FiCheck />
-                    </button>
-                  )}
+                <FiTrash2 />
+              </button>
 
-                  <button
-                    className="delete"
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          `Deseja realmente reprovar esse registro?`
-                        )
-                      )
-                        fileDanger(danger._id);
-                    }}
-                  >
-                    <FiTrash2 />
-                  </button>
-                </div>
-              </div>
-            </Card>
-          )
-      )}
-
-      {dangers.map(
-        (danger) =>
-          danger.disapproved === disapproved && (
-            <Card key={danger._id}>
-              <div className="header">
-                <div>
-                  <strong>{danger.user.name}</strong>
-                  <br />
-                  <small>{danger.user.cpf}</small>
-                </div>
-                <div className="box-date">
-                  <small>
-                    {moment(danger.createdAt).format('DD-MM-YYYY')}
-                  </small>
-
-                  {danger.resolved && (
-                    <a
-                      href={danger.imageResolved.url}
-                      className="resolved"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Resolvido
-                    </a>
-                  )}
-                </div>
-              </div>
-              <a
-                href={danger.image.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={danger.image.url ? danger.image.url : null}
-                  alt={danger.location}
-                />
-              </a>
-              <div className="footer">
-                <strong>{danger._id}</strong>
-                <strong>{danger.location}</strong>
-                <p>{danger.description}</p>
-                <p style={{ color: 'red' }}>
-                  {danger.disapprovedReason}
-                </p>
-                <div>
-                  {approved === true ? null : (
-                    <button
-                      className="checked"
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            `Deseja realmente aprovar esse registro?`
-                          )
-                        )
-                          approve(danger._id);
-                      }}
-                    >
-                      <FiCheck />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </Card>
-          )
-      )}
+              {approved === true && (
+                <button
+                  className="details"
+                  onClick={() => {
+                    printer(
+                      danger.user.name,
+                      danger.createdAt,
+                      danger.location,
+                      danger.description,
+                      danger.image.url ? danger.image.url : '',
+                      danger._id
+                    );
+                  }}
+                >
+                  <AiFillEye />
+                </button>
+              )}
+            </div>
+          </div>
+        </Card>
+      ))}
     </>
   );
 };

@@ -21,21 +21,21 @@ const Dashboard = ({ history }) => {
   useEffect(() => {
     async function loadDanger() {
       const response = await api.get('/dangers');
-      setDangers(response.data.docs);
+      setDangers(response.data);
 
-      const approved = response.data.docs.filter((data) => {
+      const approved = response.data.filter((data) => {
         if (data.approved === true) {
           return data;
         }
       });
 
-      const analyzed = response.data.docs.filter((data) => {
+      const analyzed = response.data.filter((data) => {
         if (data.analyzed === false) {
           return data;
         }
       });
 
-      const disapproved = response.data.docs.filter((data) => {
+      const disapproved = response.data.filter((data) => {
         if (data.disapproved === true) {
           return data;
         }
