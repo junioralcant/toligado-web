@@ -15,7 +15,6 @@ export const Login = styled.div`
   width: 400px;
   height: 450px;
   border-radius: 10px;
-  background: #15a6e4;
   padding: 20px;
   color: #fff;
 
@@ -41,6 +40,7 @@ export const Login = styled.div`
 
       label {
         margin-bottom: 5px;
+        color: #777777;
       }
 
       &:nth-child(2) {
@@ -50,12 +50,12 @@ export const Login = styled.div`
 
     input {
       padding: 5px;
-      background: #eff3f6;
+      background: transparent;
+      border: 1px solid #15a6e4;
       margin-bottom: 10px;
       width: 100%;
       height: 55px;
       border-radius: 6px;
-      border: none;
     }
 
     button {

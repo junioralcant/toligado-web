@@ -4,7 +4,7 @@ import api from '../../services/api';
 import { login } from '../../services/auth';
 import Loader from '../../components/Loader';
 
-import logo from '../../assets/logo-white.png';
+import logo from '../../assets/Logotipo.png';
 
 import { Container, Login, Logo } from './styles';
 
