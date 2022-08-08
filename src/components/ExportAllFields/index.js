@@ -10,8 +10,11 @@ import {
   AiOutlineCloudDownload,
   AiOutlineSearch,
 } from 'react-icons/ai';
+import { useCompany } from '../../hooks/useCompany';
 
 const ExportAllFields = () => {
+  const { company } = useCompany();
+
   const [dangers, setDangers] = useState([]);
   const [initialDate, setInitialDate] = useState('');
   const [finalDate, setFinalDate] = useState('');
@@ -22,14 +25,16 @@ const ExportAllFields = () => {
   useEffect(() => {
     async function loadDanger() {
       const response = await api.get(
-        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}`
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
       );
 
       setDangers(response.data);
     }
 
-    loadDanger();
-  }, [dateInitialChecks, dateFinalChecks]);
+    if (company) {
+      loadDanger();
+    }
+  }, [dateInitialChecks, dateFinalChecks, company]);
 
   function checksDates() {
     if (initialDate.length !== 10 || finalDate.length !== 10) {
