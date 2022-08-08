@@ -28,10 +28,10 @@ export default function generateCSV(data) {
       date: moment(item.createdAt).format('DD-MM-YYYY'),
       location: item.location,
       description: item.description,
-      analyzed: item.analyzed === true ? 'Analizado' : 'Em Análize',
+      analyzed: item.analyzed === true ? 'Analizado' : 'Em Análise',
       approved:
         item.analyzed === false
-          ? 'Em Análize'
+          ? 'Em Análise'
           : item.approved === true
           ? 'Aprovado'
           : 'Reprovado',
