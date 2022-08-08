@@ -4,15 +4,23 @@ import { BsFillArchiveFill } from 'react-icons/bs';
 import { AiOutlineCloudDownload } from 'react-icons/ai';
 
 import SideBar from '../../components/SideBar';
-import { Container, Button, Content, Column, Girl } from './styles';
+import {
+  Container,
+  Button,
+  Content,
+  Column,
+  Girl,
+  Title,
+} from './styles';
 
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
+import { useCompany } from '../../hooks/useCompany';
 
-import generateCSV from '../../components/generateCSV';
+const Dashboard = () => {
+  const { company } = useCompany();
 
-const Dashboard = ({ history }) => {
   const [dangers, setDangers] = useState([]);
   const [dangersApproved, setDangersApproved] = useState([]);
   const [dangersAnalyzed, setDangersAnalyzed] = useState([]);
@@ -20,7 +28,9 @@ const Dashboard = ({ history }) => {
 
   useEffect(() => {
     async function loadDanger() {
-      const response = await api.get('/dangers');
+      const response = await api.get(
+        `/dangers?company=${company._id}`
+      );
       setDangers(response.data);
 
       const approved = response.data.filter((data) => {
@@ -46,13 +56,18 @@ const Dashboard = ({ history }) => {
       setDangersDisapproved(disapproved);
     }
 
-    loadDanger();
-  }, []);
+    if (company) {
+      loadDanger();
+    }
+  }, [company]);
 
   return (
     <>
       <SideBar page="dashboard" />
+
       <Container>
+        <Title>Empresa - {company.name}</Title>
+
         <Content>
           <Column>
             <Button analysis to="/listrecordanalisis">

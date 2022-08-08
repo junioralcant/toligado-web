@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -21,8 +20,10 @@ export const Content = styled.div`
 
 export const Column = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
+  max-width: 700px;
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -30,8 +31,9 @@ export const Column = styled.div`
   }
 `;
 
-export const Button = styled(Link)`
+export const Button = styled.button`
   text-decoration: none;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,42 +43,14 @@ export const Button = styled(Link)`
   margin-bottom: 10px;
 
   cursor: pointer;
-  background-image: ${(props) =>
-    (props.records &&
-      'linear-gradient(to right, #23E6D9, #208eeb)') ||
-    (props.lucky && 'linear-gradient(to right, #FF8F93, #F75995)') ||
-    (props.analysis &&
-      'linear-gradient(to right, #FF9C52, #FFC447)') ||
-    (props.aproved &&
-      'linear-gradient(to right, #3BB5B4, #3ADF96)') ||
-    (props.disapproved &&
-      'linear-gradient(to right, #F32424, #D82D6E)') ||
-    (props.download && 'linear-gradient(to right, #138752, #1ba667)')}
-      
-      }
+  background-image: linear-gradient(to right, #3bb5b4, #106fbc);
 
-  }
   border-radius: 10px;
   color: #fff;
   font-size: 45px;
 
   &:hover {
-    background-image: ${(props) =>
-      (props.records &&
-        'linear-gradient(to right, #208eeb, #23E6D9)') ||
-      (props.lucky &&
-        'linear-gradient(to right, #F75995, #FF8F93)') ||
-      (props.analysis &&
-        'linear-gradient(to right, #FFC447, #FF9C52)') ||
-      (props.aproved &&
-        'linear-gradient(to right, #3ADF96, #3BB5B4)') ||
-      (props.disapproved &&
-        'linear-gradient(to right, #D82D6E, #F32424)') ||
-      (props.download &&
-        'linear-gradient(to right, #1ba667, #138752)')}
-      
-    }
-        }
+    background-image: linear-gradient(to right, #106fbc, #3bb5b4);
   }
 
   div {
@@ -89,8 +63,8 @@ export const Button = styled(Link)`
       align-items: flex-start;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       height: 60px;
+      margin-top: 20px;
     }
   }
 
@@ -114,11 +88,10 @@ export const Girl = styled.img`
   }
 `;
 
-export const Title = styled.h1`
-  position: absolute;
-  top: -12%;
-  left: 18%;
-
-  font-size: 25px;
-  color: #4d4d4d;
+export const Avatar = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  background: #fff;
+  padding: 5px;
 `;

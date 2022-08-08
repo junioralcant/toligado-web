@@ -17,6 +17,7 @@ import ListRecordDisapproved from './pages/ListRecordDisapproved';
 import Print from './pages/Print';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ExportField from './pages/ExportField';
+import Home from './pages/Home';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -39,7 +40,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <PrivateRoute exact path="/" component={Dashboard} />
+      <PrivateRoute exact path="/" component={Home} />
+      <PrivateRoute path="/home" component={Dashboard} />
+
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />
       <PrivateRoute
