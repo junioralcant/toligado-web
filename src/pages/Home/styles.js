@@ -60,11 +60,10 @@ export const Button = styled.button`
     width: 90%;
 
     div {
-      align-items: flex-start;
+      text-align: left;
       display: flex;
       flex-direction: column;
-      height: 60px;
-      margin-top: 20px;
+      width: 150px;
     }
   }
 
