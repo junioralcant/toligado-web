@@ -7,7 +7,8 @@ import { useCompany } from '../../hooks/useCompany';
 
 import api from '../../services/api';
 
-import { Card, Button, SubCard } from './styles';
+import { Card, Button, SubCard, BoxLoader } from './styles';
+import Loader from '../Loader';
 
 const ListDraw = () => {
   const { company } = useCompany();
@@ -15,11 +16,15 @@ const ListDraw = () => {
   const [draws, setDraws] = useState([]);
   const [users, setUsers] = useState([]);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     async function loadDraw() {
+      setLoading(true);
       const response = await api.get(`/draws?company=${company._id}`);
 
       setDraws(response.data);
+      setLoading(false);
     }
 
     if (company) {
@@ -70,6 +75,13 @@ const ListDraw = () => {
   return (
     <>
       <ToastContainer />
+
+      {loading && (
+        <BoxLoader>
+          <Loader />
+        </BoxLoader>
+      )}
+
       <Button
         onClick={() => {
           if (window.confirm(`Deseja realmente realizar um sorteio?`))

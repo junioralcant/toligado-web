@@ -185,3 +185,7 @@ export const BoxInpuDate = styled.div`
     width: 100%;
   }
 `;
+
+export const BoxLoader = styled.div`
+  margin-top: -50%;
+`;

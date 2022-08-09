@@ -92,3 +92,7 @@ export const SubCard = styled.div`
   padding: 10px;
   border-radius: 5px;
 `;
+
+export const BoxLoader = styled.div`
+  margin-top: 10%;
+`;

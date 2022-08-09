@@ -12,11 +12,14 @@ import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import io from 'socket.io-client';
 
+import Loader from '../Loader';
+
 import api from '../../services/api';
 
 import {
   BoxInpuDate,
   BoxInputsDate,
+  BoxLoader,
   ButtonDownload,
   Card,
 } from './styles';
@@ -34,13 +37,17 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
   const [dateInitialChecks, setDateInitialChecks] = useState('');
   const [dateFinalChecks, setDateFinalChecks] = useState('');
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function loadDanger() {
+      setLoading(true);
       const response = await api.get(
         `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
       );
 
       setDangers(response.data);
+      setLoading(false);
     }
 
     if (company) {
@@ -199,6 +206,12 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
           <AiOutlineCloudDownload />
         </span>
       </ButtonDownload>
+
+      {loading && (
+        <BoxLoader>
+          <Loader />
+        </BoxLoader>
+      )}
 
       {filterDanger.map((danger) => (
         <Card key={danger._id}>
