@@ -116,7 +116,7 @@ export const Girl = styled.img`
 
 export const Title = styled.h1`
   position: absolute;
-  top: -10%;
+  top: -60px;
   left: 18%;
 
   font-size: 25px;

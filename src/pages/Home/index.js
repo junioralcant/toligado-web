@@ -9,6 +9,7 @@ import {
   Column,
   Girl,
   Avatar,
+  Title,
 } from './styles';
 
 import api from '../../services/api';
@@ -34,6 +35,7 @@ const Home = ({ history }) => {
     <>
       <SideBar page="dashboard" />
       <Container>
+        <Title>Registro</Title>
         <Content>
           <Column>
             {companies.map((company) => (

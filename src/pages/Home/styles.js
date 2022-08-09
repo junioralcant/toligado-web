@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   margin-top: 50px;
@@ -93,4 +93,13 @@ export const Avatar = styled.img`
   border-radius: 20px;
   background: #fff;
   padding: 5px;
+`;
+
+export const Title = styled.h1`
+  position: absolute;
+  top: -60px;
+  left: 18%;
+
+  font-size: 25px;
+  color: #4d4d4d;
 `;
