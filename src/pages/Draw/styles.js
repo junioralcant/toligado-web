@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
   justify-content: flex-end;
   margin-top: 50px;
@@ -37,4 +38,14 @@ export const Content = styled.div`
     margin-top: 20px;
     margin-left: 20px;
   }
+`;
+
+export const Title = styled.h1`
+  z-index: 1;
+  position: absolute;
+  top: -60px;
+  left: 18%;
+
+  font-size: 25px;
+  color: #4d4d4d;
 `;

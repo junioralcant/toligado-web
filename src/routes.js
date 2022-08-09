@@ -18,6 +18,7 @@ import Print from './pages/Print';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ExportField from './pages/ExportField';
 import Home from './pages/Home';
+import HomeDraw from './pages/HomeDraw';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -42,6 +43,7 @@ const Routes = () => (
     <Switch>
       <PrivateRoute exact path="/" component={Home} />
       <PrivateRoute path="/home" component={Dashboard} />
+      <PrivateRoute path="/home-draw" component={HomeDraw} />
 
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />

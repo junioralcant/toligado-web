@@ -1,22 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   FiCamera,
   FiGrid,
   FiCodesandbox,
   FiAlignJustify,
   FiX,
-} from "react-icons/fi";
-import { AiOutlinePoweroff } from "react-icons/ai";
-import { Link } from "react-router-dom";
+} from 'react-icons/fi';
+import { AiOutlinePoweroff } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
-import { logout } from "../../services/auth";
+import { logout } from '../../services/auth';
 
-import { SideNav, Button, Background, Close, companyData } from "./styles";
+import {
+  SideNav,
+  Button,
+  Background,
+  Close,
+  companyData,
+} from './styles';
 
-import logo from "../../assets/logo-white.png";
+import logo from '../../assets/logo-white.png';
 
 const SideBar = ({ page, history }) => {
-  const [pageName, setPageName] = useState("dashboard");
+  const [pageName, setPageName] = useState('dashboard');
   const [sidebarActive, setSideBarActive] = useState(false);
 
   useEffect(() => {
@@ -34,10 +40,13 @@ const SideBar = ({ page, history }) => {
 
   return (
     <>
-      <Button teste={sidebarActive ? "" : "teste"} onClick={activeSidebar}>
+      <Button
+        teste={sidebarActive ? '' : 'teste'}
+        onClick={activeSidebar}
+      >
         <FiAlignJustify />
       </Button>
-      <SideNav teste={sidebarActive ? "teste" : ""}>
+      <SideNav teste={sidebarActive ? 'teste' : ''}>
         <strong>
           <span>
             <FiGrid />
@@ -46,25 +55,24 @@ const SideBar = ({ page, history }) => {
           <p>Tô Ligado SSMA</p>
         </strong>
 
-        {/* <div className="companyData">
-          <p>CNPJ: 22.743.714/0001-22</p>
-          <p>RAZÃO SOCIAL: SB PEDREIRA LTDA</p>
-          <p>OBRA: RONDONÓPOLIS - MT</p>
-          <p>N FUNCIONÁRIOs: 28</p>
-        </div> */}
-
         <div>
           <small>Menu</small>
         </div>
 
-        <Link to="/" className={pageName === "dashboard" ? "active" : ""}>
+        <Link
+          to="/"
+          className={pageName === 'dashboard' ? 'active' : ''}
+        >
           <span>
             <FiGrid />
           </span>
           <p>Dashboard</p>
         </Link>
 
-        <Link to="/draw" className={pageName === "draw" ? "active" : ""}>
+        <Link
+          to="/home-draw"
+          className={pageName === 'draw' ? 'active' : ''}
+        >
           <span>
             <FiCodesandbox />
           </span>
@@ -73,13 +81,13 @@ const SideBar = ({ page, history }) => {
 
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             marginTop: 100,
           }}
         >
-          <img src={logo} style={{ width: 120 }} />
+          <img src={logo} style={{ width: 120 }} alt="" />
         </div>
 
         <button onClick={goOut}>
@@ -89,7 +97,7 @@ const SideBar = ({ page, history }) => {
           <p>Sair</p>
         </button>
       </SideNav>
-      <Background teste={sidebarActive ? "teste" : ""}>
+      <Background teste={sidebarActive ? 'teste' : ''}>
         <Close onClick={activeSidebar}>
           <FiX />
         </Close>

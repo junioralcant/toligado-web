@@ -3,23 +3,29 @@ import { FiTrash2 } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment';
 
+import { useCompany } from '../../hooks/useCompany';
+
 import api from '../../services/api';
 
 import { Card, Button, SubCard } from './styles';
 
 const ListDraw = () => {
+  const { company } = useCompany();
+
   const [draws, setDraws] = useState([]);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function loadDraw() {
-      const response = await api.get('/draws');
+      const response = await api.get(`/draws?company=${company._id}`);
 
-      setDraws(response.data.docs);
+      setDraws(response.data);
     }
 
-    loadDraw();
-  }, []);
+    if (company) {
+      loadDraw();
+    }
+  }, [company]);
 
   useEffect(() => {
     async function loadUser() {
@@ -36,7 +42,7 @@ const ListDraw = () => {
 
     const response = await api.get('/draws');
 
-    setDraws(response.data.docs);
+    setDraws(response.data);
 
     toast.success('Sorteio excluído com sucesso!', {
       autoClose: 3000,
@@ -45,11 +51,11 @@ const ListDraw = () => {
 
   async function HandlerButtonDraw() {
     try {
-      await api.post('/draws');
+      await api.post(`/draws?company=${company._id}`);
 
-      const response = await api.get('/draws');
+      const response = await api.get(`/draws?company=${company._id}`);
 
-      setDraws(response.data.docs);
+      setDraws(response.data);
 
       toast.success('Sorteio realizado com sucesso!', {
         autoClose: 3000,

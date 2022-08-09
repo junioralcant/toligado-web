@@ -65,15 +65,19 @@ export const Card = styled.div`
 
 export const Button = styled.button`
   position: absolute;
-  left: 230px;
-  top: 10px;
-  background: #3adf96;
+  right: 230px;
+  top: -70px;
+  background: #1ba667;
   border: none;
   padding: 20px;
   color: #fff;
   font-weight: bold;
   font-size: 15px;
   border-radius: 5px;
+
+  &:hover {
+    background: #138752;
+  }
 
   @media (max-width: 661px) {
     left: 20px;
@@ -83,6 +87,7 @@ export const Button = styled.button`
 export const SubCard = styled.div`
   background: #2b84cf;
   color: #fff;
+  height: 100px;
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
