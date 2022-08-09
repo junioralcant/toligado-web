@@ -66,7 +66,7 @@ const SideBar = ({ page, history }) => {
           <span>
             <FiGrid />
           </span>
-          <p>Dashboard</p>
+          <p>Registro</p>
         </Link>
 
         <Link
