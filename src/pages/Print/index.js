@@ -11,6 +11,7 @@ import {
   BoxPhoto,
   Container,
   Content,
+  ContentDescription,
   Header,
 } from './styles';
 
@@ -19,14 +20,20 @@ const Print = () => {
 
   const locationHistory = useLocation();
 
-  const { name, date, location, description, image, id } =
-    locationHistory.state;
+  const {
+    name,
+    date,
+    location,
+    description,
+    image,
+    id,
+    imageResolved,
+  } = locationHistory.state;
 
   useEffect(() => {
     setTimeout(() => window.print(), 800);
   }, []);
 
-  console.log(company);
   return (
     <Container>
       <Content>
@@ -54,17 +61,26 @@ const Print = () => {
         </Header>
       </Content>
 
-      <Content>
+      <ContentDescription>
         <h4>Local: {location}</h4>
+        <br />
         <h4> Descrição do registro: {description}</h4>
-      </Content>
+      </ContentDescription>
 
       <Content>
         <BoxPhoto>
-          <h4>Arquivo anexado</h4>
+          <h4>Registro</h4>
 
-          <img src={image} />
+          <img src={image} all="" />
         </BoxPhoto>
+
+        {imageResolved && (
+          <BoxPhoto>
+            <h4>Registro Resolvido</h4>
+
+            <img src={imageResolved} all="" />
+          </BoxPhoto>
+        )}
       </Content>
 
       <Content>

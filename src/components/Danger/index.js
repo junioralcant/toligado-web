@@ -106,7 +106,15 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
     });
   }
 
-  function printer(name, date, location, description, image, id) {
+  function printer(
+    name,
+    date,
+    location,
+    description,
+    image,
+    id,
+    imageResolved
+  ) {
     history.push('/print', {
       name,
       date,
@@ -114,6 +122,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
       description,
       image,
       id,
+      imageResolved,
     });
   }
 
@@ -295,7 +304,10 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                       danger.location,
                       danger.description,
                       danger.image.url ? danger.image.url : '',
-                      danger._id
+                      danger._id,
+                      danger.imageResolved
+                        ? danger.imageResolved.url
+                        : ''
                     );
                   }}
                 >

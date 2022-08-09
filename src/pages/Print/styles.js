@@ -22,8 +22,16 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  /* display: flex; */
+  display: flex;
   /* justify-content: center; */
+  width: 700px;
+  border: solid 1px #000;
+  border-top: solid 20px #208eeb;
+  padding: 0px 10px;
+  margin-bottom: 30px;
+`;
+
+export const ContentDescription = styled.div`
   width: 700px;
   border: solid 1px #000;
   border-top: solid 20px #208eeb;
