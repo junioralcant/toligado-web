@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import logo from '../../assets/Logotipo.png';
+import { useCompany } from '../../hooks/useCompany';
 
 import {
   BoxController,
@@ -14,6 +15,8 @@ import {
 } from './styles';
 
 const Print = () => {
+  const { company } = useCompany();
+
   const locationHistory = useLocation();
 
   const { name, date, location, description, image, id } =
@@ -22,12 +25,14 @@ const Print = () => {
   useEffect(() => {
     setTimeout(() => window.print(), 800);
   }, []);
+
+  console.log(company);
   return (
     <Container>
       <Content>
         <Header>
           <div>
-            <img src={logo} />
+            <img src={logo} all="" />
           </div>
           <div className="texts">
             <h4 style={{ marginBottom: 25 }}>
@@ -39,7 +44,12 @@ const Print = () => {
             </h4>
           </div>
           <div>
-            <img src={logo} />
+            {company && (
+              <img
+                src={company.avatar ? company.avatar.url : null}
+                all=""
+              />
+            )}
           </div>
         </Header>
       </Content>

@@ -43,6 +43,7 @@ export const Header = styled.div`
 
   img {
     width: 5rem;
+    object-fit: cover;
   }
 `;
 
