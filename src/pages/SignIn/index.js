@@ -28,7 +28,6 @@ const SignIn = ({ history }) => {
           password,
         });
         login(response.data.token);
-        console.log(response.data.token);
         history.push('/');
         setLoading(false);
       } catch (err) {

@@ -19,7 +19,7 @@ import { useCompany } from '../../hooks/useCompany';
 const HomeDraw = ({ history }) => {
   const [companies, setCompanies] = useState([]);
 
-  const { setCompany } = useCompany();
+  const { setCompanyDate } = useCompany();
 
   useEffect(() => {
     async function loadEmpaty() {
@@ -42,7 +42,7 @@ const HomeDraw = ({ history }) => {
                 key={company._id}
                 analysis
                 onClick={() => {
-                  setCompany(company);
+                  setCompanyDate(company);
                   history.push('/draw');
                 }}
               >
