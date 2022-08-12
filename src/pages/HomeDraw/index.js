@@ -14,12 +14,13 @@ import {
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
-import { useCompany } from '../../hooks/useCompany';
+
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const HomeDraw = ({ history }) => {
   const [companies, setCompanies] = useState([]);
 
-  const { setCompanyDate } = useCompany();
+  const { setCompanyDate } = useCompanyContext();
 
   useEffect(() => {
     async function loadEmpaty() {

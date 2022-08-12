@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useCompany } from '../../hooks/useCompany';
-
 import SideBar from '../../components/SideBar';
 import ListDraw from '../../components/ListDraw';
 import { Container, Content, Title } from './styles';
 
+import { useCompanyContext } from '../../contexts/CompanyContext';
+
 const Draw = () => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   return (
     <>

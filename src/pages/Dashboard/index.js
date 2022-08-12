@@ -16,10 +16,10 @@ import {
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
-import { useCompany } from '../../hooks/useCompany';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const Dashboard = () => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   const [dangers, setDangers] = useState([]);
   const [dangersApproved, setDangersApproved] = useState([]);

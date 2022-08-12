@@ -3,15 +3,14 @@ import { FiTrash2 } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import moment from 'moment';
 
-import { useCompany } from '../../hooks/useCompany';
-
 import api from '../../services/api';
 
 import { Card, Button, SubCard, BoxLoader } from './styles';
 import Loader from '../Loader';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const ListDraw = () => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   const [draws, setDraws] = useState([]);
   const [users, setUsers] = useState([]);

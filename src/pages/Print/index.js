@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import logo from '../../assets/Logotipo.png';
-import { useCompany } from '../../hooks/useCompany';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 import {
   BoxController,
@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 const Print = () => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   const locationHistory = useLocation();
 

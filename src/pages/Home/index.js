@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { FiCodesandbox, FiBarChart2, FiCheck } from 'react-icons/fi';
 
 import SideBar from '../../components/SideBar';
 import {
@@ -15,12 +14,12 @@ import {
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
-import { useCompany } from '../../hooks/useCompany';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const Home = ({ history }) => {
   const [companies, setCompanies] = useState([]);
 
-  const { setCompanyDate } = useCompany();
+  const { setCompanyDate } = useCompanyContext();
 
   useEffect(() => {
     async function loadEmpaty() {

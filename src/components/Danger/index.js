@@ -24,10 +24,10 @@ import {
   Card,
 } from './styles';
 import generateCSV from '../generateCSV';
-import { useCompany } from '../../hooks/useCompany';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const Danger = ({ approved, analyzed, disapproved, history }) => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   const [dangers, setDangers] = useState([]);
   const [initialDate, setInitialDate] = useState('');

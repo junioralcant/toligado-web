@@ -10,10 +10,10 @@ import {
   AiOutlineCloudDownload,
   AiOutlineSearch,
 } from 'react-icons/ai';
-import { useCompany } from '../../hooks/useCompany';
+import { useCompanyContext } from '../../contexts/CompanyContext';
 
 const ExportAllFields = () => {
-  const { company } = useCompany();
+  const { company } = useCompanyContext();
 
   const [dangers, setDangers] = useState([]);
   const [initialDate, setInitialDate] = useState('');
