@@ -19,7 +19,7 @@ export const Card = styled.div`
     width: 100%;
     display: flex;
     height: 30px;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
     justify-content: space-between;
   }
 
