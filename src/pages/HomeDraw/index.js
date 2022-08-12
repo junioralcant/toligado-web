@@ -58,8 +58,8 @@ const HomeDraw = ({ history }) => {
             ))}
           </Column>
         </Content>
-        <Girl src={girl} all="Mascote Rocha" />
       </Container>
+      <Girl src={girl} all="Mascote Rocha" />
     </>
   );
 };

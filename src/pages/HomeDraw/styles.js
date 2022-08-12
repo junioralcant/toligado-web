@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   position: relative;
@@ -7,7 +6,6 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: 50px;
   width: 100%;
-  height: 100%;
 `;
 
 export const Content = styled.div`

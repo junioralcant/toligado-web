@@ -6,7 +6,6 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: 50px;
   width: 100%;
-  height: 100%;
 `;
 
 export const Content = styled.div`
