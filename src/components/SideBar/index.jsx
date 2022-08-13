@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-  FiCamera,
   FiGrid,
   FiCodesandbox,
   FiAlignJustify,
@@ -11,13 +10,7 @@ import { Link } from 'react-router-dom';
 
 import { logout } from '../../services/auth';
 
-import {
-  SideNav,
-  Button,
-  Background,
-  Close,
-  companyData,
-} from './styles';
+import { SideNav, Button, Background, Close } from './styles';
 
 import logo from '../../assets/logo-white.png';
 
