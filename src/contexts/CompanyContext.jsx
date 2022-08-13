@@ -21,6 +21,8 @@ export function CompanyProvider({ children }) {
       if (storedCompanyAsJSON) {
         return { company: JSON.parse(storedCompanyAsJSON) };
       }
+
+      return { company: {} };
     }
   );
 
