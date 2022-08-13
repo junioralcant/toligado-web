@@ -12,11 +12,11 @@ O sistema Web gerencia os registros feitos através do app mobile Tô Ligado.
 </p>
 
 <p>
-  <img src="https://user-images.githubusercontent.com/40610119/184507953-6d52b7e9-6c55-48c9-a5bf-f848b0419c3b.png" width="500" />
-  <img src="https://user-images.githubusercontent.com/40610119/184507893-4cbc276d-2425-499e-bde6-e6ebed73023a.png" width="500" /> 
+  <img src="https://user-images.githubusercontent.com/40610119/184507953-6d52b7e9-6c55-48c9-a5bf-f848b0419c3b.png" width="400" />
+  <img src="https://user-images.githubusercontent.com/40610119/184507893-4cbc276d-2425-499e-bde6-e6ebed73023a.png" width="400" /> 
 </p>
 
 <p>
-  <img src="https://user-images.githubusercontent.com/40610119/184507991-b7f023ca-ca4f-4216-8a1d-64eb978cf075.png" width="500" />
+  <img src="https://user-images.githubusercontent.com/40610119/184507991-b7f023ca-ca4f-4216-8a1d-64eb978cf075.png" width="400" />
 </p>
 
