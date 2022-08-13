@@ -60,7 +60,9 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
 
     socket.on('newRecord', (message) => {
       async function load() {
-        const response = await api.get('/dangers');
+        const response = await api.get(
+          `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+        );
 
         setDangers(response.data);
         console.log(message);
@@ -82,7 +84,9 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
       disapprovedReason: teste,
     });
 
-    const response = await api.get('/dangers');
+    const response = await api.get(
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+    );
 
     setDangers(response.data);
 
@@ -98,7 +102,9 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
       approved: true,
     });
 
-    const response = await api.get('/dangers');
+    const response = await api.get(
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+    );
 
     setDangers(response.data);
     toast.success('Registro aprovado!', {
