@@ -7,8 +7,8 @@ O sistema de gestão recebe, avalia, aprova o registro offline e gera um código
 O sistema Web gerencia os registros feitos através do app mobile Tô Ligado.
 
 <p>
-  <img src="https://user-images.githubusercontent.com/40610119/184507671-031dbc4c-a244-4c6d-a575-4c360cd4984f.png" width="500" />
-  <img src="https://user-images.githubusercontent.com/40610119/184507674-a822a374-2db3-4291-a444-4a07f4387242.png" width="500" /> 
+  <img src="https://user-images.githubusercontent.com/40610119/184507671-031dbc4c-a244-4c6d-a575-4c360cd4984f.png" width="400" />
+  <img src="https://user-images.githubusercontent.com/40610119/184507674-a822a374-2db3-4291-a444-4a07f4387242.png" width="400" /> 
 </p>
 
 <p>
