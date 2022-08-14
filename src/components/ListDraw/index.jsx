@@ -44,7 +44,7 @@ const ListDraw = () => {
   async function destroy(id) {
     await api.delete(`/draws/${id}`);
 
-    const response = await api.get('/draws');
+    const response = await api.get(`/draws?company=${company._id}`);
 
     setDraws(response.data);
 
