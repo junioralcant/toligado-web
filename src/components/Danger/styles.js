@@ -5,21 +5,21 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 0.62rem;
 
-  width: 300px;
-  height: 380px;
+  width: 18.75rem;
+  height: 23.75rem;
   background: #fff;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 10px;
+  padding: 0.62rem;
   color: #666666;
 
   .header {
     width: 100%;
     display: flex;
-    height: 30px;
-    margin-bottom: 30px;
+    height: 1.87rem;
+    margin-bottom: 1.87rem;
     justify-content: space-between;
   }
 
@@ -32,7 +32,7 @@ export const Card = styled.div`
       margin-top: 3px;
       background: #53c579;
       color: #fff;
-      padding: 5px;
+      padding: 0.32rem;
       border-radius: 3px;
       text-decoration: none;
       font-size: 13px;
@@ -40,11 +40,11 @@ export const Card = styled.div`
   }
 
   img {
-    width: 280px;
-    height: 200px;
+    width: 17.5rem;
+    height: 12.5rem;
     border-radius: 10px;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-bottom: 0.62rem;
+    margin-top: 0.62rem;
     object-fit: cover;
   }
 
@@ -52,26 +52,26 @@ export const Card = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 300px;
+    width: 18.75rem;
     text-align: center;
 
     strong {
-      font-size: 15px;
+      font-size: 0.93rem;
     }
 
     p {
-      margin-bottom: 10px;
+      margin-bottom: 0.62rem;
     }
 
     div {
       display: flex;
       justify-content: space-between;
-      width: 100px;
+      width: 6.25rem;
 
       button {
         background: none;
         border: none;
-        font-size: 22px;
+        font-size: 1.3rem;
       }
 
       button.checked {
@@ -109,17 +109,17 @@ export const ButtonDownload = styled.button`
   background: #1ba667;
   color: #fff;
   font-weight: bold;
-  font-size: 15px;
-  padding: 5px;
+  font-size: 0.93rem;
+  padding: 0.32rem;
   border-radius: 5px;
   border: none;
 
-  top: -90px;
-  left: -90px;
+  top: -5.6rem;
+  left: -5.6rem;
   span {
-    margin-top: 5px;
-    margin-left: 5px;
-    font-size: 25px;
+    margin-top: 0.32rem;
+    margin-left: 0.32rem;
+    font-size: 0.5rem;
   }
 
   &:hover {
@@ -129,7 +129,7 @@ export const ButtonDownload = styled.button`
 
 export const BoxInputsDate = styled.div`
   position: absolute;
-  top: -100px;
+  top: -6.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,33 +137,33 @@ export const BoxInputsDate = styled.div`
   width: 80%;
 
   strong {
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
 
   button.search {
     background-color: #208eeb;
     border: 0;
-    padding: 5px;
+    padding: 0.32rem;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 0.62rem;
     border-radius: 10px;
-    height: 60px;
-    width: 200px;
-    font-size: 30px;
+    height: 3.75rem;
+    width: 12.5rem;
+    font-size: 1.8rem;
   }
   button.excluir {
     background-color: #ae3d0c;
     border: 0;
-    padding: 5px;
+    padding: 0.32rem;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 0.62rem;
     border-radius: 10px;
-    height: 60px;
-    width: 200px;
-    font-size: 30px;
-    margin-left: 10px;
+    height: 3.75rem;
+    width: 12.5rem;
+    font-size: 1.8rem;
+    margin-left: 0.62rem;
   }
 `;
 
@@ -172,15 +172,15 @@ export const BoxInpuDate = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 10px;
-  /* padding: 20px 20px 0 20px; */
+  margin-top: 0.62rem;
+  /* padding: 1.25rem 1.25rem 0 1.25rem; */
   input.date {
-    height: 60px;
+    height: 3.75rem;
     background-color: #fff;
-    margin: 0 15px 0px 0;
+    margin: 0 0.93rem 0 0;
     border-radius: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0.93rem;
+    padding-right: 0.93rem;
     border: 1px #c4c4c4;
     width: 100%;
   }
