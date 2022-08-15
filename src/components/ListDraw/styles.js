@@ -5,75 +5,75 @@ export const Card = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: 0.62rem;
 
-  width: 300px;
-  height: 200px;
+  width: 18.75rem;
+  height: 12.5rem;
   background: #fff;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  padding: 10px;
+  padding: 0.62rem;
   color: #666666;
 
   small.resolved {
-    margin-top: -13px;
-    margin-bottom: 10px;
+    margin-top: -0.82rem;
+    margin-bottom: 0.62rem;
     color: #53c579;
-    font-size: 14px;
+    font-size: 0.87rem;
     font-weight: bold;
   }
 
   .header {
     width: 100%;
     display: flex;
-    height: 30px;
-    margin-bottom: 10px;
+    height: 1.87rem;
+    margin-bottom: 0.62rem;
     justify-content: space-between;
   }
 
   img {
-    width: 280px;
+    width: 17.5rem;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0.62rem;
   }
 
   .footer {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 300px;
+    width: 18.75rem;
     text-align: center;
 
     strong {
-      font-size: 15px;
+      font-size: 0.93rem;
     }
 
     p {
-      margin-bottom: 10px;
+      margin-bottom: 0.62rem;
     }
     button {
       background: none;
       border: none;
-      font-size: 22px;
+      font-size: 1.37rem;
       color: #f64646;
     }
   }
 
   .margin-10 {
-    margin: 10px;
+    margin: 0.62rem;
   }
 `;
 
 export const Button = styled.button`
   position: absolute;
-  right: 230px;
+  right: 21.87rem;
   top: -70px;
   background: #1ba667;
   border: none;
-  padding: 20px;
+  padding: 1.25rem;
   color: #fff;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 0.93rem;
   border-radius: 5px;
 
   &:hover {
@@ -81,16 +81,16 @@ export const Button = styled.button`
   }
 
   @media (max-width: 661px) {
-    left: 20px;
+    left: 1.25rem;
   }
 `;
 
 export const SubCard = styled.div`
   background: #2b84cf;
   color: #fff;
-  height: 100px;
-  margin-bottom: 10px;
-  padding: 10px;
+  height: 6.25rem;
+  margin-bottom: 0.62rem;
+  padding: 0.62rem;
   border-radius: 5px;
 `;
 
