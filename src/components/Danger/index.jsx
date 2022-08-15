@@ -70,6 +70,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
 
       load();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function fileDanger(id) {
@@ -144,6 +145,8 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
     if (danger.disapproved === disapproved) {
       return danger;
     }
+
+    return '';
   });
 
   function checksDates() {

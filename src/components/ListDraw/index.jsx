@@ -112,14 +112,15 @@ const ListDraw = () => {
                         {users.map((user) => {
                           if (user._id === ids.recordId.user) {
                             return (
-                              <>
+                              <div key={user._id}>
                                 <small>{user.name}</small>
                                 <br />
                                 <small>CPF: {user.cpf}</small>
                                 <br />
-                              </>
+                              </div>
                             );
                           }
+                          return '';
                         })}
                         <br />
                       </div>

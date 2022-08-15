@@ -37,18 +37,23 @@ const Dashboard = () => {
         if (data.approved === true) {
           return data;
         }
+
+        return '';
       });
 
       const analyzed = response.data.filter((data) => {
         if (data.analyzed === false) {
           return data;
         }
+
+        return '';
       });
 
       const disapproved = response.data.filter((data) => {
         if (data.disapproved === true) {
           return data;
         }
+        return '';
       });
 
       setDangersApproved(approved);

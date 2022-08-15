@@ -39,7 +39,7 @@ const Print = () => {
       <Content>
         <Header>
           <div>
-            <img src={logo} all="" />
+            <img src={logo} alt="" />
           </div>
           <div className="texts">
             <h4 style={{ marginBottom: 25 }}>
@@ -54,7 +54,7 @@ const Print = () => {
             {company && (
               <img
                 src={company.avatar ? company.avatar.url : null}
-                all=""
+                alt=""
               />
             )}
           </div>
@@ -71,14 +71,14 @@ const Print = () => {
         <BoxPhoto>
           <h4>Registro</h4>
 
-          <img src={image} all="" />
+          <img src={image} alt="" />
         </BoxPhoto>
 
         {imageResolved && (
           <BoxPhoto>
             <h4>Registro Resolvido</h4>
 
-            <img src={imageResolved} all="" />
+            <img src={imageResolved} alt="" />
           </BoxPhoto>
         )}
       </Content>
