@@ -119,7 +119,7 @@ export const ButtonDownload = styled.button`
   span {
     margin-top: 0.32rem;
     margin-left: 0.32rem;
-    font-size: 0.5rem;
+    font-size: 1.56rem;
   }
 
   &:hover {

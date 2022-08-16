@@ -67,7 +67,7 @@ export const ButtonDownload = styled.button`
   background: #1ba667;
   color: #fff;
   font-weight: bold;
-  font-size: 0.93;
+  font-size: 0.93rem;
   padding: 0.31rem;
   border-radius: 5px;
   border: none;
