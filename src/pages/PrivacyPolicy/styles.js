@@ -7,31 +7,31 @@ export const Container = styled.div`
   align-items: center;
   max-width: 100%;
   height: 100%;
-  padding: 30px;
+  padding: 1.87rem;
 
   div {
     text-align: justify;
-    max-width: 800px;
+    max-width: 50rem;
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   ul {
-    margin-left: 30px;
-    margin-bottom: 20px;
+    margin-left: 1.87rem;
+    margin-bottom: 1.25rem;
 
     li {
-      margin-bottom: 10px;
+      margin-bottom: 0.62rem;
     }
   }
 
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   h3 {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 `;
