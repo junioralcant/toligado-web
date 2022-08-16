@@ -225,108 +225,108 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
         </span>
       </ButtonDownload>
 
-      {loading && (
+      {loading ? (
         <BoxLoader>
           <Loader />
         </BoxLoader>
-      )}
+      ) : (
+        filterDanger.map((danger) => (
+          <Card key={danger._id}>
+            <div className="header">
+              <div>
+                <strong>{danger.user.name}</strong>
+                <br />
+                <small>{danger.user.cpf}</small>
+              </div>
 
-      {filterDanger.map((danger) => (
-        <Card key={danger._id}>
-          <div className="header">
-            <div>
-              <strong>{danger.user.name}</strong>
-              <br />
-              <small>{danger.user.cpf}</small>
+              <div className="box-date">
+                <small>
+                  {moment(danger.createdAt).format('DD-MM-YYYY')}
+                </small>
+
+                {danger.resolved && (
+                  <a
+                    href={danger.imageResolved.url}
+                    className="resolved"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Resolvido
+                  </a>
+                )}
+              </div>
             </div>
+            <a
+              href={danger.image.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={danger.image.url ? danger.image.url : null}
+                alt={danger.location}
+              />
+            </a>
 
-            <div className="box-date">
-              <small>
-                {moment(danger.createdAt).format('DD-MM-YYYY')}
-              </small>
+            <div className="footer">
+              <strong>{danger._id}</strong>
+              <strong>{danger.location}</strong>
+              <p>{danger.description}</p>
+              <div>
+                {approved === true ? null : (
+                  <button
+                    className="checked"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          `Deseja realmente aprovar esse registro?`
+                        )
+                      )
+                        approve(danger._id);
+                    }}
+                  >
+                    <FiCheck />
+                  </button>
+                )}
 
-              {danger.resolved && (
-                <a
-                  href={danger.imageResolved.url}
-                  className="resolved"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Resolvido
-                </a>
-              )}
-            </div>
-          </div>
-          <a
-            href={danger.image.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src={danger.image.url ? danger.image.url : null}
-              alt={danger.location}
-            />
-          </a>
-
-          <div className="footer">
-            <strong>{danger._id}</strong>
-            <strong>{danger.location}</strong>
-            <p>{danger.description}</p>
-            <div>
-              {approved === true ? null : (
                 <button
-                  className="checked"
+                  className="delete"
                   onClick={() => {
                     if (
                       window.confirm(
-                        `Deseja realmente aprovar esse registro?`
+                        `Deseja realmente reprovar esse registro?`
                       )
                     )
-                      approve(danger._id);
+                      fileDanger(danger._id);
                   }}
                 >
-                  <FiCheck />
+                  <FiTrash2 />
                 </button>
-              )}
 
-              <button
-                className="delete"
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      `Deseja realmente reprovar esse registro?`
-                    )
-                  )
-                    fileDanger(danger._id);
-                }}
-              >
-                <FiTrash2 />
-              </button>
-
-              {approved === true && (
-                <button
-                  className="details"
-                  onClick={() => {
-                    printer(
-                      danger.user.name,
-                      danger.createdAt,
-                      danger.location,
-                      danger.description,
-                      danger.image.url ? danger.image.url : '',
-                      danger._id,
-                      danger.imageResolved
-                        ? danger.imageResolved.url
-                        : ''
-                    );
-                  }}
-                >
-                  <AiFillEye />
-                </button>
-              )}
+                {approved === true && (
+                  <button
+                    className="details"
+                    onClick={() => {
+                      printer(
+                        danger.user.name,
+                        danger.createdAt,
+                        danger.location,
+                        danger.description,
+                        danger.image.url ? danger.image.url : '',
+                        danger._id,
+                        danger.imageResolved
+                          ? danger.imageResolved.url
+                          : ''
+                      );
+                    }}
+                  >
+                    <AiFillEye />
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        </Card>
-      ))}
+          </Card>
+        ))
+      )}
     </>
   );
 };
