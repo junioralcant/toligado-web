@@ -43,7 +43,7 @@ export const Content = styled.div`
 export const Title = styled.h1`
   z-index: 1;
   position: absolute;
-  top: 3.75rem;
+  top: -3.75rem;
   left: 18%;
 
   font-size: 1.56rem;
