@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 3.12rem;
   width: 100%;
 `;
 
@@ -13,8 +13,8 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
-  width: 650px;
-  height: 300px;
+  width: 40.62rem;
+  height: 18.75rem;
 `;
 
 export const Column = styled.div`
@@ -22,7 +22,7 @@ export const Column = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 700px;
+  max-width: 43.75;
 
   @media (max-width: 1000px) {
     flex-direction: column;
@@ -36,17 +36,17 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 300px;
-  height: 120px;
-  padding: 10px;
-  margin-bottom: 10px;
+  width: 18.75rem;
+  height: 7.5rem;
+  padding: 0.62rem;
+  margin-bottom: 0.62rem;
 
   cursor: pointer;
   background-image: linear-gradient(to right, #3bb5b4, #106fbc);
 
   border-radius: 10px;
   color: #fff;
-  font-size: 45px;
+  font-size: 2.81rem;
 
   &:hover {
     background-image: linear-gradient(to right, #106fbc, #3bb5b4);
@@ -62,24 +62,24 @@ export const Button = styled.button`
       text-align: left;
       display: flex;
       flex-direction: column;
-      width: 150px;
+      width: 9.37rem;
     }
   }
 
   strong {
-    font-size: 30px;
+    font-size: 1.87rem;
   }
 
   p {
-    font-size: 15px;
+    font-size: 0.93rem;
   }
 `;
 
 export const Girl = styled.img`
   position: absolute;
-  right: 20px;
-  height: 412px;
-  bottom: 10px;
+  right: 1.25rem;
+  height: 25.75;
+  bottom: 0.62rem;
 
   @media (max-width: 1000px) {
     display: none;
@@ -87,18 +87,18 @@ export const Girl = styled.img`
 `;
 
 export const Avatar = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 20px;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 1.25rem;
   background: #fff;
   padding: 5px;
 `;
 
 export const Title = styled.h1`
   position: absolute;
-  top: -60px;
+  top: -3.75rem;
   left: 18%;
 
-  font-size: 25px;
+  font-size: 1.56rem;
   color: #4d4d4d;
 `;
