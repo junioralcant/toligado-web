@@ -24,19 +24,19 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   /* justify-content: center; */
-  width: 700px;
+  width: 43.74rem;
   border: solid 1px #000;
   border-top: solid 20px #208eeb;
-  padding: 0px 10px;
-  margin-bottom: 30px;
+  padding: 0px 0.62rem;
+  margin-bottom: 1.87rem;
 `;
 
 export const ContentDescription = styled.div`
-  width: 700px;
+  width: 43.74rem;
   border: solid 1px #000;
   border-top: solid 20px #208eeb;
-  padding: 0px 10px;
-  margin-bottom: 30px;
+  padding: 0px 0.62rem;
+  margin-bottom: 1.87rem;
 `;
 
 export const Header = styled.div`
@@ -61,10 +61,10 @@ export const BoxPhoto = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 0.62rem;
 
   h4 {
-    margin-bottom: 5px;
+    margin-bottom: 0.31rem;
   }
 
   img {
@@ -78,5 +78,5 @@ export const BoxController = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 0.62rem;
 `;
