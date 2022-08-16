@@ -12,17 +12,17 @@ export const Login = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
-  height: 450px;
+  width: 25rem;
+  height: 28.12rem;
   border-radius: 10px;
-  padding: 20px;
+  padding: 1.23rem;
   color: #fff;
 
   p {
     color: #f30800e5;
     margin-bottom: 15px;
     border: 1px solid #f30800e5;
-    padding: 10px;
+    padding: 0.62rem;
     width: 100%;
     text-align: center;
   }
@@ -32,40 +32,40 @@ export const Login = styled.div`
     flex-direction: column;
     align-items: center;
     width: 95%;
-    margin-top: 10px;
+    margin-top: 0.62rem;
 
     div.group-input {
       display: flex;
       align-items: flex-start;
 
       label {
-        margin-bottom: 5px;
+        margin-bottom: 0.31rem;
         color: #777777;
       }
 
       &:nth-child(2) {
-        margin-bottom: 30px;
+        margin-bottom: 1.87rem;
       }
     }
 
     input {
-      padding: 5px;
+      padding: 0.31rem;
       background: transparent;
       border: 1px solid #15a6e4;
-      margin-bottom: 10px;
+      margin-bottom: 0.62rem;
       width: 100%;
-      height: 55px;
+      height: 3.43rem;
       border-radius: 6px;
     }
 
     button {
       width: 95%;
-      height: 55px;
-      border-radius: 5px;
+      height: 3.43rem;
+      border-radius: 0.31rem;
       border: none;
       background: #0e4f85;
       color: #fff;
-      font-size: 18px;
+      font-size: 1.12rem;
 
       &:hover {
         background: #0c4b81;
@@ -75,5 +75,5 @@ export const Login = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 100px;
+  width: 6.25rem;
 `;
