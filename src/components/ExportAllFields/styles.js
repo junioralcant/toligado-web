@@ -50,7 +50,7 @@ export const BoxInpuDate = styled.div`
   input.date {
     height: 3.75rem;
     background-color: #fff;
-    margin: 0 0.93 0px 0;
+    margin: 0 0.93rem 0px 0;
     border-radius: 10px;
     padding-left: 0.93;
     padding-right: 0.93;
