@@ -11,9 +11,7 @@ import { isAuthenticated } from './services/auth';
 import Dashboard from './pages/Dashboard';
 import Draw from './pages/Draw';
 import ListRecord from './pages/ListRecord';
-import ListRecordAnalisis from './pages/ListRecordAnalisis';
 import SignIn from './pages/SignIn';
-import ListRecordDisapproved from './pages/ListRecordDisapproved';
 import Print from './pages/Print';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import ExportField from './pages/ExportField';
@@ -47,14 +45,7 @@ const Routes = () => (
 
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />
-      <PrivateRoute
-        path="/listrecordanalisis"
-        component={ListRecordAnalisis}
-      />
-      <PrivateRoute
-        path="/listrecorddisapproved"
-        component={ListRecordDisapproved}
-      />
+
       <PrivateRoute path="/print" component={Print} />
 
       <PrivateRoute path="/export-fields" component={ExportField} />
