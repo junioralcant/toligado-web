@@ -16,10 +16,17 @@ import {
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
-import { useCompanyContext } from '../../contexts/CompanyContext';
 
-const Dashboard = () => {
+import { useCompanyContext } from '../../contexts/CompanyContext';
+import { useTypeDangerContext } from '../../contexts/TypeDangerContext';
+
+const Dashboard = ({ history }) => {
   const { company } = useCompanyContext();
+  const {
+    handleTypeDangerApproved,
+    handleTypeDangerAnalyzed,
+    handleTypeDangerDisapproved,
+  } = useTypeDangerContext();
 
   const [dangers, setDangers] = useState([]);
   const [dangersApproved, setDangersApproved] = useState([]);
@@ -66,6 +73,21 @@ const Dashboard = () => {
     }
   }, [company]);
 
+  function navigateToRegisterDangerAnalyzed() {
+    handleTypeDangerAnalyzed();
+    history.push('/listrecord');
+  }
+
+  function navigateToRegisterDangerApproved() {
+    handleTypeDangerApproved();
+    history.push('/listrecord');
+  }
+
+  function navigateToRegisterDangerDisapproved() {
+    handleTypeDangerDisapproved();
+    history.push('/listrecord');
+  }
+
   return (
     <>
       <SideBar page="dashboard" />
@@ -75,7 +97,10 @@ const Dashboard = () => {
 
         <Content>
           <Column>
-            <Button analysis to="/listrecordanalisis">
+            <Button
+              analysis
+              onClick={navigateToRegisterDangerAnalyzed}
+            >
               <div>
                 <div>
                   <strong>{dangersAnalyzed.length}</strong>
@@ -85,7 +110,10 @@ const Dashboard = () => {
                 <FiBarChart2 />
               </div>
             </Button>
-            <Button aproved to="/listrecord">
+            <Button
+              aproved
+              onClick={navigateToRegisterDangerApproved}
+            >
               <div>
                 <div>
                   <strong>{dangersApproved.length}</strong>
@@ -98,7 +126,10 @@ const Dashboard = () => {
           </Column>
 
           <Column>
-            <Button disapproved to="/listrecorddisapproved">
+            <Button
+              disapproved
+              onClick={navigateToRegisterDangerDisapproved}
+            >
               <div>
                 <div>
                   <strong>{dangersDisapproved.length}</strong>
@@ -108,7 +139,12 @@ const Dashboard = () => {
                 <BsFillArchiveFill />
               </div>
             </Button>
-            <Button lucky to="/draw">
+            <Button
+              lucky
+              onClick={() => {
+                history.push('/draw');
+              }}
+            >
               <div>
                 <div>
                   <strong>#893842A</strong>
@@ -121,7 +157,12 @@ const Dashboard = () => {
           </Column>
 
           <Column>
-            <Button download to="/export-fields">
+            <Button
+              download
+              onClick={() => {
+                history.push('/export-fields');
+              }}
+            >
               <div>
                 <div>
                   <strong>{dangers.length}</strong>

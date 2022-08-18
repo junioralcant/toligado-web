@@ -23,11 +23,14 @@ import {
   ButtonDownload,
   Card,
 } from './styles';
+
 import generateCSV from '../generateCSV';
 import { useCompanyContext } from '../../contexts/CompanyContext';
+import { useTypeDangerContext } from '../../contexts/TypeDangerContext';
 
-const Danger = ({ approved, analyzed, disapproved, history }) => {
+const Danger = ({ history }) => {
   const { company } = useCompanyContext();
+  const { typeDanger } = useTypeDangerContext();
 
   const [dangers, setDangers] = useState([]);
   const [initialDate, setInitialDate] = useState('');
@@ -134,15 +137,15 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
   }
 
   let filterDanger = dangers.filter((danger) => {
-    if (danger.approved === approved) {
+    if (danger.approved === typeDanger.approved) {
       return danger;
     }
 
-    if (danger.analyzed === analyzed) {
+    if (danger.analyzed === typeDanger.analyzed) {
       return danger;
     }
 
-    if (danger.disapproved === disapproved) {
+    if (danger.disapproved === typeDanger.disapproved) {
       return danger;
     }
 
@@ -272,7 +275,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
               <strong>{danger.location}</strong>
               <p>{danger.description}</p>
               <div>
-                {approved === true ? null : (
+                {typeDanger.approved === true ? null : (
                   <button
                     className="checked"
                     onClick={() => {
@@ -302,7 +305,7 @@ const Danger = ({ approved, analyzed, disapproved, history }) => {
                   <FiTrash2 />
                 </button>
 
-                {approved === true && (
+                {typeDanger.approved === true && (
                   <button
                     className="details"
                     onClick={() => {
