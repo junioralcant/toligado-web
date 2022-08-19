@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,8 +20,16 @@ export const Card = styled.div`
     width: 100%;
     display: flex;
     height: 1.87rem;
-    margin-bottom: 1.87rem;
+    margin-bottom: 1.1rem;
     justify-content: space-between;
+
+    strong {
+      display: inline-block;
+      width: 12rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 
   .header .box-date {
@@ -29,13 +38,14 @@ export const Card = styled.div`
     align-items: flex-end;
 
     a.resolved {
-      margin-top: 3px;
+      /* margin-top: 3px; */
       background: #53c579;
       color: #fff;
       padding: 0.32rem;
       border-radius: 3px;
       text-decoration: none;
       font-size: 13px;
+      margin-top: 0.32rem;
     }
   }
 
@@ -44,7 +54,7 @@ export const Card = styled.div`
     height: 12.5rem;
     border-radius: 10px;
     margin-bottom: 0.62rem;
-    margin-top: 0.62rem;
+    margin-top: 0.32rem;
     object-fit: cover;
   }
 
@@ -57,9 +67,27 @@ export const Card = styled.div`
 
     strong {
       font-size: 0.93rem;
+
+      &.location {
+        width: 15.75rem;
+        cursor: pointer;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        margin-bottom: 0.31rem;
+        margin-top: 0.31rem;
+      }
     }
 
-    p {
+    p.short_description {
+      width: 16.75rem;
+      cursor: pointer;
+
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
       margin-bottom: 0.62rem;
     }
 
@@ -99,6 +127,28 @@ export const Card = styled.div`
       }
     }
   }
+`;
+
+export const ModalDescription = styled.div`
+  display: none;
+  width: 90% !important;
+  cursor: pointer;
+  position: absolute;
+  min-height: 1rem;
+  background: #f2f2f2;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 0.31rem;
+  bottom: 2.5rem;
+
+  flex-direction: column;
+
+  p {
+    margin-top: 0.5rem;
+  }
+
+  ${(props) =>
+    props.active ? 'display: block' : 'display: none !important'}
 `;
 
 export const ButtonDownload = styled.button`

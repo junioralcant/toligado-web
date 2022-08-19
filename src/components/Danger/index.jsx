@@ -22,6 +22,7 @@ import {
   BoxLoader,
   ButtonDownload,
   Card,
+  ModalDescription,
 } from './styles';
 
 import generateCSV from '../generateCSV';
@@ -41,6 +42,10 @@ const Danger = ({ history }) => {
   const [dateFinalChecks, setDateFinalChecks] = useState('');
 
   const [loading, setLoading] = useState(true);
+  const [activeModalDescription, setActiveModalDescription] =
+    useState(false);
+
+  const [idDangerShowModal, setIdDangerShowModal] = useState('');
 
   useEffect(() => {
     async function loadDanger() {
@@ -171,6 +176,15 @@ const Danger = ({ history }) => {
     setSearch(false);
   }
 
+  function showModalDescription(idRegister) {
+    setActiveModalDescription(true);
+    setIdDangerShowModal(idRegister);
+  }
+
+  function hiddenModalDescription() {
+    setActiveModalDescription(false);
+  }
+
   return (
     <>
       <ToastContainer />
@@ -272,8 +286,39 @@ const Danger = ({ history }) => {
 
             <div className="footer">
               <strong>{danger._id}</strong>
-              <strong>{danger.location}</strong>
-              <p>{danger.description}</p>
+              <strong
+                className="location"
+                onMouseOver={() => {
+                  showModalDescription(danger._id);
+                }}
+              >
+                {danger.location}
+              </strong>
+              <p
+                onMouseOver={() => {
+                  showModalDescription(danger._id);
+                }}
+                className="short_description "
+              >
+                {danger.description}
+              </p>
+
+              {String(idDangerShowModal) === String(danger._id) && (
+                <ModalDescription
+                  active={activeModalDescription}
+                  onMouseOver={() => {
+                    showModalDescription(danger._id);
+                  }}
+                  onMouseOut={() => {
+                    hiddenModalDescription();
+                  }}
+                >
+                  <strong>{danger.location}</strong>
+
+                  <p>{danger.description}</p>
+                </ModalDescription>
+              )}
+
               <div>
                 {typeDanger.approved === true ? null : (
                   <button
