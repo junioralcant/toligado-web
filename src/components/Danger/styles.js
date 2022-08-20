@@ -17,6 +17,7 @@ export const Card = styled.div`
   color: #666666;
 
   .header {
+    position: relative;
     width: 100%;
     display: flex;
     height: 1.87rem;
@@ -37,15 +38,25 @@ export const Card = styled.div`
     flex-direction: column;
     align-items: flex-end;
 
-    a.resolved {
-      /* margin-top: 3px; */
-      background: #53c579;
+    p {
       color: #fff;
       padding: 0.32rem;
       border-radius: 3px;
       text-decoration: none;
       font-size: 13px;
       margin-top: 0.32rem;
+    }
+
+    p.resolved {
+      background: #53c579;
+    }
+
+    p.analysis {
+      background: #ffc447;
+    }
+
+    p.disapproved {
+      background: #f32424;
     }
   }
 
@@ -127,6 +138,55 @@ export const Card = styled.div`
       }
     }
   }
+`;
+
+export const ModalShowResolved = styled.div`
+  display: none;  
+  justify-content: space-between;
+  min-width: 4.5rem;
+  position: absolute;
+  min-height: 1rem;
+  background: #f2f2f2;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  padding: 0.31rem;
+  font-size: 1.5rem;
+  /* flex-direction: column; */
+
+  svg {
+    cursor: pointer;
+    margin-left: 0.31rem;
+    margin-rigth: 0.31rem;
+
+  }
+
+  .approved {
+    color: #53c579;
+
+    &:hover {
+      color: #3e8355;
+    }
+  }
+
+  .view {
+    text-decoration: none;
+    color: #696969
+
+    &:hover {
+      color: #595959;
+    }
+  }
+
+  .delete {
+    color: #f64646;
+
+    &:hover {
+      color: #bb3939;
+    }
+  }
+  
+  ${(props) =>
+    props.active ? 'display: block' : 'display: none !important'}
 `;
 
 export const ModalDescription = styled.div`

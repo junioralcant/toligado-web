@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FiCheck, FiTrash2 } from 'react-icons/fi';
+import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
+
 import {
   AiFillEye,
   AiOutlineCloseCircle,
@@ -23,6 +25,7 @@ import {
   ButtonDownload,
   Card,
   ModalDescription,
+  ModalShowResolved,
 } from './styles';
 
 import generateCSV from '../generateCSV';
@@ -44,8 +47,13 @@ const Danger = ({ history }) => {
   const [loading, setLoading] = useState(true);
   const [activeModalDescription, setActiveModalDescription] =
     useState(false);
+  const [activeModalDetailsResolved, setActiveModalDetailsResolved] =
+    useState(false);
 
-  const [idDangerShowModal, setIdDangerShowModal] = useState('');
+  const [
+    idDangerShowModalDescription,
+    setIdDangerShowModalDescription,
+  ] = useState('');
 
   useEffect(() => {
     async function loadDanger() {
@@ -82,7 +90,7 @@ const Danger = ({ history }) => {
   }, []);
 
   async function fileDanger(id) {
-    var teste = window.prompt(
+    var message = window.prompt(
       'Informe o motivo da reprovação do registro'
     );
 
@@ -90,7 +98,7 @@ const Danger = ({ history }) => {
       disapproved: true,
       analyzed: true,
       approved: false,
-      disapprovedReason: teste,
+      disapprovedReason: message,
     });
 
     const response = await api.get(
@@ -178,11 +186,64 @@ const Danger = ({ history }) => {
 
   function showModalDescription(idRegister) {
     setActiveModalDescription(true);
-    setIdDangerShowModal(idRegister);
+    setIdDangerShowModalDescription(idRegister);
   }
 
   function hiddenModalDescription() {
     setActiveModalDescription(false);
+  }
+
+  function showModalDetailsResolved(idRegister) {
+    setActiveModalDetailsResolved(true);
+    setIdDangerShowModalDescription(idRegister);
+  }
+
+  function hiddenModalDetailsResolved() {
+    setActiveModalDetailsResolved(false);
+  }
+
+  async function approveResolvedDanger(id) {
+    if (
+      window.confirm(
+        `Deseja realmente aprovar esse registro de resolvido?`
+      )
+    ) {
+      await api.put(`/dangers/${id}`, {
+        resolvedApproved: 'APPROVAD',
+      });
+
+      const response = await api.get(
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+      );
+
+      setDangers(response.data);
+
+      toast.success('Registro resolvido aprovado com sucesso!', {
+        autoClose: 3000,
+      });
+    }
+  }
+
+  async function disapprovedResolvedDanger(id) {
+    if (
+      window.confirm(
+        `Deseja realmente reprovar esse registro de resolvido?`
+      )
+    ) {
+      await api.put(`/dangers/${id}`, {
+        resolvedApproved: 'DISAPPROVED',
+      });
+
+      const response = await api.get(
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+      );
+
+      setDangers(response.data);
+
+      toast.success('Registro resolvido reprovado com sucesso!', {
+        autoClose: 3000,
+      });
+    }
   }
 
   return (
@@ -262,15 +323,73 @@ const Danger = ({ history }) => {
                 </small>
 
                 {danger.resolved && (
-                  <a
-                    href={danger.imageResolved.url}
-                    className="resolved"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <p
+                    className={
+                      (danger.resolvedApproved === 'ANALYSIS' &&
+                        'analysis') ||
+                      (danger.resolvedApproved === 'APPROVAD' &&
+                        'resolved') ||
+                      (danger.resolvedApproved === 'DISAPPROVED' &&
+                        'disapproved')
+                    }
+                    onMouseOver={() => {
+                      showModalDetailsResolved(danger._id);
+                    }}
+                    onMouseOut={() => {
+                      hiddenModalDetailsResolved();
+                    }}
                   >
                     Resolvido
-                  </a>
+                  </p>
                 )}
+
+                {String(idDangerShowModalDescription) ===
+                  String(danger._id) &&
+                  danger.imageResolved && (
+                    <ModalShowResolved
+                      active={activeModalDetailsResolved}
+                      onMouseOver={() => {
+                        showModalDetailsResolved(danger._id);
+                      }}
+                      onMouseOut={() => {
+                        hiddenModalDetailsResolved();
+                      }}
+                    >
+                      {danger.resolvedApproved === 'ANALYSIS' ||
+                      danger.resolvedApproved === 'DISAPPROVED' ? (
+                        <AiFillCheckCircle
+                          className="approved"
+                          onClick={() => {
+                            approveResolvedDanger(danger._id);
+                          }}
+                        />
+                      ) : (
+                        ''
+                      )}
+
+                      <a
+                        href={
+                          danger.resolved
+                            ? danger.imageResolved.url
+                            : '#'
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="view"
+                      >
+                        <AiFillEye />
+                      </a>
+
+                      {danger.resolvedApproved !== 'DISAPPROVED' && (
+                        <AiFillCloseCircle
+                          className="delete"
+                          onClick={() => {
+                            disapprovedResolvedDanger(danger._id);
+                          }}
+                        />
+                      )}
+                    </ModalShowResolved>
+                  )}
               </div>
             </div>
             <a
@@ -303,7 +422,8 @@ const Danger = ({ history }) => {
                 {danger.description}
               </p>
 
-              {String(idDangerShowModal) === String(danger._id) && (
+              {String(idDangerShowModalDescription) ===
+                String(danger._id) && (
                 <ModalDescription
                   active={activeModalDescription}
                   onMouseOver={() => {
