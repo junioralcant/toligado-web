@@ -101,7 +101,7 @@ const ListDraw = () => {
               {draw.idsDraws.map((ids) => {
                 return (
                   <>
-                    {ids.recordId.resolved && (
+                    {ids.recordId.resolvedApproved === 'APPROVAD' && (
                       <small className="resolved">Resolvido</small>
                     )}
 
