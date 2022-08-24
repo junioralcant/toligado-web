@@ -27,12 +27,15 @@ const Print = () => {
     description,
     image,
     id,
+    resolvedApproved,
     imageResolved,
   } = locationHistory.state;
 
   useEffect(() => {
-    setTimeout(() => window.print(), 800);
+    // setTimeout(() => window.print(), 800);
   }, []);
+
+  console.log(resolvedApproved);
 
   return (
     <Container>
@@ -74,7 +77,7 @@ const Print = () => {
           <img src={image} alt="" />
         </BoxPhoto>
 
-        {imageResolved && (
+        {resolvedApproved === 'APPROVAD' && imageResolved && (
           <BoxPhoto>
             <h4>Registro Resolvido</h4>
 

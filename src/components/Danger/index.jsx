@@ -136,6 +136,7 @@ const Danger = ({ history }) => {
     description,
     image,
     id,
+    resolvedApproved,
     imageResolved
   ) {
     history.push('/print', {
@@ -145,6 +146,7 @@ const Danger = ({ history }) => {
       description,
       image,
       id,
+      resolvedApproved,
       imageResolved,
     });
   }
@@ -481,6 +483,7 @@ const Danger = ({ history }) => {
                         danger.description,
                         danger.image.url ? danger.image.url : '',
                         danger._id,
+                        danger.resolvedApproved,
                         danger.imageResolved
                           ? danger.imageResolved.url
                           : ''
