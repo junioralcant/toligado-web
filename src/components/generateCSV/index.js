@@ -13,6 +13,7 @@ export default function generateCSV(data) {
     'Aprovado',
     'Reprovado Motivo',
     'Resolvido',
+    'Resolvido Aprovado',
     'Imagem',
     'Imagem Resolvido',
   ];
@@ -39,6 +40,8 @@ export default function generateCSV(data) {
       disapprovedReason:
         item.disapproved === true ? item.disapprovedReason : '',
       resolved: item.resolved === true ? 'Sim' : 'Não',
+      resolvedApproved:
+        item.resolvedApproved === 'APPROVAD' ? 'Sim' : 'Não',
       imagem: item.image.url,
       imagemResolved: item.imageResolved
         ? item.imageResolved.url
