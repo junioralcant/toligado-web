@@ -473,25 +473,49 @@ const Danger = ({ history }) => {
                 </button>
 
                 {typeDanger.approved === true && (
-                  <button
-                    className="details"
-                    onClick={() => {
-                      printer(
-                        danger.user.name,
-                        danger.createdAt,
-                        danger.location,
-                        danger.description,
-                        danger.image.url ? danger.image.url : '',
-                        danger._id,
-                        danger.resolvedApproved,
-                        danger.imageResolved
-                          ? danger.imageResolved.url
-                          : ''
-                      );
-                    }}
-                  >
-                    <AiFillEye />
-                  </button>
+                  <>
+                    <button
+                      className="details"
+                      onClick={() => {
+                        printer(
+                          danger.user.name,
+                          danger.createdAt,
+                          danger.location,
+                          danger.description,
+                          danger.image.url ? danger.image.url : '',
+                          danger._id,
+                          danger.resolvedApproved,
+                          danger.imageResolved
+                            ? danger.imageResolved.url
+                            : ''
+                        );
+                      }}
+                    >
+                      <AiFillEye />
+                    </button>
+
+                    <button
+                      className="details"
+                      onClick={() => {
+                        printer(
+                          '',
+                          danger.createdAt,
+                          danger.location,
+                          danger.description,
+                          danger.image.url ? danger.image.url : '',
+                          danger._id,
+                          danger.resolvedApproved,
+                          danger.imageResolved
+                            ? danger.imageResolved.url
+                            : ''
+                        );
+                      }}
+                    >
+                      <span role="img" aria-label="emoji name">
+                        🤫
+                      </span>
+                    </button>
+                  </>
                 )}
               </div>
             </div>

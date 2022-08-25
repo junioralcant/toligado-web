@@ -48,7 +48,9 @@ const Print = () => {
             <h4 style={{ marginBottom: 25 }}>
               Relatório de Registros
             </h4>
-            <h4>Registrado por: {name}</h4>
+
+            {name ? <h4>Registrado por: {name}</h4> : <br />}
+
             <h4>
               Data do registro: {moment(date).format('DD-MM-YYYY')}
             </h4>
