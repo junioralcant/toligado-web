@@ -89,7 +89,7 @@ const Danger = ({ history }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function fileDanger(id) {
+  async function disapprovedDanger(id) {
     var message = window.prompt(
       'Informe o motivo da reprovação do registro'
     );
@@ -232,8 +232,13 @@ const Danger = ({ history }) => {
         `Deseja realmente reprovar esse registro de resolvido?`
       )
     ) {
+      var message = window.prompt(
+        'Informe o motivo da reprovação do registro resolvido.'
+      );
+
       await api.put(`/dangers/${id}`, {
         resolvedApproved: 'DISAPPROVED',
+        disapprovedReasonResolved: message,
       });
 
       const response = await api.get(
@@ -466,7 +471,7 @@ const Danger = ({ history }) => {
                         `Deseja realmente reprovar esse registro?`
                       )
                     )
-                      fileDanger(danger._id);
+                      disapprovedDanger(danger._id);
                   }}
                 >
                   <FiTrash2 />
