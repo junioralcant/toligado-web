@@ -9,7 +9,7 @@ export const Card = styled.div`
   margin: 0.62rem;
 
   width: 18.75rem;
-  height: 23.75rem;
+  height: 24.75rem;
   background: #fff;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -100,6 +100,10 @@ export const Card = styled.div`
       text-overflow: ellipsis;
       overflow: hidden;
       margin-bottom: 0.62rem;
+    }
+
+    .error {
+      color: #f32424;
     }
 
     div {

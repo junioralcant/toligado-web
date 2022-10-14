@@ -51,8 +51,18 @@ const Danger = ({ history }) => {
     useState(false);
 
   const [
+    activeModalDescriptionError,
+    setActiveModalDescriptionError,
+  ] = useState(false);
+
+  const [
     idDangerShowModalDescription,
     setIdDangerShowModalDescription,
+  ] = useState('');
+
+  const [
+    idDangerShowModalDescriptionError,
+    setIdDangerShowModalDescriptionError,
   ] = useState('');
 
   useEffect(() => {
@@ -190,9 +200,16 @@ const Danger = ({ history }) => {
     setActiveModalDescription(true);
     setIdDangerShowModalDescription(idRegister);
   }
+  function showModalDescriptionError(idRegister) {
+    setActiveModalDescriptionError(true);
+    setIdDangerShowModalDescriptionError(idRegister);
+  }
 
   function hiddenModalDescription() {
     setActiveModalDescription(false);
+  }
+  function hiddenModalDescriptionError() {
+    setActiveModalDescriptionError(false);
   }
 
   function showModalDetailsResolved(idRegister) {
@@ -429,6 +446,17 @@ const Danger = ({ history }) => {
                 {danger.description}
               </p>
 
+              {danger.disapprovedReason && (
+                <p
+                  onMouseOver={() => {
+                    showModalDescriptionError(danger._id);
+                  }}
+                  className="short_description error"
+                >
+                  {danger.disapprovedReason}
+                </p>
+              )}
+
               {String(idDangerShowModalDescription) ===
                 String(danger._id) && (
                 <ModalDescription
@@ -443,6 +471,21 @@ const Danger = ({ history }) => {
                   <strong>{danger.location}</strong>
 
                   <p>{danger.description}</p>
+                </ModalDescription>
+              )}
+
+              {String(idDangerShowModalDescriptionError) ===
+                String(danger._id) && (
+                <ModalDescription
+                  active={activeModalDescriptionError}
+                  onMouseOver={() => {
+                    showModalDescriptionError(danger._id);
+                  }}
+                  onMouseOut={() => {
+                    hiddenModalDescriptionError();
+                  }}
+                >
+                  <p className="error">{danger.disapprovedReason}</p>
                 </ModalDescription>
               )}
 
