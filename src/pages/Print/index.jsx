@@ -29,13 +29,12 @@ const Print = () => {
     id,
     resolvedApproved,
     imageResolved,
+    disapprovedReason,
   } = locationHistory.state;
 
   useEffect(() => {
     setTimeout(() => window.print(), 800);
   }, []);
-
-  console.log(resolvedApproved);
 
   return (
     <Container>
@@ -70,6 +69,14 @@ const Print = () => {
         <h4>Local: {location}</h4>
         <br />
         <h4> Descrição do registro: {description}</h4>
+
+        {disapprovedReason && (
+          <>
+            <br />
+            <h4> Motivos da reprovação : {disapprovedReason}</h4>
+            <br />
+          </>
+        )}
       </ContentDescription>
 
       <Content>
