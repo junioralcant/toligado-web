@@ -524,58 +524,58 @@ const Danger = ({ history }) => {
                   <FiTrash2 />
                 </button>
 
-                {typeDanger.approved === true ||
-                  (typeDanger.disapproved === true && (
-                    <>
-                      <button
-                        className="details"
-                        onClick={() => {
-                          printer(
-                            danger.user.name,
-                            danger.createdAt,
-                            danger.location,
-                            danger.description,
-                            danger.image.url ? danger.image.url : '',
-                            danger._id,
-                            danger.resolvedApproved,
-                            danger.imageResolved
-                              ? danger.imageResolved.url
-                              : '',
-                            danger.disapprovedReason
-                              ? danger.disapprovedReason
-                              : ''
-                          );
-                        }}
-                      >
-                        <AiFillEye />
-                      </button>
+                {(typeDanger.approved === true ||
+                  typeDanger.disapproved === true) && (
+                  <>
+                    <button
+                      className="details"
+                      onClick={() => {
+                        printer(
+                          danger.user.name,
+                          danger.createdAt,
+                          danger.location,
+                          danger.description,
+                          danger.image.url ? danger.image.url : '',
+                          danger._id,
+                          danger.resolvedApproved,
+                          danger.imageResolved
+                            ? danger.imageResolved.url
+                            : '',
+                          danger.disapprovedReason
+                            ? danger.disapprovedReason
+                            : ''
+                        );
+                      }}
+                    >
+                      <AiFillEye />
+                    </button>
 
-                      <button
-                        className="details"
-                        onClick={() => {
-                          printer(
-                            '',
-                            danger.createdAt,
-                            danger.location,
-                            danger.description,
-                            danger.image.url ? danger.image.url : '',
-                            danger._id,
-                            danger.resolvedApproved,
-                            danger.imageResolved
-                              ? danger.imageResolved.url
-                              : '',
-                            danger.disapprovedReason
-                              ? danger.disapprovedReason
-                              : ''
-                          );
-                        }}
-                      >
-                        <span role="img" aria-label="emoji name">
-                          🤫
-                        </span>
-                      </button>
-                    </>
-                  ))}
+                    <button
+                      className="details"
+                      onClick={() => {
+                        printer(
+                          '',
+                          danger.createdAt,
+                          danger.location,
+                          danger.description,
+                          danger.image.url ? danger.image.url : '',
+                          danger._id,
+                          danger.resolvedApproved,
+                          danger.imageResolved
+                            ? danger.imageResolved.url
+                            : '',
+                          danger.disapprovedReason
+                            ? danger.disapprovedReason
+                            : ''
+                        );
+                      }}
+                    >
+                      <span role="img" aria-label="emoji name">
+                        🤫
+                      </span>
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </Card>
