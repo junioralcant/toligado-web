@@ -140,6 +140,40 @@ export const Card = styled.div`
           color: #bb3939;
         }
       }
+
+      button.not-resolved {
+        font-size: 16px;
+        font-weight: bold;
+        background: #ffc447;
+        padding: 5px;
+        border-radius: 3px;
+        color: #ffffff;
+        margin-left: 5px;
+
+        &:hover {
+          background: #e69d00;
+        }
+      }
+
+      .resolved {
+        font-size: 16px;
+        font-weight: bold;
+        background: #53c579;
+        padding: 5px;
+        border-radius: 3px;
+        color: #ffffff;
+      }
+
+      button.resolve-record {
+        color: #53c579;
+        font-size: 25px;
+        margin-left: 5px;
+        padding-bottom: -10px;
+
+        &:hover {
+          color: #133920;
+        }
+      }
     }
   }
 `;

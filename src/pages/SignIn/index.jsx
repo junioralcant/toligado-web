@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import api from '../../services/api';
-import { login } from '../../services/auth';
+import {login, setUser} from '../../services/auth';
 import Loader from '../../components/Loader';
 
 import logo from '../../assets/Logotipo.png';
 
-import { Container, Login, Logo } from './styles';
+import {Container, Login, Logo} from './styles';
 
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast} from 'react-toastify';
 
-const SignIn = ({ history }) => {
+const SignIn = ({history}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ const SignIn = ({ history }) => {
           email,
           password,
         });
+        setUser(response.data.admin);
         login(response.data.token);
         history.push('/');
         setLoading(false);

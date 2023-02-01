@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import SideBar from '../../components/SideBar';
 import {
@@ -14,13 +14,14 @@ import {
 import api from '../../services/api';
 
 import girl from '../../assets/girl.png';
-import { useCompanyContext } from '../../contexts/CompanyContext';
+import {useCompanyContext} from '../../contexts/CompanyContext';
+import {user} from '../../services/auth';
 
-const Home = ({ history }) => {
+const Home = ({history}) => {
+  const userLogged = user();
   const [companies, setCompanies] = useState([]);
 
-  const { setCompanyDate } = useCompanyContext();
-
+  const {setCompanyDate} = useCompanyContext();
   useEffect(() => {
     async function loadEmpaty() {
       const response = await api.get('/companies');
@@ -37,24 +38,45 @@ const Home = ({ history }) => {
         <Title>Registro</Title>
         <Content>
           <Column>
-            {companies.map((company) => (
-              <Button
-                key={company._id}
-                analysis
-                onClick={() => {
-                  setCompanyDate(company);
-                  history.push('/home');
-                }}
-              >
-                <div>
+            {companies.map((company) =>
+              !userLogged.responsableFor ? (
+                <Button
+                  key={company._id}
+                  analysis
+                  onClick={() => {
+                    setCompanyDate(company);
+                    history.push('/home');
+                  }}
+                >
                   <div>
-                    <p>{company.name}</p>
-                  </div>
+                    <div>
+                      <p>{company.name}</p>
+                    </div>
 
-                  <Avatar src={company.avatar.url} />
-                </div>
-              </Button>
-            ))}
+                    <Avatar src={company.avatar.url} />
+                  </div>
+                </Button>
+              ) : (
+                company._id === userLogged.responsableFor && (
+                  <Button
+                    key={company._id}
+                    analysis
+                    onClick={() => {
+                      setCompanyDate(company);
+                      history.push('/home');
+                    }}
+                  >
+                    <div>
+                      <div>
+                        <p>{company.name}</p>
+                      </div>
+
+                      <Avatar src={company.avatar.url} />
+                    </div>
+                  </Button>
+                )
+              )
+            )}
           </Column>
         </Content>
       </Container>

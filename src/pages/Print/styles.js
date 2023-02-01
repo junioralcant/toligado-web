@@ -63,6 +63,14 @@ export const BoxPhoto = styled.div`
   width: 100%;
   padding-bottom: 0.62rem;
 
+  div {
+    /* width: 200px; */
+
+    span {
+      font-size: 7px;
+    }
+  }
+
   h4 {
     margin-bottom: 0.31rem;
   }

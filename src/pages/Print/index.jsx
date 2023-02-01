@@ -1,10 +1,10 @@
 import moment from 'moment';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 import logo from '../../assets/Logotipo.png';
-import { useCompanyContext } from '../../contexts/CompanyContext';
+import {useCompanyContext} from '../../contexts/CompanyContext';
 
 import {
   BoxController,
@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 const Print = () => {
-  const { company } = useCompanyContext();
+  const {company} = useCompanyContext();
 
   const locationHistory = useLocation();
 
@@ -36,6 +36,9 @@ const Print = () => {
     setTimeout(() => window.print(), 800);
   }, []);
 
+  const typePDF = String(imageResolved).includes('.pdf');
+  console.log(typePDF);
+
   return (
     <Container>
       <Content>
@@ -44,9 +47,7 @@ const Print = () => {
             <img src={logo} alt="" />
           </div>
           <div className="texts">
-            <h4 style={{ marginBottom: 25 }}>
-              Relatório de Registros
-            </h4>
+            <h4 style={{marginBottom: 25}}>Relatório de Registros</h4>
 
             {name ? <h4>Registrado por: {name}</h4> : <br />}
 
@@ -90,14 +91,20 @@ const Print = () => {
           <BoxPhoto>
             <h4>Registro Resolvido</h4>
 
-            <img src={imageResolved} alt="" />
+            {typePDF ? (
+              <div>
+                <span>{imageResolved}</span>
+              </div>
+            ) : (
+              <img src={imageResolved} alt="" />
+            )}
           </BoxPhoto>
         )}
       </Content>
 
       <Content>
         <BoxController>
-          <h4 style={{ marginBottom: 10 }}>Verificação / Controle</h4>
+          <h4 style={{marginBottom: 10}}>Verificação / Controle</h4>
           <h4>{id}</h4>
         </BoxController>
       </Content>
