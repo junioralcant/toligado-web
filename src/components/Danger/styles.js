@@ -106,6 +106,10 @@ export const Card = styled.div`
       color: #f32424;
     }
 
+    .ok {
+      color: #3e8355;
+    }
+
     div {
       display: flex;
       justify-content: space-between;

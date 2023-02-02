@@ -60,6 +60,11 @@ const Danger = ({history}) => {
   ] = useState(false);
 
   const [
+    activeModalDescriptionDangerResolvedNote,
+    setActiveModalDescriptionResolvedNote,
+  ] = useState(false);
+
+  const [
     idDangerShowModalDescription,
     setIdDangerShowModalDescription,
   ] = useState('');
@@ -67,6 +72,11 @@ const Danger = ({history}) => {
   const [
     idDangerShowModalDescriptionError,
     setIdDangerShowModalDescriptionError,
+  ] = useState('');
+
+  const [
+    idDangerResolvedNoteShowModalDescription,
+    setIdResolvedNoteShowModalDescription,
   ] = useState('');
 
   useEffect(() => {
@@ -211,11 +221,19 @@ const Danger = ({history}) => {
     setIdDangerShowModalDescriptionError(idRegister);
   }
 
+  function showModalDescriptionResolvedNote(idRegister) {
+    setActiveModalDescriptionResolvedNote(true);
+    setIdResolvedNoteShowModalDescription(idRegister);
+  }
+
   function hiddenModalDescription() {
     setActiveModalDescription(false);
   }
   function hiddenModalDescriptionError() {
     setActiveModalDescriptionError(false);
+  }
+  function hiddenModalDescriptionResolvedNote() {
+    setActiveModalDescriptionResolvedNote(false);
   }
 
   function showModalDetailsResolved(idRegister) {
@@ -512,6 +530,17 @@ const Danger = ({history}) => {
                 </p>
               )}
 
+              {danger.resolvedNote && !userLogged.responsableFor && (
+                <p
+                  onMouseOver={() => {
+                    showModalDescriptionResolvedNote(danger._id);
+                  }}
+                  className="short_description ok"
+                >
+                  {danger.resolvedNote}
+                </p>
+              )}
+
               {String(idDangerShowModalDescription) ===
                 String(danger._id) && (
                 <ModalDescription
@@ -541,6 +570,21 @@ const Danger = ({history}) => {
                   }}
                 >
                   <p className="error">{danger.disapprovedReason}</p>
+                </ModalDescription>
+              )}
+
+              {String(idDangerResolvedNoteShowModalDescription) ===
+                String(danger._id) && (
+                <ModalDescription
+                  active={activeModalDescriptionDangerResolvedNote}
+                  onMouseOver={() => {
+                    showModalDescriptionResolvedNote(danger._id);
+                  }}
+                  onMouseOut={() => {
+                    hiddenModalDescriptionResolvedNote();
+                  }}
+                >
+                  <p className="ok">{danger.resolvedNote}</p>
                 </ModalDescription>
               )}
 
