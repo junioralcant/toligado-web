@@ -104,7 +104,7 @@ const Danger = ({history}) => {
   }, []);
 
   async function disapprovedDanger(id) {
-    var message = window.prompt(
+    let message = window.prompt(
       'Informe o motivo da reprovação do registro'
     );
 
@@ -255,7 +255,7 @@ const Danger = ({history}) => {
         `Deseja realmente reprovar esse registro de resolvido?`
       )
     ) {
-      var message = window.prompt(
+      let message = window.prompt(
         'Informe o motivo da reprovação do registro resolvido.'
       );
 
@@ -292,9 +292,22 @@ const Danger = ({history}) => {
         `Deseja realmente enviar esse registro de resolvido?`
       )
     ) {
+      let message = window.prompt('Descrever tratativa.');
+
       const data = new FormData();
       data.append('file', inputFileData);
       await api.put(`/resolved/${id}`, data);
+
+      await api.put(`/dangers/${id}`, {
+        resolvedNote: message ? message : '',
+      });
+
+      const response = await api.get(
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+      );
+
+      setDangers(response.data);
+
       setInputFileData({});
       setIdRecordResolvedClicked('');
 
@@ -303,8 +316,6 @@ const Danger = ({history}) => {
       });
     }
   }
-
-  console.log(inputFileData, idRecordResolvedClicked);
 
   return (
     <>
