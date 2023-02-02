@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   FiGrid,
   FiCodesandbox,
   FiAlignJustify,
   FiX,
 } from 'react-icons/fi';
-import { AiOutlinePoweroff } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import {AiOutlinePoweroff} from 'react-icons/ai';
+import {Link} from 'react-router-dom';
 
-import { logout } from '../../services/auth';
+import {logout, user} from '../../services/auth';
 
-import { SideNav, Button, Background, Close } from './styles';
+import {SideNav, Button, Background, Close} from './styles';
 
 import logo from '../../assets/logo-white.png';
 
-const SideBar = ({ page, history }) => {
+const SideBar = ({page}) => {
+  const userLogged = user();
+
   const [pageName, setPageName] = useState('dashboard');
   const [sidebarActive, setSideBarActive] = useState(false);
 
@@ -62,15 +64,17 @@ const SideBar = ({ page, history }) => {
           <p>Registro</p>
         </Link>
 
-        <Link
-          to="/home-draw"
-          className={pageName === 'draw' ? 'active' : ''}
-        >
-          <span>
-            <FiCodesandbox />
-          </span>
-          <p>Sorteio</p>
-        </Link>
+        {!userLogged.responsableFor && (
+          <Link
+            to="/home-draw"
+            className={pageName === 'draw' ? 'active' : ''}
+          >
+            <span>
+              <FiCodesandbox />
+            </span>
+            <p>Sorteio</p>
+          </Link>
+        )}
 
         <div
           style={{
@@ -80,7 +84,7 @@ const SideBar = ({ page, history }) => {
             marginTop: 100,
           }}
         >
-          <img src={logo} style={{ width: 120 }} alt="" />
+          <img src={logo} style={{width: 120}} alt="" />
         </div>
 
         <button onClick={goOut}>
