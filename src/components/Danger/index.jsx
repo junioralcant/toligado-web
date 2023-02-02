@@ -363,16 +363,18 @@ const Danger = ({history}) => {
         )}
       </BoxInputsDate>
 
-      <ButtonDownload
-        onClick={() => {
-          generateCSV(filterDanger);
-        }}
-      >
-        Baixar Planilha
-        <span>
-          <AiOutlineCloudDownload />
-        </span>
-      </ButtonDownload>
+      {!userLogged.responsableFor && (
+        <ButtonDownload
+          onClick={() => {
+            generateCSV(filterDanger);
+          }}
+        >
+          Baixar Planilha
+          <span>
+            <AiOutlineCloudDownload />
+          </span>
+        </ButtonDownload>
+      )}
 
       {loading ? (
         <BoxLoader>
