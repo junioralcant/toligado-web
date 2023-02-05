@@ -318,6 +318,7 @@ const Danger = ({history}) => {
 
       await api.put(`/dangers/${id}`, {
         resolvedNote: message ? message : '',
+        resolvedByTechnical: true,
       });
 
       const response = await api.get(

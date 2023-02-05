@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { FiTrash2 } from 'react-icons/fi';
-import { ToastContainer, toast } from 'react-toastify';
+import React, {useEffect, useState} from 'react';
+import {FiTrash2} from 'react-icons/fi';
+import {GiTrophy} from 'react-icons/gi';
+import {ToastContainer, toast} from 'react-toastify';
 import moment from 'moment';
 
 import api from '../../services/api';
 
-import { Card, Button, SubCard, BoxLoader } from './styles';
+import {
+  Card,
+  Button,
+  SubCard,
+  BoxLoader,
+  BoxResolved,
+} from './styles';
 import Loader from '../Loader';
-import { useCompanyContext } from '../../contexts/CompanyContext';
+import {useCompanyContext} from '../../contexts/CompanyContext';
 
 const ListDraw = () => {
-  const { company } = useCompanyContext();
+  const {company} = useCompanyContext();
 
   const [draws, setDraws] = useState([]);
   const [users, setUsers] = useState([]);
@@ -71,6 +78,8 @@ const ListDraw = () => {
     }
   }
 
+  console.log(draws);
+
   return (
     <>
       <ToastContainer />
@@ -102,7 +111,15 @@ const ListDraw = () => {
                 return (
                   <>
                     {ids.recordId.resolvedApproved === 'APPROVAD' && (
-                      <small className="resolved">Resolvido</small>
+                      <BoxResolved>
+                        <small className="resolved">Resolvido</small>
+                        {ids.recordId.resolvedByTechnical ===
+                          false && (
+                          <span>
+                            <GiTrophy />
+                          </span>
+                        )}
+                      </BoxResolved>
                     )}
 
                     <SubCard>

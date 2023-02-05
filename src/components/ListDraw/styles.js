@@ -97,3 +97,18 @@ export const SubCard = styled.div`
 export const BoxLoader = styled.div`
   margin-top: 10%;
 `;
+
+export const BoxResolved = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  span {
+    position: absolute;
+    color: #ffd700;
+    font-size: 30px;
+    right: 0px;
+    top: -28px;
+  }
+`;
