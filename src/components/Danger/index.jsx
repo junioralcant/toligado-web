@@ -402,16 +402,13 @@ const Danger = ({history}) => {
         filterDanger.map((danger) => (
           <Card key={danger._id}>
             <div className="header">
-              <div>
-                {!userLogged.responsableFor && (
-                  <>
-                    <strong>{danger.user.name}</strong>
-                    <br />
-                  </>
-                )}
-
-                <small>{danger.user.cpf}</small>
-              </div>
+              {!userLogged.responsableFor && (
+                <div>
+                  <strong>{danger.user.name}</strong>
+                  <br />
+                  <small>{danger.user.cpf}</small>
+                </div>
+              )}
 
               <div className="box-date">
                 <small>
@@ -501,7 +498,9 @@ const Danger = ({history}) => {
             </a>
 
             <div className="footer">
-              <strong>{danger._id}</strong>
+              {!userLogged.responsableFor && (
+                <strong>{danger._id}</strong>
+              )}
               <strong
                 className="location"
                 onMouseOver={() => {
@@ -658,7 +657,7 @@ const Danger = ({history}) => {
                           danger.location,
                           danger.description,
                           danger.image.url ? danger.image.url : '',
-                          danger._id,
+                          '',
                           danger.resolvedApproved,
                           danger.imageResolved
                             ? danger.imageResolved.url

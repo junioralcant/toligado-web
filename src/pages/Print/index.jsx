@@ -37,7 +37,6 @@ const Print = () => {
   }, []);
 
   const typePDF = String(imageResolved).includes('.pdf');
-  console.log(typePDF);
 
   return (
     <Container>
@@ -105,7 +104,7 @@ const Print = () => {
       <Content>
         <BoxController>
           <h4 style={{marginBottom: 10}}>Verificação / Controle</h4>
-          <h4>{id}</h4>
+          <h4>{id ? id : ''}</h4>
         </BoxController>
       </Content>
     </Container>
