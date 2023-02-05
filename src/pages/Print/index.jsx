@@ -92,7 +92,7 @@ const Print = () => {
 
             {typePDF ? (
               <div>
-                <span>{imageResolved}</span>
+                <a href={imageResolved}>Baixar PDF</a>
               </div>
             ) : (
               <img src={imageResolved} alt="" />
