@@ -499,9 +499,7 @@ const Danger = ({history}) => {
             </a>
 
             <div className="footer">
-              {!userLogged.responsableFor && (
-                <strong>{danger._id}</strong>
-              )}
+              <strong>{danger._id}</strong>
               <strong
                 className="location"
                 onMouseOver={() => {
@@ -658,7 +656,7 @@ const Danger = ({history}) => {
                           danger.location,
                           danger.description,
                           danger.image.url ? danger.image.url : '',
-                          '',
+                          danger._id,
                           danger.resolvedApproved,
                           danger.imageResolved
                             ? danger.imageResolved.url
