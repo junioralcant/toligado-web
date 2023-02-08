@@ -30,6 +30,7 @@ const Print = () => {
     resolvedApproved,
     imageResolved,
     disapprovedReason,
+    riskCategory,
   } = locationHistory.state;
 
   useEffect(() => {
@@ -69,7 +70,8 @@ const Print = () => {
         <h4>Local: {location}</h4>
         <br />
         <h4> Descrição do registro: {description}</h4>
-
+        <br />
+        <h4> Categoria: {riskCategory}</h4>
         {disapprovedReason && (
           <>
             <br />

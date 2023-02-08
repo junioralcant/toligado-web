@@ -58,6 +58,10 @@ export const Card = styled.div`
     p.disapproved {
       background: #f32424;
     }
+
+    .risk-category {
+      margin-top: 0.12rem;
+    }
   }
 
   img {
@@ -65,7 +69,7 @@ export const Card = styled.div`
     height: 12.5rem;
     border-radius: 10px;
     margin-bottom: 0.62rem;
-    margin-top: 0.32rem;
+    margin-top: 0.42rem;
     object-fit: cover;
   }
 

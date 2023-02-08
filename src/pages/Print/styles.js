@@ -35,7 +35,7 @@ export const ContentDescription = styled.div`
   width: 43.74rem;
   border: solid 1px #000;
   border-top: solid 20px #208eeb;
-  padding: 0px 0.62rem;
+  padding: 5px 0.62rem;
   margin-bottom: 1.87rem;
 `;
 

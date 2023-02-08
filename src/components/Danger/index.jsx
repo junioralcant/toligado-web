@@ -162,7 +162,8 @@ const Danger = ({history}) => {
     id,
     resolvedApproved,
     imageResolved,
-    disapprovedReason
+    disapprovedReason,
+    riskCategory
   ) {
     history.push('/print', {
       name,
@@ -174,6 +175,7 @@ const Danger = ({history}) => {
       resolvedApproved,
       imageResolved,
       disapprovedReason,
+      riskCategory,
     });
   }
 
@@ -500,6 +502,10 @@ const Danger = ({history}) => {
 
             <div className="footer">
               <strong>{danger._id}</strong>
+              <small className="risk-catergory">
+                {danger.riskCategory}
+              </small>
+
               <strong
                 className="location"
                 onMouseOver={() => {
@@ -639,7 +645,8 @@ const Danger = ({history}) => {
                               : '',
                             danger.disapprovedReason
                               ? danger.disapprovedReason
-                              : ''
+                              : '',
+                            danger.riskCategory
                           );
                         }}
                       >
@@ -663,7 +670,8 @@ const Danger = ({history}) => {
                             : '',
                           danger.disapprovedReason
                             ? danger.disapprovedReason
-                            : ''
+                            : '',
+                          danger.riskCategory
                         );
                       }}
                     >
