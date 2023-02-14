@@ -321,6 +321,14 @@ export const BoxInputsDate = styled.div`
     font-size: 1.8rem;
     margin-left: 0.62rem;
   }
+
+  select {
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 20px;
+  }
 `;
 
 export const BoxInpuDate = styled.div`

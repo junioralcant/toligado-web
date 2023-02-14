@@ -47,6 +47,7 @@ const Danger = ({history}) => {
 
   const [dateInitialChecks, setDateInitialChecks] = useState('');
   const [dateFinalChecks, setDateFinalChecks] = useState('');
+  const [category, setCategory] = useState('');
 
   const [loading, setLoading] = useState(true);
   const [activeModalDescription, setActiveModalDescription] =
@@ -83,7 +84,7 @@ const Danger = ({history}) => {
     async function loadDanger() {
       setLoading(true);
       const response = await api.get(
-        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
       );
 
       setDangers(response.data);
@@ -93,7 +94,7 @@ const Danger = ({history}) => {
     if (company) {
       loadDanger();
     }
-  }, [dateInitialChecks, dateFinalChecks, company]);
+  }, [dateInitialChecks, dateFinalChecks, company, category]);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL);
@@ -101,7 +102,7 @@ const Danger = ({history}) => {
     socket.on('newRecord', (message) => {
       async function load() {
         const response = await api.get(
-          `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+          `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
         );
 
         setDangers(response.data);
@@ -126,7 +127,7 @@ const Danger = ({history}) => {
     });
 
     const response = await api.get(
-      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
     );
 
     setDangers(response.data);
@@ -144,7 +145,7 @@ const Danger = ({history}) => {
     });
 
     const response = await api.get(
-      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}`
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
     );
 
     setDangers(response.data);
@@ -211,6 +212,7 @@ const Danger = ({history}) => {
     setDateFinalChecks('');
     setInitialDate('');
     setDateFinalChecks('');
+    setCategory('');
     setSearch(false);
   }
 
@@ -338,6 +340,18 @@ const Danger = ({history}) => {
     }
   }
 
+  const categories = [
+    'Trânsito',
+    'Choque ou incêndio',
+    'Queda',
+    'Corte ou fratura',
+    'EPI ou EPC',
+    'Equipamento ou ferramenta',
+    'Documentação',
+    'Pessoas',
+    'Outros',
+  ];
+
   return (
     <>
       <ToastContainer />
@@ -362,6 +376,20 @@ const Danger = ({history}) => {
             type="date"
           />
         </BoxInpuDate>
+
+        <div>
+          <select
+            name="select"
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Selecione uma categoria</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <button
           className="search"
