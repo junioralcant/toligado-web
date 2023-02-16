@@ -6,6 +6,7 @@ export default function generateCSV(data) {
     'Nome',
     'CPF',
     'Identificador',
+    'Categoria',
     'Data', // remove commas to avoid errors
     'Local',
     'Descrição',
@@ -26,6 +27,7 @@ export default function generateCSV(data) {
       name: item.user.name.replace(/,/g, ''), // remove commas to avoid errors,
       cpf: item.user.cpf,
       id: item._id,
+      riskCategory: item.riskCategory,
       date: moment(item.createdAt).format('DD-MM-YYYY'),
       location: item.location,
       description: item.description,
