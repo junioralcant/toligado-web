@@ -404,7 +404,7 @@ const Danger = ({history}) => {
               className="date"
               onChange={(e) => setIdRecord(e.target.value)}
               value={idRecord}
-              placeholder="Informe o id do registro"
+              placeholder="Nº de controle"
             />
           </BoxInpuId>
         </div>
