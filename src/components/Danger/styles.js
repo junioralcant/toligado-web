@@ -327,6 +327,7 @@ export const BoxInputsDate = styled.div`
     border: none;
     border-radius: 10px;
     padding: 10px;
+    margin-top: 0.62rem
     margin-right: 20px;
   }
 `;
@@ -340,6 +341,25 @@ export const BoxInpuDate = styled.div`
   /* padding: 1.25rem 1.25rem 0 1.25rem; */
   input.date {
     height: 3.75rem;
+    background-color: #fff;
+    margin: 0 0.93rem 0 0;
+    border-radius: 10px;
+    padding-left: 0.93rem;
+    padding-right: 0.93rem;
+    border: 1px #c4c4c4;
+    width: 100%;
+  }
+`;
+
+export const BoxInpuId = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.62rem;
+  /* padding: 1.25rem 1.25rem 0 1.25rem; */
+  input.date {
+    height: 40px;
     background-color: #fff;
     margin: 0 0.93rem 0 0;
     border-radius: 10px;

@@ -20,6 +20,7 @@ import api from '../../services/api';
 
 import {
   BoxInpuDate,
+  BoxInpuId,
   BoxInputsDate,
   BoxLoader,
   ButtonDownload,
@@ -44,6 +45,7 @@ const Danger = ({history}) => {
   const [initialDate, setInitialDate] = useState('');
   const [finalDate, setFinalDate] = useState('');
   const [search, setSearch] = useState(false);
+  const [idRecord, setIdRecord] = useState('');
 
   const [dateInitialChecks, setDateInitialChecks] = useState('');
   const [dateFinalChecks, setDateFinalChecks] = useState('');
@@ -84,7 +86,7 @@ const Danger = ({history}) => {
     async function loadDanger() {
       setLoading(true);
       const response = await api.get(
-        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
+        `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}&idRecord=${idRecord}`
       );
 
       setDangers(response.data);
@@ -94,7 +96,13 @@ const Danger = ({history}) => {
     if (company) {
       loadDanger();
     }
-  }, [dateInitialChecks, dateFinalChecks, company, category]);
+  }, [
+    dateInitialChecks,
+    dateFinalChecks,
+    company,
+    category,
+    idRecord,
+  ]);
 
   useEffect(() => {
     const socket = io(process.env.REACT_APP_API_URL);
@@ -102,7 +110,7 @@ const Danger = ({history}) => {
     socket.on('newRecord', (message) => {
       async function load() {
         const response = await api.get(
-          `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
+          `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}&idRecord=${idRecord}`
         );
 
         setDangers(response.data);
@@ -127,7 +135,7 @@ const Danger = ({history}) => {
     });
 
     const response = await api.get(
-      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}&idRecord=${idRecord}`
     );
 
     setDangers(response.data);
@@ -145,7 +153,7 @@ const Danger = ({history}) => {
     });
 
     const response = await api.get(
-      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}`
+      `/dangers?initialDate=${dateInitialChecks}&finalDate=${dateFinalChecks}&company=${company._id}&riskCategory=${category}&idRecord=${idRecord}`
     );
 
     setDangers(response.data);
@@ -213,6 +221,7 @@ const Danger = ({history}) => {
     setInitialDate('');
     setDateFinalChecks('');
     setCategory('');
+    setIdRecord('');
     setSearch(false);
   }
 
@@ -389,6 +398,15 @@ const Danger = ({history}) => {
               </option>
             ))}
           </select>
+
+          <BoxInpuId>
+            <input
+              className="date"
+              onChange={(e) => setIdRecord(e.target.value)}
+              value={idRecord}
+              placeholder="Informe o id do registro"
+            />
+          </BoxInpuId>
         </div>
 
         <button
