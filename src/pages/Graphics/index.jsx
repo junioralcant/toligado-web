@@ -308,7 +308,7 @@ export function Graphics() {
         },
         {
           actual: categoryEpiOuEpc.length,
-          category: 'Corte ou fratura',
+          category: 'EPI ou EPC',
         },
         {
           actual: categoryEquipamentoOuFerramenta.length,
@@ -422,6 +422,14 @@ export function Graphics() {
             String(monthSelected)
         ).length,
         category: 'Queda',
+      },
+      {
+        actual: categoryEpiOuEpc.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'EPI ou EPC',
       },
       {
         actual: categoryCorteOuFratura.filter(
