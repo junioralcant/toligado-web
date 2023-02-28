@@ -10,11 +10,11 @@ import moment from 'moment';
 export function Graphics() {
   const [chartData, setChartData] = useState([]);
   const [bulletsData, setBulletsData] = useState([]);
-  const [pieData, setPieData] = useState();
+  const [pieData, setPieData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
 
   const [monthSelected, setMonthSelected] = useState('');
 
-  const [total, setTotal] = useState([]);
   const [approved, setApproved] = useState([]);
   const [disapproved, setDisapproved] = useState([]);
   const [notAnalyzed, setNotAnalyzed] = useState([]);
@@ -22,6 +22,23 @@ export function Graphics() {
   const [resolvedInAnalysis, setResolvedInAnalysis] = useState([]);
   const [resolvedApproved, setResolvedApproved] = useState([]);
   const [resolvedDisapproved, setResolvedDisapproved] = useState([]);
+
+  const [categoryTransito, setCategoryTransito] = useState([]);
+  const [categoryChoqueOuIncendio, setCategoryChoqueOuIncendio] =
+    useState([]);
+  const [categoryQueda, setCategoryQueda] = useState([]);
+  const [categoryCorteOuFratura, setCategoryCorteOuFratura] =
+    useState([]);
+  const [categoryEpiOuEpc, setCategoryEpiOuEpc] = useState([]);
+  const [
+    categoryEquipamentoOuFerramenta,
+    setCategoryEquipamentoOuFerramenta,
+  ] = useState([]);
+  const [categoryDocumentacao, setcategoryDocumentacao] = useState(
+    []
+  );
+  const [categoryPessoas, setCategoryPessoas] = useState([]);
+  const [categoryOutros, setCategoryOutros] = useState([]);
 
   useEffect(() => {
     async function loadData() {
@@ -32,7 +49,6 @@ export function Graphics() {
       const total = response.data.filter(
         (item) => moment(item.createdAt).format('Y') === '2022'
       );
-      setTotal(total);
 
       const approved = total.filter((item) => item.approved === true);
       setApproved(approved);
@@ -70,6 +86,53 @@ export function Graphics() {
           item.resolvedApproved === 'DISAPPROVED'
       );
       setResolvedDisapproved(resolvedDisapproved);
+
+      const categoryTransito = total.filter(
+        (item) => item.riskCategory === 'Trânsito'
+      );
+      setCategoryTransito(categoryTransito);
+
+      const categoryChoqueOuIncendio = total.filter(
+        (item) => item.riskCategory === 'Choque ou incêndio'
+      );
+      setCategoryChoqueOuIncendio(categoryChoqueOuIncendio);
+
+      const categoryQueda = total.filter(
+        (item) => item.riskCategory === 'Queda'
+      );
+      setCategoryQueda(categoryQueda);
+
+      const categoryEpiOuEpc = total.filter(
+        (item) => item.riskCategory === 'EPI ou EPC'
+      );
+      setCategoryEpiOuEpc(categoryEpiOuEpc);
+
+      const categoryCorteOuFratura = total.filter(
+        (item) => item.riskCategory === 'Corte ou fratura'
+      );
+      setCategoryCorteOuFratura(categoryCorteOuFratura);
+
+      const categoryEquipamentoOuFerramenta = total.filter(
+        (item) => item.riskCategory === 'Equipamento ou ferramenta'
+      );
+      setCategoryEquipamentoOuFerramenta(
+        categoryEquipamentoOuFerramenta
+      );
+
+      const categoryDocumentacao = total.filter(
+        (item) => item.riskCategory === 'Documentação'
+      );
+      setcategoryDocumentacao(categoryDocumentacao);
+
+      const categoryPessoas = total.filter(
+        (item) => item.riskCategory === 'Pessoas'
+      );
+      setCategoryPessoas(categoryPessoas);
+
+      const categoryOutros = total.filter(
+        (item) => item.riskCategory === 'Outros'
+      );
+      setCategoryOutros(categoryOutros);
 
       const data = [
         {
@@ -226,9 +289,49 @@ export function Graphics() {
         },
       ];
 
+      const dataTotalCategory = [
+        {
+          actual: categoryTransito.length,
+          category: 'Trânsito',
+        },
+        {
+          actual: categoryChoqueOuIncendio.length,
+          category: 'Choque ou incêndio',
+        },
+        {
+          actual: categoryQueda.length,
+          category: 'Queda',
+        },
+        {
+          actual: categoryCorteOuFratura.length,
+          category: 'Corte ou fratura',
+        },
+        {
+          actual: categoryEpiOuEpc.length,
+          category: 'Corte ou fratura',
+        },
+        {
+          actual: categoryEquipamentoOuFerramenta.length,
+          category: 'Equipamento ou ferramenta',
+        },
+        {
+          actual: categoryDocumentacao.length,
+          category: 'Documentação',
+        },
+        {
+          actual: categoryPessoas.length,
+          category: 'Pessoas',
+        },
+        {
+          actual: categoryOutros.length,
+          category: 'Outros',
+        },
+      ];
+
       setChartData(data);
       setBulletsData(dataTotal);
       setPieData(dataTotal);
+      setCategoryData(dataTotalCategory);
     }
 
     loadData();
@@ -295,8 +398,76 @@ export function Graphics() {
       },
     ];
 
+    const dataTotalCategoryMonth = [
+      {
+        actual: categoryTransito.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Trânsito',
+      },
+      {
+        actual: categoryChoqueOuIncendio.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Choque ou incêndio',
+      },
+      {
+        actual: categoryQueda.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Queda',
+      },
+      {
+        actual: categoryCorteOuFratura.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Corte ou fratura',
+      },
+      {
+        actual: categoryEquipamentoOuFerramenta.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Equipamento ou ferramenta',
+      },
+      {
+        actual: categoryDocumentacao.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Documentação',
+      },
+      {
+        actual: categoryPessoas.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Pessoas',
+      },
+      {
+        actual: categoryOutros.filter(
+          (item) =>
+            moment(item.createdAt).format('M') ===
+            String(monthSelected)
+        ).length,
+        category: 'Outros',
+      },
+    ];
+
     setBulletsData(dataTotalMonth);
     setPieData(dataTotalMonth);
+    setCategoryData(dataTotalCategoryMonth);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [monthSelected]);
 
@@ -313,8 +484,6 @@ export function Graphics() {
       return `${wjCore.Globalize.format(ht.value / sum, 'p0')}`;
     };
   }
-
-  console.log(total);
 
   return (
     <div className="container-fluid">
@@ -365,6 +534,40 @@ export function Graphics() {
                 );
               })}
             </ul>
+          </div>
+        </div>
+        <hr />
+        <div className="row" style={{marginTop: 20}}>
+          <div className="col">
+            <ul className="bullets">
+              {categoryData.map((item) => {
+                return (
+                  <li key={item}>
+                    <label>{item.category}</label>
+                    <wjGauge.BulletGraph
+                      showText="Value"
+                      target={item.target}
+                      max={item.max}
+                      good={item.good}
+                      bad={item.bad}
+                      value={item.actual}
+                    ></wjGauge.BulletGraph>
+                  </li>
+                );
+              })}
+            </ul>
+            <div style={{marginTop: 50}} />
+          </div>
+          <div className="col">
+            <wjChart.FlexPie
+              header={'Categorias'}
+              bindingName="category"
+              binding="actual"
+              itemsSource={categoryData}
+              initialized={initializePie}
+            >
+              <wjChart.FlexChartLegend position="Bottom"></wjChart.FlexChartLegend>
+            </wjChart.FlexPie>
           </div>
         </div>
       </div>
