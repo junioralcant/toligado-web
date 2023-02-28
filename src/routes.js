@@ -6,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { isAuthenticated } from './services/auth';
+import {isAuthenticated} from './services/auth';
 
 import Dashboard from './pages/Dashboard';
 import Draw from './pages/Draw';
@@ -17,8 +17,9 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import ExportField from './pages/ExportField';
 import Home from './pages/Home';
 import HomeDraw from './pages/HomeDraw';
+import {Graphics} from './pages/Graphics';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({component: Component, ...rest}) => (
   <Route
     {...rest}
     render={(props) =>
@@ -28,7 +29,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
         <Redirect
           to={{
             pathname: `/signin`,
-            state: { from: props.location },
+            state: {from: props.location},
           }}
         />
       )
@@ -42,6 +43,7 @@ const Routes = () => (
       <PrivateRoute exact path="/" component={Home} />
       <PrivateRoute path="/home" component={Dashboard} />
       <PrivateRoute path="/home-draw" component={HomeDraw} />
+      <PrivateRoute path="/graphics" component={Graphics} />
 
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />

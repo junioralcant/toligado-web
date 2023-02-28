@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@grapecity/wijmo": "^5.20222.877",
+    "@grapecity/wijmo.react.chart": "^5.20222.877",
+    "@grapecity/wijmo.react.gauge": "^5.20222.877",
+    "@grapecity/wijmo.styles": "^5.20222.877",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -18,6 +22,7 @@
     "react-toastify": "^6.0.6",
     "socket.io-client": "^2.3.0",
     "styled-components": "4.4.1",
+    "systemjs": "^6.13.0",
     "xlsx": "^0.18.5",
     "yarn": "^1.22.4"
   },
