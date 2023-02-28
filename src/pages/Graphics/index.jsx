@@ -40,6 +40,10 @@ export function Graphics() {
   const [categoryPessoas, setCategoryPessoas] = useState([]);
   const [categoryOutros, setCategoryOutros] = useState([]);
 
+  const [yearSelected, setyearSelected] = useState('2023');
+  const [monthSelectedAcronym, setMonthSelectedAcronym] =
+    useState('');
+
   useEffect(() => {
     async function loadData() {
       const response = await api.get(
@@ -47,7 +51,7 @@ export function Graphics() {
       );
 
       const total = response.data.filter(
-        (item) => moment(item.createdAt).format('Y') === '2022'
+        (item) => moment(item.createdAt).format('Y') === yearSelected
       );
 
       const approved = total.filter((item) => item.approved === true);
@@ -142,7 +146,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Jan 2022',
+          month: `Jan ${yearSelected}`,
           target: 25000,
         },
         {
@@ -152,7 +156,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Fev 2022',
+          month: `Fev ${yearSelected}`,
           target: 25000,
         },
         {
@@ -162,7 +166,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Mar 2022',
+          month: `Mar ${yearSelected}`,
           target: 25000,
         },
         {
@@ -172,7 +176,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Abr 2022',
+          month: `Abr ${yearSelected}`,
           target: 25000,
         },
         {
@@ -182,7 +186,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Mai 2022',
+          month: `Mai ${yearSelected}`,
           target: 25000,
         },
         {
@@ -192,7 +196,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Jun 2022',
+          month: `Jun ${yearSelected}`,
           target: 25000,
         },
         {
@@ -202,7 +206,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Jul 2022',
+          month: `Jul ${yearSelected}`,
           target: 25000,
         },
         {
@@ -212,7 +216,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Aug 2022',
+          month: `Aug ${yearSelected}`,
           target: 25000,
         },
         {
@@ -222,7 +226,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Set 2022',
+          month: `Set ${yearSelected}`,
           target: 25000,
         },
         {
@@ -232,7 +236,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Out 2022',
+          month: `Out ${yearSelected}`,
           target: 25000,
         },
         {
@@ -242,7 +246,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Nov 2022',
+          month: `Nov ${yearSelected}`,
           target: 25000,
         },
 
@@ -253,7 +257,7 @@ export function Graphics() {
           bad: 15000,
           good: 40000,
           max: 50000,
-          month: 'Dez 2022',
+          month: `Dez ${yearSelected}`,
           target: 25000,
         },
       ];
@@ -336,7 +340,7 @@ export function Graphics() {
 
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [yearSelected]);
 
   useEffect(() => {
     const dataTotalMonth = [
@@ -481,6 +485,9 @@ export function Graphics() {
 
   function chartSelectionChanged(e) {
     var selIndex = e._selectionIndex;
+    const data = e._items[selIndex];
+    console.log(data);
+    setMonthSelectedAcronym(data?.month);
     setMonthSelected(selIndex + 1);
   }
 
@@ -493,12 +500,24 @@ export function Graphics() {
     };
   }
 
+  function handleSelectYear(e) {
+    setyearSelected(e.target.value);
+  }
+
   return (
     <div className="container-fluid">
+      <div className="row">
+        <select name="select" onChange={handleSelectYear}>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+        </select>
+      </div>
       <div className="form-group">
         <div className="row">
           <wjChart.FlexChart
-            header="2022 Annual Sales"
+            header={`Registros de ${yearSelected}`}
             bindingX="month"
             selectionMode="Point"
             // initialized={initializeChart}
@@ -515,7 +534,11 @@ export function Graphics() {
         <div className="row">
           <div className="col">
             <wjChart.FlexPie
-              header={'Registros'}
+              header={`Registros de ${
+                !monthSelectedAcronym
+                  ? yearSelected
+                  : monthSelectedAcronym
+              } `}
               bindingName="category"
               binding="actual"
               itemsSource={pieData}
@@ -568,7 +591,11 @@ export function Graphics() {
           </div>
           <div className="col">
             <wjChart.FlexPie
-              header={'Categorias'}
+              header={`Categorias de ${
+                !monthSelectedAcronym
+                  ? yearSelected
+                  : monthSelectedAcronym
+              } `}
               bindingName="category"
               binding="actual"
               itemsSource={categoryData}
