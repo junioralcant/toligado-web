@@ -4,6 +4,7 @@ import {
   FiCodesandbox,
   FiAlignJustify,
   FiX,
+  FiActivity,
 } from 'react-icons/fi';
 import {AiOutlinePoweroff} from 'react-icons/ai';
 import {Link} from 'react-router-dom';
@@ -65,15 +66,27 @@ const SideBar = ({page}) => {
         </Link>
 
         {!userLogged.responsableFor && (
-          <Link
-            to="/home-draw"
-            className={pageName === 'draw' ? 'active' : ''}
-          >
-            <span>
-              <FiCodesandbox />
-            </span>
-            <p>Sorteio</p>
-          </Link>
+          <>
+            <Link
+              to="/home-draw"
+              className={pageName === 'draw' ? 'active' : ''}
+            >
+              <span>
+                <FiCodesandbox />
+              </span>
+              <p>Sorteio</p>
+            </Link>
+
+            <Link
+              to="/graphics"
+              className={pageName === 'graphics' ? 'active' : ''}
+            >
+              <span>
+                <FiActivity />
+              </span>
+              <p>Gráficos</p>
+            </Link>
+          </>
         )}
 
         <div

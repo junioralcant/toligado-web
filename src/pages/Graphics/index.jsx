@@ -6,6 +6,7 @@ import * as wjGauge from '@grapecity/wijmo.react.gauge';
 import './app.css';
 import api from '../../services/api';
 import moment from 'moment';
+import SideBar from '../../components/SideBar';
 
 export function Graphics() {
   const [chartData, setChartData] = useState([]);
@@ -505,104 +506,111 @@ export function Graphics() {
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <select name="select" onChange={handleSelectYear}>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-        </select>
-      </div>
-      <div className="form-group">
+    <div className="container">
+      <SideBar page="graphics" />
+      <div className="content">
         <div className="row">
-          <wjChart.FlexChart
-            header={`Registros de ${yearSelected}`}
-            bindingX="month"
-            selectionMode="Point"
-            // initialized={initializeChart}
-            itemsSource={chartData}
-            selectionChanged={chartSelectionChanged}
+          <select
+            name="select"
+            onChange={handleSelectYear}
+            defaultValue={yearSelected}
           >
-            <wjChart.FlexChartLegend position="None"></wjChart.FlexChartLegend>
-            <wjChart.FlexChartSeries
-              binding="actual"
-              name="Total de Registros"
-            ></wjChart.FlexChartSeries>
-          </wjChart.FlexChart>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
         </div>
-        <div className="row">
-          <div className="col">
-            <wjChart.FlexPie
-              header={`Registros de ${
-                !monthSelectedAcronym
-                  ? yearSelected
-                  : monthSelectedAcronym
-              } `}
-              bindingName="category"
-              binding="actual"
-              itemsSource={pieData}
-              initialized={initializePie}
+        <div className="form-group">
+          <div className="row">
+            <wjChart.FlexChart
+              header={`Registros de ${yearSelected}`}
+              bindingX="month"
+              selectionMode="Point"
+              // initialized={initializeChart}
+              itemsSource={chartData}
+              selectionChanged={chartSelectionChanged}
             >
-              <wjChart.FlexChartLegend position="Bottom"></wjChart.FlexChartLegend>
-            </wjChart.FlexPie>
+              <wjChart.FlexChartLegend position="None"></wjChart.FlexChartLegend>
+              <wjChart.FlexChartSeries
+                binding="actual"
+                name="Total de Registros"
+              ></wjChart.FlexChartSeries>
+            </wjChart.FlexChart>
           </div>
-          <div className="col">
-            <ul className="bullets">
-              {bulletsData.map((item) => {
-                return (
-                  <li key={item}>
-                    <label>{item.category}</label>
-                    <wjGauge.BulletGraph
-                      showText="Value"
-                      target={item.target}
-                      max={item.max}
-                      good={item.good}
-                      bad={item.bad}
-                      value={item.actual}
-                    ></wjGauge.BulletGraph>
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="row">
+            <div className="col">
+              <wjChart.FlexPie
+                header={`Registros de ${
+                  !monthSelectedAcronym
+                    ? yearSelected
+                    : monthSelectedAcronym
+                } `}
+                bindingName="category"
+                binding="actual"
+                itemsSource={pieData}
+                initialized={initializePie}
+              >
+                <wjChart.FlexChartLegend position="Bottom"></wjChart.FlexChartLegend>
+              </wjChart.FlexPie>
+            </div>
+            <div className="col">
+              <ul className="bullets">
+                {bulletsData.map((item) => {
+                  return (
+                    <li key={item}>
+                      <label>{item.category}</label>
+                      <wjGauge.BulletGraph
+                        showText="Value"
+                        target={item.target}
+                        max={item.max}
+                        good={item.good}
+                        bad={item.bad}
+                        value={item.actual}
+                      ></wjGauge.BulletGraph>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
-        <hr />
-        <div className="row" style={{marginTop: 20}}>
-          <div className="col">
-            <ul className="bullets">
-              {categoryData.map((item) => {
-                return (
-                  <li key={item}>
-                    <label>{item.category}</label>
-                    <wjGauge.BulletGraph
-                      showText="Value"
-                      target={item.target}
-                      max={item.max}
-                      good={item.good}
-                      bad={item.bad}
-                      value={item.actual}
-                    ></wjGauge.BulletGraph>
-                  </li>
-                );
-              })}
-            </ul>
-            <div style={{marginTop: 50}} />
-          </div>
-          <div className="col">
-            <wjChart.FlexPie
-              header={`Categorias de ${
-                !monthSelectedAcronym
-                  ? yearSelected
-                  : monthSelectedAcronym
-              } `}
-              bindingName="category"
-              binding="actual"
-              itemsSource={categoryData}
-              initialized={initializePie}
-            >
-              <wjChart.FlexChartLegend position="Bottom"></wjChart.FlexChartLegend>
-            </wjChart.FlexPie>
+          <hr />
+          <div className="row" style={{marginTop: 20}}>
+            <div className="col">
+              <ul className="bullets">
+                {categoryData.map((item) => {
+                  return (
+                    <li key={item}>
+                      <label>{item.category}</label>
+                      <wjGauge.BulletGraph
+                        showText="Value"
+                        target={item.target}
+                        max={item.max}
+                        good={item.good}
+                        bad={item.bad}
+                        value={item.actual}
+                      ></wjGauge.BulletGraph>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div style={{marginTop: 50}} />
+            </div>
+            <div className="col">
+              <wjChart.FlexPie
+                header={`Categorias de ${
+                  !monthSelectedAcronym
+                    ? yearSelected
+                    : monthSelectedAcronym
+                } `}
+                bindingName="category"
+                binding="actual"
+                itemsSource={categoryData}
+                initialized={initializePie}
+              >
+                <wjChart.FlexChartLegend position="Bottom"></wjChart.FlexChartLegend>
+              </wjChart.FlexPie>
+            </div>
           </div>
         </div>
       </div>
