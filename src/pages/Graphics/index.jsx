@@ -7,8 +7,11 @@ import './app.css';
 import api from '../../services/api';
 import moment from 'moment';
 import SideBar from '../../components/SideBar';
+import {useCompanyContext} from '../../contexts/CompanyContext';
 
 export function Graphics() {
+  const {company} = useCompanyContext();
+
   const [chartData, setChartData] = useState([]);
   const [bulletsData, setBulletsData] = useState([]);
   const [pieData, setPieData] = useState([]);
@@ -48,7 +51,7 @@ export function Graphics() {
   useEffect(() => {
     async function loadData() {
       const response = await api.get(
-        '/dangers?initialDate=2000-01-01&finalDate=2050-01-01'
+        `/dangers?company=${company._id}&initialDate=2000-01-01&finalDate=2050-01-01`
       );
 
       const total = response.data.filter(
@@ -339,7 +342,9 @@ export function Graphics() {
       setCategoryData(dataTotalCategory);
     }
 
-    loadData();
+    if (company) {
+      loadData();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [yearSelected]);
 
@@ -509,6 +514,8 @@ export function Graphics() {
     <div className="container">
       <SideBar page="graphics" />
       <div className="content">
+        <h1>{company.name}</h1>
+
         <div className="row">
           <select
             name="select"

@@ -78,7 +78,7 @@ const SideBar = ({page}) => {
             </Link>
 
             <Link
-              to="/graphics"
+              to="/home-graphics"
               className={pageName === 'graphics' ? 'active' : ''}
             >
               <span>

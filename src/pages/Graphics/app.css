@@ -35,3 +35,12 @@ select {
   border-radius: 10px;
   border: none;
 }
+
+h1 {
+  margin-left: 60px;
+  margin-top: -20px;
+
+  margin-bottom: 20px;
+  font-size: 1rem;
+  color: #4d4d4d;
+}
