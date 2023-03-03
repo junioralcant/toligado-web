@@ -150,8 +150,7 @@ export const Card = styled.div`
       }
 
       button.not-resolved {
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 14px;
         background: #ffc447;
         padding: 5px;
         border-radius: 3px;
@@ -250,7 +249,15 @@ export const ModalDescription = styled.div`
   flex-direction: column;
 
   p {
-    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  div {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   ${(props) =>

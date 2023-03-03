@@ -58,28 +58,8 @@ const Danger = ({history}) => {
     useState(false);
 
   const [
-    activeModalDescriptionError,
-    setActiveModalDescriptionError,
-  ] = useState(false);
-
-  const [
-    activeModalDescriptionDangerResolvedNote,
-    setActiveModalDescriptionResolvedNote,
-  ] = useState(false);
-
-  const [
     idDangerShowModalDescription,
     setIdDangerShowModalDescription,
-  ] = useState('');
-
-  const [
-    idDangerShowModalDescriptionError,
-    setIdDangerShowModalDescriptionError,
-  ] = useState('');
-
-  const [
-    idDangerResolvedNoteShowModalDescription,
-    setIdResolvedNoteShowModalDescription,
   ] = useState('');
 
   useEffect(() => {
@@ -229,24 +209,9 @@ const Danger = ({history}) => {
     setActiveModalDescription(true);
     setIdDangerShowModalDescription(idRegister);
   }
-  function showModalDescriptionError(idRegister) {
-    setActiveModalDescriptionError(true);
-    setIdDangerShowModalDescriptionError(idRegister);
-  }
-
-  function showModalDescriptionResolvedNote(idRegister) {
-    setActiveModalDescriptionResolvedNote(true);
-    setIdResolvedNoteShowModalDescription(idRegister);
-  }
 
   function hiddenModalDescription() {
     setActiveModalDescription(false);
-  }
-  function hiddenModalDescriptionError() {
-    setActiveModalDescriptionError(false);
-  }
-  function hiddenModalDescriptionResolvedNote() {
-    setActiveModalDescriptionResolvedNote(false);
   }
 
   function showModalDetailsResolved(idRegister) {
@@ -266,6 +231,7 @@ const Danger = ({history}) => {
     ) {
       await api.put(`/dangers/${id}`, {
         resolvedApproved: 'APPROVAD',
+        disapprovedReasonResolved: '',
       });
 
       const response = await api.get(
@@ -332,6 +298,7 @@ const Danger = ({history}) => {
       await api.put(`/dangers/${id}`, {
         resolvedNote: message ? message : '',
         resolvedByTechnical: true,
+        resolvedApproved: 'ANALYSIS',
       });
 
       const response = await api.get(
@@ -569,28 +536,6 @@ const Danger = ({history}) => {
                 {danger.description}
               </p>
 
-              {danger.disapprovedReason && (
-                <p
-                  onMouseOver={() => {
-                    showModalDescriptionError(danger._id);
-                  }}
-                  className="short_description error"
-                >
-                  {danger.disapprovedReason}
-                </p>
-              )}
-
-              {danger.resolvedNote && !userLogged.responsableFor && (
-                <p
-                  onMouseOver={() => {
-                    showModalDescriptionResolvedNote(danger._id);
-                  }}
-                  className="short_description ok"
-                >
-                  {danger.resolvedNote}
-                </p>
-              )}
-
               {String(idDangerShowModalDescription) ===
                 String(danger._id) && (
                 <ModalDescription
@@ -603,38 +548,23 @@ const Danger = ({history}) => {
                   }}
                 >
                   <strong>{danger.location}</strong>
-
                   <p>{danger.description}</p>
-                </ModalDescription>
-              )}
 
-              {String(idDangerShowModalDescriptionError) ===
-                String(danger._id) && (
-                <ModalDescription
-                  active={activeModalDescriptionError}
-                  onMouseOver={() => {
-                    showModalDescriptionError(danger._id);
-                  }}
-                  onMouseOut={() => {
-                    hiddenModalDescriptionError();
-                  }}
-                >
-                  <p className="error">{danger.disapprovedReason}</p>
-                </ModalDescription>
-              )}
+                  <div>
+                    {danger.disapprovedReasonResolved && (
+                      <div>
+                        <strong>Reprovado nota</strong>
+                        <p>{danger.disapprovedReasonResolved}</p>
+                      </div>
+                    )}
 
-              {String(idDangerResolvedNoteShowModalDescription) ===
-                String(danger._id) && (
-                <ModalDescription
-                  active={activeModalDescriptionDangerResolvedNote}
-                  onMouseOver={() => {
-                    showModalDescriptionResolvedNote(danger._id);
-                  }}
-                  onMouseOut={() => {
-                    hiddenModalDescriptionResolvedNote();
-                  }}
-                >
-                  <p className="ok">{danger.resolvedNote}</p>
+                    {danger.resolvedNote && (
+                      <div>
+                        <strong>Resolvido nota</strong>
+                        <p>{danger.resolvedNote}</p>
+                      </div>
+                    )}
+                  </div>
                 </ModalDescription>
               )}
 
@@ -731,7 +661,7 @@ const Danger = ({history}) => {
                     </button>
 
                     {userLogged.responsableFor &&
-                      danger.resolved === false && (
+                      danger.resolvedApproved !== 'APPROVAD' && (
                         <>
                           <button
                             className="not-resolved"
@@ -740,7 +670,8 @@ const Danger = ({history}) => {
                               setIdRecordResolvedClicked(danger._id);
                             }}
                           >
-                            Resolver
+                            {danger.resolved === true && 'Substituir'}
+                            {danger.resolved === false && 'Resolver'}
                           </button>
 
                           {inputFileData?.name &&
