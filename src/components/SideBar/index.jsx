@@ -66,28 +66,25 @@ const SideBar = ({page}) => {
         </Link>
 
         {!userLogged.responsableFor && (
-          <>
-            <Link
-              to="/home-draw"
-              className={pageName === 'draw' ? 'active' : ''}
-            >
-              <span>
-                <FiCodesandbox />
-              </span>
-              <p>Sorteio</p>
-            </Link>
-
-            <Link
-              to="/home-graphics"
-              className={pageName === 'graphics' ? 'active' : ''}
-            >
-              <span>
-                <FiActivity />
-              </span>
-              <p>Gráficos</p>
-            </Link>
-          </>
+          <Link
+            to="/home-draw"
+            className={pageName === 'draw' ? 'active' : ''}
+          >
+            <span>
+              <FiCodesandbox />
+            </span>
+            <p>Sorteio</p>
+          </Link>
         )}
+        <Link
+          to="/home-graphics"
+          className={pageName === 'graphics' ? 'active' : ''}
+        >
+          <span>
+            <FiActivity />
+          </span>
+          <p>Gráficos</p>
+        </Link>
 
         <div
           style={{
