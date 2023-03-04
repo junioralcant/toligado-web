@@ -152,7 +152,8 @@ const Danger = ({history}) => {
     resolvedApproved,
     imageResolved,
     disapprovedReason,
-    riskCategory
+    riskCategory,
+    resolvedDate
   ) {
     history.push('/print', {
       name,
@@ -165,6 +166,7 @@ const Danger = ({history}) => {
       imageResolved,
       disapprovedReason,
       riskCategory,
+      resolvedDate,
     });
   }
 
@@ -622,7 +624,8 @@ const Danger = ({history}) => {
                             danger.disapprovedReason
                               ? danger.disapprovedReason
                               : '',
-                            danger.riskCategory
+                            danger.riskCategory,
+                            danger.resolvedDate
                           );
                         }}
                       >
@@ -647,7 +650,8 @@ const Danger = ({history}) => {
                           danger.disapprovedReason
                             ? danger.disapprovedReason
                             : '',
-                          danger.riskCategory
+                          danger.riskCategory,
+                          danger.resolvedDate
                         );
                       }}
                     >

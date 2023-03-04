@@ -521,6 +521,7 @@ export function Graphics() {
             name="select"
             onChange={handleSelectYear}
             defaultValue={yearSelected}
+            className="graphic"
           >
             <option value="2020">2020</option>
             <option value="2021">2021</option>

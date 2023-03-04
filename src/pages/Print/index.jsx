@@ -31,6 +31,7 @@ const Print = () => {
     imageResolved,
     disapprovedReason,
     riskCategory,
+    resolvedDate,
   } = locationHistory.state;
 
   useEffect(() => {
@@ -39,6 +40,7 @@ const Print = () => {
 
   const typePDF = String(imageResolved).includes('.pdf');
 
+  console.log(imageResolved);
   return (
     <Container>
       <Content>
@@ -54,6 +56,14 @@ const Print = () => {
             <h4>
               Data do registro: {moment(date).format('DD-MM-YYYY')}
             </h4>
+            {resolvedDate &&
+              imageResolved &&
+              resolvedApproved === 'APPROVAD' && (
+                <h5>
+                  Resolvido:{' '}
+                  {moment(resolvedDate).format('DD-MM-YYYY')}
+                </h5>
+              )}
           </div>
           <div>
             {company && (
