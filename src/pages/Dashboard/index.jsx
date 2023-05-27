@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {FiCodesandbox, FiBarChart2, FiCheck} from 'react-icons/fi';
 import {BsFillArchiveFill} from 'react-icons/bs';
-import {AiOutlineCloudDownload} from 'react-icons/ai';
+import {AiOutlineCloudDownload, AiOutlineUser} from 'react-icons/ai';
 
 import SideBar from '../../components/SideBar';
 import {
@@ -35,6 +35,7 @@ const Dashboard = ({history}) => {
   const [dangersApproved, setDangersApproved] = useState([]);
   const [dangersAnalyzed, setDangersAnalyzed] = useState([]);
   const [dangersDisapproved, setDangersDisapproved] = useState([]);
+  const [usersAmount, setUsersAmount] = useState(0);
 
   useEffect(() => {
     async function loadDanger() {
@@ -76,6 +77,15 @@ const Dashboard = ({history}) => {
     }
   }, [company]);
 
+  useEffect(() => {
+    async function loadUsers() {
+      const response = await api.get('/users/');
+      setUsersAmount(response.data.length);
+    }
+
+    loadUsers();
+  }, []);
+
   function navigateToRegisterDangerAnalyzed() {
     handleTypeDangerAnalyzed();
     history.push('/listrecord');
@@ -89,6 +99,10 @@ const Dashboard = ({history}) => {
   function navigateToRegisterDangerDisapproved() {
     handleTypeDangerDisapproved();
     history.push('/listrecord');
+  }
+
+  function navigateToUserList() {
+    history.push('/list-users');
   }
 
   return (
@@ -175,6 +189,17 @@ const Dashboard = ({history}) => {
                     </div>
 
                     <AiOutlineCloudDownload />
+                  </div>
+                </Button>
+
+                <Button download onClick={navigateToUserList}>
+                  <div>
+                    <div>
+                      <strong>{usersAmount}</strong>
+                      <p>Usuários</p>
+                    </div>
+
+                    <AiOutlineUser />
                   </div>
                 </Button>
               </Column>

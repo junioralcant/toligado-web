@@ -19,6 +19,7 @@ import Home from './pages/Home';
 import HomeDraw from './pages/HomeDraw';
 import {Graphics} from './pages/Graphics';
 import GraphicsHome from './pages/GraphicsHome';
+import {ListUser} from './pages/ListUser';
 
 const PrivateRoute = ({component: Component, ...rest}) => (
   <Route
@@ -46,12 +47,10 @@ const Routes = () => (
       <PrivateRoute path="/home-draw" component={HomeDraw} />
       <PrivateRoute path="/graphics" component={Graphics} />
       <PrivateRoute path="/home-graphics" component={GraphicsHome} />
-
+      <PrivateRoute path="/list-users" component={ListUser} />
       <PrivateRoute path="/draw" component={Draw} />
       <PrivateRoute path="/listrecord" component={ListRecord} />
-
       <PrivateRoute path="/print" component={Print} />
-
       <PrivateRoute path="/export-fields" component={ExportField} />
 
       <Route path="/privacy-policy" component={PrivacyPolicy} />

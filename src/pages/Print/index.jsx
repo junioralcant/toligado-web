@@ -49,7 +49,9 @@ const Print = () => {
             <img src={logo} alt="" />
           </div>
           <div className="texts">
-            <h4 style={{marginBottom: 25}}>Relatório de Registros</h4>
+            <h4 style={{marginBottom: 25}}>
+              Relatório de Registros{' '}
+            </h4>
 
             {name ? <h4>Registrado por: {name}</h4> : <br />}
 
