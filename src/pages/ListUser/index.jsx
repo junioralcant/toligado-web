@@ -35,8 +35,6 @@ export function ListUser() {
     }
   }
 
-  console.log(company);
-
   useEffect(() => {
     loadUsers();
   }, [userNameFilter]);
@@ -63,7 +61,7 @@ export function ListUser() {
     }
   }
 
-  async function updateCompany(idUser, blockedUser) {
+  async function updateBlockedUser(idUser, blockedUser) {
     if (
       confirm(
         'Deseja realmente alterar o status de Bloqueado desse usuário?'
@@ -124,7 +122,7 @@ export function ListUser() {
                 <td>
                   <select
                     onChange={(e) =>
-                      updateCompany(user._id, e.target.value)
+                      updateBlockedUser(user._id, e.target.value)
                     }
                     value={user.blockedUser}
                   >
