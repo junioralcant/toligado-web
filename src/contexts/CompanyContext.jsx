@@ -1,13 +1,13 @@
-import React, { createContext, useContext, useReducer } from 'react';
-import { useEffect } from 'react';
+import React, {createContext, useContext, useReducer} from 'react';
+import {useEffect} from 'react';
 
-import { addCompany } from '../reducer/company/action';
+import {addCompany} from '../reducer/company/action';
 
-import { companyReducer } from '../reducer/company/reducer';
+import {companyReducer} from '../reducer/company/reducer';
 
 const CompanyContext = createContext();
 
-export function CompanyProvider({ children }) {
+export function CompanyProvider({children}) {
   const [companyState, dispatcher] = useReducer(
     companyReducer,
     {
@@ -19,29 +19,35 @@ export function CompanyProvider({ children }) {
       );
 
       if (storedCompanyAsJSON) {
-        return { company: JSON.parse(storedCompanyAsJSON) };
+        return {company: JSON.parse(storedCompanyAsJSON)};
       }
 
-      return { company: {} };
+      return {company: {}};
     }
   );
 
-  const { company } = companyState;
+  const {company} = companyState;
 
   useEffect(() => {
     return () => {};
   }, []);
 
   async function setCompanyDate(company) {
-    const companyJSON = JSON.stringify(company);
+    if (company) {
+      const companyJSON = JSON.stringify(company);
 
-    localStorage.setItem('@to-ligado:company-1.0.0', companyJSON);
+      localStorage.setItem('@to-ligado:company-1.0.0', companyJSON);
 
-    dispatcher(addCompany(company));
+      dispatcher(addCompany(company));
+    } else {
+      localStorage.removeItem('@to-ligado:company-1.0.0');
+
+      dispatcher(addCompany(company));
+    }
   }
 
   return (
-    <CompanyContext.Provider value={{ company, setCompanyDate }}>
+    <CompanyContext.Provider value={{company, setCompanyDate}}>
       {children}
     </CompanyContext.Provider>
   );

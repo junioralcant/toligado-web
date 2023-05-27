@@ -5,8 +5,11 @@ import {ToastContainer, toast} from 'react-toastify';
 import api from '../../services/api';
 import SideBar from '../../components/SideBar';
 import {Container, Header, Table} from './styles';
+import {useCompanyContext} from '../../contexts/CompanyContext';
 
 export function ListUser() {
+  const {company} = useCompanyContext();
+
   const [users, setUsers] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [userNameFilter, setUserNameFilter] = useState('');
@@ -20,9 +23,19 @@ export function ListUser() {
 
       setUsers(usersFiltered);
     } else {
-      setUsers(response.data);
+      if (company) {
+        const filterUserCompany = response.data.filter(
+          (user) =>
+            String(user.belongsCompany?._id) === String(company._id)
+        );
+        setUsers(filterUserCompany);
+      } else {
+        setUsers(response.data);
+      }
     }
   }
+
+  console.log(company);
 
   useEffect(() => {
     loadUsers();

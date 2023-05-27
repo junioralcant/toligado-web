@@ -94,7 +94,13 @@ const Home = ({history}) => {
             )}
 
             {!userLogged.responsableFor && (
-              <Button download onClick={navigateToUserList}>
+              <Button
+                download
+                onClick={() => {
+                  setCompanyDate(null);
+                  navigateToUserList();
+                }}
+              >
                 <div>
                   <div>
                     <strong>{usersAmount}</strong>

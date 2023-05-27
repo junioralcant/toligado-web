@@ -79,12 +79,20 @@ const Dashboard = ({history}) => {
 
   useEffect(() => {
     async function loadUsers() {
-      const response = await api.get('/users/');
-      setUsersAmount(response.data.length);
+      const response = await api.get('/users');
+
+      if (company) {
+        const filterUserCompany = response.data.filter(
+          (user) =>
+            String(user.belongsCompany?._id) === String(company._id)
+        );
+
+        setUsersAmount(filterUserCompany.length);
+      }
     }
 
     loadUsers();
-  }, []);
+  }, [company]);
 
   function navigateToRegisterDangerAnalyzed() {
     handleTypeDangerAnalyzed();
