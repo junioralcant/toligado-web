@@ -122,6 +122,7 @@ export function ListUser() {
                       updateCompany(user._id, e.target.value)
                     }
                     value={user.belongsCompany?._id}
+                    disabled={userLogged.responsableFor}
                   >
                     {companies.map((company) => (
                       <option value={company._id}>
@@ -136,6 +137,7 @@ export function ListUser() {
                       updateBlockedUser(user._id, e.target.value)
                     }
                     value={user.blockedUser}
+                    disabled={userLogged.responsableFor}
                   >
                     <option value={false}>Ativo</option>
                     <option value={true}>Bloqueado</option>
