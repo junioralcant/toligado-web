@@ -227,6 +227,17 @@ const Dashboard = ({history}) => {
                   <FiCheck />
                 </div>
               </Button>
+
+              <Button download onClick={navigateToUserList}>
+                <div>
+                  <div>
+                    <strong>{usersAmount}</strong>
+                    <p>Usuários</p>
+                  </div>
+
+                  <AiOutlineUser />
+                </div>
+              </Button>
             </Column>
           )}
         </Content>

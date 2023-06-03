@@ -6,9 +6,11 @@ import api from '../../services/api';
 import SideBar from '../../components/SideBar';
 import {Container, Header, Table} from './styles';
 import {useCompanyContext} from '../../contexts/CompanyContext';
+import {user} from '../../services/auth';
 
 export function ListUser() {
   const {company} = useCompanyContext();
+  const userLogged = user();
 
   const [users, setUsers] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -21,7 +23,16 @@ export function ListUser() {
         user.name.match(new RegExp(userNameFilter, 'i'))
       );
 
-      setUsers(usersFiltered);
+      if (!userLogged.responsableFor) {
+        setUsers(usersFiltered);
+      } else {
+        const filterUserCompany = usersFiltered.filter(
+          (user) =>
+            String(user.belongsCompany?._id) === String(company._id)
+        );
+
+        setUsers(filterUserCompany);
+      }
     } else {
       if (company) {
         const filterUserCompany = response.data.filter(
