@@ -28,18 +28,28 @@ export function ListUser() {
       } else {
         const filterUserCompany = usersFiltered.filter(
           (user) =>
-            String(user.belongsCompany?._id) === String(company._id)
+            String(user.belongsCompany?._id) ===
+              String(company._id) && user.blockedUser === false
         );
 
         setUsers(filterUserCompany);
       }
     } else {
       if (company) {
-        const filterUserCompany = response.data.filter(
-          (user) =>
-            String(user.belongsCompany?._id) === String(company._id)
-        );
-        setUsers(filterUserCompany);
+        if (userLogged.responsableFor) {
+          const filterUserCompany = response.data.filter(
+            (user) =>
+              String(user.belongsCompany?._id) ===
+                String(company._id) && user.blockedUser === false
+          );
+          setUsers(filterUserCompany);
+        } else {
+          const filterUserCompany = response.data.filter(
+            (user) =>
+              String(user.belongsCompany?._id) === String(company._id)
+          );
+          setUsers(filterUserCompany);
+        }
       } else {
         setUsers(response.data);
       }
@@ -51,13 +61,13 @@ export function ListUser() {
   }, [userNameFilter]);
 
   useEffect(() => {
-    async function loadUsers() {
+    async function loadCompany() {
       const response = await api.get('/companies');
 
       setCompanies(response.data);
     }
 
-    loadUsers();
+    loadCompany();
   }, [userNameFilter]);
 
   async function updateCompany(idUser, idCompany) {
@@ -113,7 +123,7 @@ export function ListUser() {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr>
+              <tr key={user._id}>
                 <td>{user.name}</td>
                 <td>{user.cpf}</td>
                 <td>

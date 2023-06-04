@@ -36,6 +36,7 @@ const Dashboard = ({history}) => {
   const [dangersAnalyzed, setDangersAnalyzed] = useState([]);
   const [dangersDisapproved, setDangersDisapproved] = useState([]);
   const [usersAmount, setUsersAmount] = useState(0);
+  const [usersAmountToCompany, setUsersAmountToCompany] = useState(0);
 
   useEffect(() => {
     async function loadDanger() {
@@ -87,7 +88,12 @@ const Dashboard = ({history}) => {
             String(user.belongsCompany?._id) === String(company._id)
         );
 
+        const filterUserCompanyToCompany = filterUserCompany.filter(
+          (user) => user.blockedUser === false
+        );
+
         setUsersAmount(filterUserCompany.length);
+        setUsersAmountToCompany(filterUserCompanyToCompany.length);
       }
     }
 
@@ -231,7 +237,7 @@ const Dashboard = ({history}) => {
               <Button download onClick={navigateToUserList}>
                 <div>
                   <div>
-                    <strong>{usersAmount}</strong>
+                    <strong>{usersAmountToCompany}</strong>
                     <p>Usuários</p>
                   </div>
 
