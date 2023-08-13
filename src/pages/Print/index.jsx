@@ -31,7 +31,7 @@ const Print = () => {
     imageResolved,
     disapprovedReason,
     riskCategory,
-    resolvedDate,
+    // resolvedDate,
   } = locationHistory.state;
 
   useEffect(() => {
@@ -58,14 +58,14 @@ const Print = () => {
             <h4>
               Data do registro: {moment(date).format('DD-MM-YYYY')}
             </h4>
-            {resolvedDate &&
+            {/* {resolvedDate &&
               imageResolved &&
               resolvedApproved === 'APPROVAD' && (
                 <h5>
                   Resolvido:{' '}
                   {moment(resolvedDate).format('DD-MM-YYYY')}
                 </h5>
-              )}
+              )} */}
           </div>
           <div>
             {company && (
